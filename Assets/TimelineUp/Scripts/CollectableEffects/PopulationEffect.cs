@@ -1,0 +1,42 @@
+using HyperCasualRunner.PopulationManagers;
+using NaughtyAttributes;
+using TMPro;
+using UnityEngine;
+
+namespace HyperCasualRunner.CollectableEffects
+{
+    /// <summary>
+    /// Use when you want regular collectables. Like gates, or collectable things on the ground.
+    /// </summary>
+    public class PopulationEffect : CollectableEffectBase
+    {
+        [SerializeField] int amount = -5;
+        [SerializeField] MeshRenderer meshRender;
+        [SerializeField] TMP_Text textAmount;
+
+        [SerializeField] Material materialPositive;
+        [SerializeField] Material materialNegative;
+
+		public override void ApplyEffect(PopulationManagerBase manager)
+		{
+            manager.AddPopulation(amount);
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateVisual();
+        }
+
+        private void UpdateVisual()
+        {
+            meshRender.material = amount >= 0 ? materialPositive : materialNegative;
+            textAmount.text = amount >= 0 ? $"+ {Mathf.Abs(amount)}": $"- {Mathf.Abs(amount)}";
+        }
+
+        [Button("Setup", EButtonEnableMode.Editor)]
+        void Reset()
+        {
+            UpdateVisual();
+        }
+    }
+}
