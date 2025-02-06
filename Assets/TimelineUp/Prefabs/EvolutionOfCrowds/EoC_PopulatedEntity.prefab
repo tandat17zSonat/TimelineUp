@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2695814702819301176}
   - component: {fileID: 6049780858715478614}
   - component: {fileID: 6867370995209928413}
+  - component: {fileID: 8616047968891613343}
   m_Layer: 7
   m_Name: EoC_PopulatedEntity
   m_TagString: Untagged
@@ -106,6 +107,21 @@ MonoBehaviour:
   _disappearParticle: {fileID: 0}
   _appearParticleEnabled: 0
   _appearParticle: {fileID: 0}
+--- !u!114 &8616047968891613343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695814702819301182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291c949c64cb2954fa6ac4df7f8d819d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultShooter: {fileID: 1657306822167278658}
+  _useParticle: 0
+  _shootingParticle: {fileID: 0}
 --- !u!1 &3133930893655061470
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,10 +529,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1a498966aaf5146568d5d68938ee1506, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1657306822167278658}
   m_SourcePrefab: {fileID: 100100000, guid: 1a498966aaf5146568d5d68938ee1506, type: 3}
 --- !u!4 &4959180879673053274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1a498966aaf5146568d5d68938ee1506, type: 3}
+  m_PrefabInstance: {fileID: 4852687702802249649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5735716827164707552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1a498966aaf5146568d5d68938ee1506, type: 3}
+  m_PrefabInstance: {fileID: 4852687702802249649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1657306822167278658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735716827164707552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1c6708a8c925844888815c5c1f6f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePool: {fileID: 11400000, guid: 0c9b65e669abb1345a8a4acd5fe188ed, type: 2}
+  ProjectileSpawnPoint: {fileID: 6337681953799298604}
+--- !u!4 &6337681953799298604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7733861530827789923, guid: 1a498966aaf5146568d5d68938ee1506, type: 3}
   m_PrefabInstance: {fileID: 4852687702802249649}
   m_PrefabAsset: {fileID: 0}

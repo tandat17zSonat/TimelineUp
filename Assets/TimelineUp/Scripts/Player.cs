@@ -26,19 +26,19 @@ namespace HyperCasualRunner
         //[SerializeField, ShowIf(nameof(_useAnimator))] AnimatorModifier _animatorModifier;
         //[SerializeField, ShowIf(nameof(_useAnimation))] AnimationModifier _animationModifier;
 
-        //ITickable[] _tickables;
+        ITickable[] _tickables;
 
         void Awake()
         {
             _runnerMover.Initialize();
             _populationManagerBase.Initialize();
 
-            //foreach (IInitializable initializable in GetComponents<IInitializable>())
-            //{
-            //    initializable.Initialize(_populationManagerBase);
-            //}
+            foreach (IInitializable initializable in GetComponents<IInitializable>())
+            {
+                initializable.Initialize(_populationManagerBase);
+            }
 
-            //_tickables = GetComponents<ITickable>();
+            _tickables = GetComponents<ITickable>();
         }
 
         void OnEnable()
@@ -67,10 +67,10 @@ namespace HyperCasualRunner
 
         void Update()
         {
-            //foreach (ITickable tickable in _tickables)
-            //{
-            //    tickable.Tick();
-            //}
+            foreach (ITickable tickable in _tickables)
+            {
+                tickable.Tick();
+            }
         }
 
         public void OnInteractionBegin()

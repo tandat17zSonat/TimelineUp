@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 758513602}
   - component: {fileID: 758513601}
   - component: {fileID: 758513600}
+  - component: {fileID: 758513605}
   m_Layer: 0
   m_Name: Population
   m_TagString: Untagged
@@ -510,7 +511,7 @@ MonoBehaviour:
   OnLastEntityDied:
     m_PersistentCalls:
       m_Calls: []
-  _organizeDurationInSeconds: 2
+  _organizeDurationInSeconds: 1
   _entityMoveSpeed: 2
   CrowdOrganizingPoint: {fileID: 758513604}
 --- !u!114 &758513601
@@ -594,6 +595,19 @@ Transform:
   - {fileID: 1597092622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &758513605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758513599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455286737c8ea8643ad1355f7dc54ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootInterval: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

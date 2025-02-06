@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 436b43d7737549d3a866de477dd4f8e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 55065edacf01eb243acfdad31b7e1f89, type: 3}
   m_Name: ProjectilePool_lvl0
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 7311562713678637609, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
+  _projectilePrefab: {fileID: 7361658861776523563, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
   _collectionCheck: 0
   _defaultCapacity: 70
   _maxSize: 100
