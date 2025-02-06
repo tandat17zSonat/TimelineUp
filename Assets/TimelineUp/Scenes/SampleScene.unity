@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPopulationCount: 50
-  populatedEntityPrefab: {fileID: 9054339371415809869, guid: 9b54785f70a4d1a4183361181579aefe, type: 3}
+  populatedEntityPrefab: {fileID: 6867370995209928413, guid: 9c0b07fbfe08440cc818c168093bf374, type: 3}
   _shouldSpawnEntitiesAsChild: 1
   instantiateRoot: {fileID: 1597092622}
   OnLastEntityDied:
