@@ -34,6 +34,7 @@ namespace HyperCasualRunner.PopulationManagers
             _currentEntityMoveSpeed = _entityMoveSpeed;
         }
 
+        // TODO: battling game
         void FixedUpdate()
         {
             if (!_canMovePopulatedEntities)
@@ -64,12 +65,13 @@ namespace HyperCasualRunner.PopulationManagers
             _organizeCoroutine = StartCoroutine(Co_Organize());
         }
 
-        public void MoveRotated(Transform target, float moveSpeed)
-        {
-            _shouldRotate = true;
-            _currentEntityMoveSpeed = moveSpeed;
-            Move(target);
-        }
+        //// TODO: To battle
+        //public void MoveRotated(Transform target, float moveSpeed)
+        //{
+        //    _shouldRotate = true;
+        //    _currentEntityMoveSpeed = moveSpeed;
+        //    Move(target);
+        //}
 
         public override void Depopulate(PopulatedEntity.PopulatedEntity entity)
         {

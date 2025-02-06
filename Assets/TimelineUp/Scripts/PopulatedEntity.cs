@@ -83,6 +83,7 @@ namespace HyperCasualRunner.PopulatedEntity
             //}
         }
 
+
         /// <summary>
         /// Moves this to the target point. It's useful in crowd battling games. 
         /// </summary>

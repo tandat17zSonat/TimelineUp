@@ -16,7 +16,7 @@ namespace HyperCasualRunner
         [SerializeField, Range(0f, 1f), Tooltip("Max range the joystick center can go")] float _maxRange = 0.2f;
         [SerializeField, Tooltip("Whether you can control joystick horizontally")] bool _horizontalAxisEnabled = true;
         [SerializeField, Tooltip("Whether you can control joystick vertically")] bool _verticalAxisEnabled = true;
-        [SerializeField, Tooltip("If enabled, center follows the player's finger position.")] bool _isCenterDynamic;
+        //[SerializeField, Tooltip("If enabled, center follows the player's finger position.")] bool _isCenterDynamic;
 
         Transform _knobTransform;
         Vector2 _joystickValue;
@@ -96,11 +96,12 @@ namespace HyperCasualRunner
             _joystickValue.x = EvaluateInputValue(deltaPosition.x);
             _joystickValue.y = EvaluateInputValue(deltaPosition.y);
             _joystickValue = Vector2.ClampMagnitude(_joystickValue, 1f);
+            //Debug.Log($"_joystickValue {_joystickValue.x} {_joystickValue.y}");
 
-            if (_isCenterDynamic)
-            {
-                _background.transform.position = Input.mousePosition;
-            }
+            //if (_isCenterDynamic)
+            //{
+            //    _background.transform.position = Input.mousePosition;
+            //}
 
             // clamp the knobTransform's position
             int maxRangeInPixel = Mathf.RoundToInt(_maxRange * UnityEngine.Screen.width);

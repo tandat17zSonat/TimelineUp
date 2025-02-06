@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -33,7 +33,7 @@ namespace HyperCasualRunner.Locomotion
         [SerializeField] bool _shouldConstrainMovement;
         [SerializeField, ShowIf(nameof(_shouldConstrainMovement))] MovementConstrainerBase _movementConstrainer;
 
-        int _canGoForward; // 1 yes, 0 no
+        bool _canGoForward; // 1 yes, 0 no
         float _gravitationalVelocity;
         Vector3 _horizontalMovement;
         Vector3 _forwardMovement;
@@ -57,12 +57,12 @@ namespace HyperCasualRunner.Locomotion
 
         public void TryStartMovement()
         {
-            _canGoForward = 1;
+            _canGoForward = true;
         }
 
         public bool TryStopMovement()
         {
-            if (_canControlForwardMovement) _canGoForward = 0;
+            if (_canControlForwardMovement) _canGoForward = false;
             return _canControlForwardMovement;
         }
 
@@ -77,29 +77,7 @@ namespace HyperCasualRunner.Locomotion
                 return;
             }
 
-            var trans = transform;
-            Vector3 horizontalMovementRaw = trans.right * moveDirection.x;
-            Vector3 forwardMovementRaw = trans.forward * _forwardMoveSpeed;
-            _horizontalMovement = Vector3.SmoothDamp(_horizontalMovement, horizontalMovementRaw * _horizontalMoveSpeed, ref _horizontalVelocity, _horizontalSmoothingTime);
-            _forwardMovement = Vector3.SmoothDamp(_forwardMovement, forwardMovementRaw * _canGoForward, ref _forwardVelocity, _forwardSmoothingTime);
-            Vector3 totalInputMovement = _horizontalMovement + _forwardMovement;
-
-            if (_characterController.isGrounded)
-            {
-                _gravitationalVelocity = _gravityPower * Time.deltaTime;
-            }
-            else
-            {
-                _gravitationalVelocity += _gravityPower * Time.deltaTime;
-            }
-
-            Vector3 finalMovement = (totalInputMovement + transform.up * _gravitationalVelocity) * Time.deltaTime;
-
-            if (_shouldConstrainMovement)
-            {
-                finalMovement = _movementConstrainer.GetConstrainedMotion(finalMovement, transform.position);
-            }
-
+            var finalMovement = GetFinalMovement(moveDirection);
             _characterController.Move(finalMovement);
 
             //if (_shouldOrientUpDirectionToGround)
@@ -116,6 +94,34 @@ namespace HyperCasualRunner.Locomotion
             //    _gameObjectToTurn.transform.rotation = Quaternion.Slerp(
             //        _gameObjectToTurn.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             //}
+        }
+
+        Vector3 GetFinalMovement(Vector2 moveDirection)
+        {
+            var trans = transform;
+            Vector3 horizontalMovementRaw = trans.right * moveDirection.x;
+            Vector3 forwardMovementRaw = trans.forward * (_canGoForward ? 1 : 0);
+            _horizontalMovement = Vector3.SmoothDamp(_horizontalMovement, horizontalMovementRaw * _horizontalMoveSpeed, ref _horizontalVelocity, _horizontalSmoothingTime);
+            _forwardMovement = Vector3.SmoothDamp(_forwardMovement, forwardMovementRaw * _forwardMoveSpeed, ref _forwardVelocity, _forwardSmoothingTime);
+            Vector3 totalInputMovement = _horizontalMovement + _forwardMovement;
+
+            if (_characterController.isGrounded)
+            {
+                _gravitationalVelocity = _gravityPower * Time.deltaTime;
+            }
+            else
+            {
+                _gravitationalVelocity += _gravityPower * Time.deltaTime;
+            }
+
+            Vector3 finalMovement = (totalInputMovement + transform.up * _gravitationalVelocity) * Time.deltaTime;
+
+            // Now: Giới hạn phạm vi của player
+            if (_shouldConstrainMovement)
+            {
+                finalMovement = _movementConstrainer.GetConstrainedMotion(finalMovement, transform.position);
+            }
+            return finalMovement;
         }
 
         void Reset()
