@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePool: {fileID: 11400000, guid: 0c9b65e669abb1345a8a4acd5fe188ed, type: 2}
-  ProjectileSpawnPoint: {fileID: 6337681953799298604}
+  _projectileSpawnPoint: {fileID: 6337681953799298604}
 --- !u!4 &6337681953799298604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7733861530827789923, guid: 1a498966aaf5146568d5d68938ee1506, type: 3}

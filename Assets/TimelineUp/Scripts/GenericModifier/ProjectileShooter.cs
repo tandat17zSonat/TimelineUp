@@ -10,8 +10,9 @@ namespace HyperCasualRunner
     public class ProjectileShooter : MonoBehaviour
     {
         [SerializeField] ProjectilePool _projectilePool;
+        [SerializeField] Transform _projectileSpawnPoint;
 
-        public Transform ProjectileSpawnPoint;
+        public Transform ProjectileSpawnPoint { get => _projectileSpawnPoint; set => _projectileSpawnPoint = value; }
 
         public Projectile Get()
         {

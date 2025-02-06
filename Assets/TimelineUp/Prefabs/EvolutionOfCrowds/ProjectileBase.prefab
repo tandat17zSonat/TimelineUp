@@ -95,5 +95,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 7551247063413318289}
-  _hitDamage: 0
+  _hitDamage: 1
   _speed: 12

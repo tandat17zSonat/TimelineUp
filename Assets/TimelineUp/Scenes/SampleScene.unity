@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 758513600}
   - component: {fileID: 758513605}
   m_Layer: 0
-  m_Name: Population
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _horizontalMoveSpeed: 3
-  _forwardMoveSpeed: 10
+  _forwardMoveSpeed: 5
   _canControlForwardMovement: 1
   _gravityPower: -8
   _horizontalSmoothingTime: 0.13

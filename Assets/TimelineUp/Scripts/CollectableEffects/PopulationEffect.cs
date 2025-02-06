@@ -38,5 +38,10 @@ namespace HyperCasualRunner.CollectableEffects
         {
             UpdateVisual();
         }
+
+        public void TakeHit(int number)
+        {
+            amount += number;
+        }
     }
 }

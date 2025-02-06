@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using DG.Tweening;
+using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.ScriptableObjects;
 using UnityEngine;
 
@@ -20,9 +21,16 @@ namespace HyperCasualRunner
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Damageable damageable))
+            //// Bắn chết quái vật
+            //if (other.TryGetComponent(out Damageable damageable))
+            //{
+            //    damageable.TakeHit(_hitDamage);
+            //    Release();
+            //}
+            
+            if (other.TryGetComponent(out PopulationEffect populationEffect))
             {
-                damageable.TakeHit(_hitDamage);
+                populationEffect.TakeHit(_hitDamage);
                 Release();
             }
         }
