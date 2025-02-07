@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstaclePrefabs:
   - {fileID: 483472651980433884, guid: d5bc06f8e28199d4ea44d6ac98a63e72, type: 3}
+  - {fileID: 0}
   _collectionCheck: 0
   _defaultCapacity: 10
   _maxSize: 100

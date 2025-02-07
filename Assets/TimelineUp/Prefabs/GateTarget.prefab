@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 262921855940791814}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 1.5, z: 0}
+  m_LocalPosition: {x: 4, y: 1.5, z: 0}
   m_LocalScale: {x: 0.2, y: 1.5, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- 8'
+  m_text: Finish
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -307,7 +307,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 1}
+  m_LocalScale: {x: 8, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3820570588937524571}
@@ -340,7 +340,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dac0359ef6858524d930b964b923d55f, type: 2}
+  - {fileID: 2100000, guid: 1e14f5be6b496cc48aefd47d6189f87f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -394,11 +394,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2264167919004722978}
   - component: {fileID: 9201594339001303253}
-  - component: {fileID: 2037308037961018627}
-  - component: {fileID: 483472651980433884}
-  - component: {fileID: 4554622726142488264}
+  - component: {fileID: 8693810994099808453}
+  - component: {fileID: 8125545242403695468}
+  - component: {fileID: 5826556898001051813}
   m_Layer: 0
-  m_Name: GatePopulate
+  m_Name: GateTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,9 +441,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 1}
+  m_Size: {x: 8, y: 3, z: 1}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &2037308037961018627
+--- !u!114 &8693810994099808453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -456,12 +456,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectableEffects:
-  - {fileID: 4554622726142488264}
+  - {fileID: 8125545242403695468}
   _visuals: {fileID: 8045530867765558264}
   _particleFeedbackEnabled: 0
   _collectingParticleFeedback: {fileID: 0}
   IsCollected: 0
---- !u!114 &483472651980433884
+--- !u!114 &8125545242403695468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -470,10 +470,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6998562407260352041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e8ef9aa4dd7dd4db5487e337e01355, type: 3}
+  m_Script: {fileID: 11500000, guid: 98156bfec1e002d45919304bc0ab6b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4554622726142488264
+--- !u!114 &5826556898001051813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,14 +482,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6998562407260352041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c31c04945fe744db5851ef40cce35f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b0a73cf8a13d2f49a1a9dc0772bdcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: -6
-  meshRender: {fileID: 2394649671090126934}
-  textAmount: {fileID: 4867378258071433750}
-  materialPositive: {fileID: 2100000, guid: 1e14f5be6b496cc48aefd47d6189f87f, type: 2}
-  materialNegative: {fileID: 2100000, guid: dac0359ef6858524d930b964b923d55f, type: 2}
 --- !u!1 &8045530867765558264
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +546,7 @@ Transform:
   m_GameObject: {fileID: 8252341948979923864}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.5, z: 0}
+  m_LocalPosition: {x: -4, y: 1.5, z: 0}
   m_LocalScale: {x: 0.2, y: 1.5, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []

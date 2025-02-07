@@ -18,10 +18,15 @@ namespace HyperCasualRunner
         [SerializeField] bool _particleFeedbackEnabled;
         [ShowIf(nameof(_particleFeedbackEnabled)), Required("you need to assign a particle if you enable Particle Feedback Enabled")]
         [SerializeField] ParticleSystem _collectingParticleFeedback;
-        
+
         [ReadOnly] public bool IsCollected;
 
         public event Action<Collectable> Collected;
+
+        public void Init()
+        {
+            Reset();
+        }
 
         void OnTriggerEnter(Collider other)
         {
@@ -55,14 +60,14 @@ namespace HyperCasualRunner
             {
                 _collectingParticleFeedback.Play();
             }
-            
-            _visuals.SetActive(false);
-            Destroy(gameObject, 5f);
+
+            gameObject.SetActive(false);
         }
 
         [Button("Setup Collectable", EButtonEnableMode.Editor)]
         void Reset()
         {
+            IsCollected = false;
             _collectableEffects = GetComponents<CollectableEffectBase>();
             Collider[] colls = GetComponents<Collider>();
             foreach (var item in colls)

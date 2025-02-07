@@ -28,6 +28,8 @@ namespace HyperCasualRunner
 
         ITickable[] _tickables;
 
+        private Vector3 _originalPosition;
+
         void Awake()
         {
             _runnerMover.Initialize();
@@ -39,6 +41,8 @@ namespace HyperCasualRunner
             }
 
             _tickables = GetComponents<ITickable>();
+
+            _originalPosition = transform.position;
         }
 
         void OnEnable()
@@ -62,14 +66,17 @@ namespace HyperCasualRunner
 
         void Start()
         {
-            
+
         }
 
         void Update()
         {
-            foreach (ITickable tickable in _tickables)
+            if (GameplayManager.Instance.State == GameState.Playing)
             {
-                tickable.Tick();
+                foreach (ITickable tickable in _tickables)
+                {
+                    tickable.Tick();
+                }
             }
         }
 
@@ -118,6 +125,11 @@ namespace HyperCasualRunner
             //{
             //    _animatorModifier.PlayLocomotion(0f);
             //}
+        }
+
+        public void Unload()
+        {
+            transform.position = _originalPosition;
         }
     }
 }

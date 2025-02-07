@@ -32,34 +32,38 @@ namespace HyperCasualRunner
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (GameplayManager.Instance.State == GameState.Playing)
             {
-                _inputChannelSO.OnPointerDown();
-
-                SetJoystickPosition();
-            }
-            else if (Input.GetMouseButton(0))
-            {
-                CalculateAndUpdateInput();
-
-                _touchTime += Time.deltaTime;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                _inputChannelSO.OnPointerUp();
-
-                if (_touchTime <= TAP_THRESHOLD)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    _inputChannelSO.OnTapped();
+                    _inputChannelSO.OnPointerDown();
+
+                    SetJoystickPosition();
+                }
+                else if (Input.GetMouseButton(0))
+                {
+                    CalculateAndUpdateInput();
+
+                    _touchTime += Time.deltaTime;
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    _inputChannelSO.OnPointerUp();
+
+                    if (_touchTime <= TAP_THRESHOLD)
+                    {
+                        _inputChannelSO.OnTapped();
+                    }
+
+                    _touchTime = 0f;
+                    ResetJoystick();
                 }
 
-                _touchTime = 0f;
-                ResetJoystick();
-            }
+                if (_horizontalAxisEnabled || _verticalAxisEnabled)
+                {
+                    _inputChannelSO.OnJoystickUpdated(_joystickValue);
+                }
 
-            if (_horizontalAxisEnabled || _verticalAxisEnabled)
-            {
-                _inputChannelSO.OnJoystickUpdated(_joystickValue);
             }
         }
 

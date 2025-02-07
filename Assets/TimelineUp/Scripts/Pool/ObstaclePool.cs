@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using HyperCasualRunner;
 using TimelineUp.Obstacle;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -29,6 +30,7 @@ namespace TimelineUp.ScriptableObjects
                 }, shape =>
                 {
                     shape.gameObject.SetActive(true);
+                    shape.GetComponent<Collectable>().Init();
                 }, shape =>
                 {
                     shape.gameObject.SetActive(false);

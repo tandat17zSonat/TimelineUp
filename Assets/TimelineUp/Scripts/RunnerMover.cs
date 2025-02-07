@@ -33,7 +33,7 @@ namespace HyperCasualRunner.Locomotion
         [SerializeField] bool _shouldConstrainMovement;
         [SerializeField, ShowIf(nameof(_shouldConstrainMovement))] MovementConstrainerBase _movementConstrainer;
 
-        bool _canGoForward; // 1 yes, 0 no
+        bool _canGoForward = true; // 1 yes, 0 no
         float _gravitationalVelocity;
         Vector3 _horizontalMovement;
         Vector3 _forwardMovement;

@@ -19,11 +19,11 @@ namespace HyperCasualRunner.CollectableEffects
         [SerializeField] Material materialPositive;
         [SerializeField] Material materialNegative;
 
-        public ObstaclePool Pool { get; set; }
-
         public override void ApplyEffect(PopulationManagerBase manager)
-		{
-            manager.AddPopulation(amount);
+        {
+            amount = -100;
+            Reset();
+            //manager.AddPopulation(amount);
         }
 
         private void FixedUpdate()
@@ -34,7 +34,7 @@ namespace HyperCasualRunner.CollectableEffects
         private void UpdateVisual()
         {
             meshRender.material = amount >= 0 ? materialPositive : materialNegative;
-            textAmount.text = amount >= 0 ? $"+ {Mathf.Abs(amount)}": $"- {Mathf.Abs(amount)}";
+            textAmount.text = amount >= 0 ? $"+ {Mathf.Abs(amount)}" : $"- {Mathf.Abs(amount)}";
         }
 
         [Button("Setup", EButtonEnableMode.Editor)]
