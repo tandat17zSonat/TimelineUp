@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UISetUp : MonoBehaviour
 {
     [SerializeField] Button btnTapToPlay;
+
+    [Header("Exp Bar")]
+    [SerializeField] Slider sliderExp;
+    [SerializeField] TMP_Text textNum;
+    [SerializeField] TMP_Text textNextNum;
+
     void Start()
     {
         btnTapToPlay.onClick.AddListener(() =>
@@ -27,5 +34,25 @@ public class UISetUp : MonoBehaviour
         {
             btnTapToPlay.gameObject.SetActive(true);
         };
+        SetUIExpBar(5, 0.75f);
+    }
+
+    public void SetUIExpBar(int currentLevel, float percent)
+    {
+        textNum.text = currentLevel.ToString();
+        textNextNum.text = (currentLevel + 1).ToString();
+
+        sliderExp.value = percent;
+    }
+
+    private void Update()
+    {
+        var collectorLevel = GameplayManager.Instance.CollectorLevel;
+        var exp = GameplayManager.Instance.ExpCollectorInGame;
+
+        var gameConfigData = GameManager.Instance.GameConfigData;
+        var expToUpgrade = gameConfigData.GetExpToUpgrade(0, 0, collectorLevel + 1);
+
+        SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
     }
 }

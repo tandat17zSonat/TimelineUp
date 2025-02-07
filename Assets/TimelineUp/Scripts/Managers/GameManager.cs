@@ -13,9 +13,17 @@ public class GameManager : Singleton<GameManager>
 
     public static Action<GameScene> OnSwitchScene;
 
+    private PlayerData playerData;
+    public PlayerData PlayerData { get { return playerData; } }
+
+    private GameConfigData gameConfigData;
+    public GameConfigData GameConfigData { get { return gameConfigData; } }
+
+
     protected override void OnAwake()
     {
-
+        playerData = new PlayerData();
+        LoadGameConfig();
     }
 
     private void Start()
@@ -25,10 +33,13 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator IeOnGameInitComplete()
     {
-        if (!PlayerPrefs.HasKey("GAME_INITED"))
+        if (PlayerPrefs.HasKey("PLAYER_DATA"))
         {
-            Debug.LogWarning($"New player");
-            PlayerPrefs.SetInt("GAME_INITED", 1);
+            LoadData();
+        }
+        else
+        {
+            SaveData();
         }
 
         yield return new WaitForEndOfFrame();
@@ -66,6 +77,26 @@ public class GameManager : Singleton<GameManager>
         }
 
         OnSwitchScene?.Invoke(scene);
+    }
+
+    public void SaveData()
+    {
+        string json = JsonUtility.ToJson(playerData);
+        PlayerPrefs.SetString("PlayerData", json);
+        PlayerPrefs.Save();
+        Debug.Log($"Save playeData");
+    }
+
+    public void LoadData()
+    {
+        string json = PlayerPrefs.GetString("PlayerData");
+        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+        Debug.Log($"Load data: level - {data.level}    coin - {data.coin}");
+    }
+
+    private void LoadGameConfig()
+    {
+        gameConfigData = new GameConfigData();
     }
 }
 

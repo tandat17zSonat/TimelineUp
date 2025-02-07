@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulationManagers;
 using NaughtyAttributes;
@@ -30,19 +30,24 @@ namespace HyperCasualRunner
 
         void OnTriggerEnter(Collider other)
         {
+            // Warrior hoặc Projectile đâm vào
             if (IsCollected) return;
 
-            if (other.TryGetComponent(out PopulationManagerBase manager))
+            if (other)
             {
-                ApplyCollectEffects(manager);
-            }
-            else if (other.TryGetComponent(out PopulatedEntity.PopulatedEntity entity))
-            {
-                ApplyCollectEffects(entity.PopulationManagerBase);
-            }
-            else
-            {
-                return;
+                if (other.TryGetComponent(out PopulationManagerBase manager))
+                {
+                    ApplyCollectEffects(manager);
+                }
+                else if (other.TryGetComponent(out PopulatedEntity.PopulatedEntity entity))
+                {
+                    ApplyCollectEffects(entity.PopulationManagerBase);
+                }
+                else if (other.TryGetComponent(out Projectile projectile))
+                {
+                    ApplyHitEffect(projectile);
+                    return;
+                }
             }
 
             IsCollected = true;
@@ -62,6 +67,15 @@ namespace HyperCasualRunner
             }
 
             gameObject.SetActive(false);
+        }
+
+        void ApplyHitEffect(Projectile projectile)
+        {
+            foreach (CollectableEffectBase collectableEffectBase in _collectableEffects)
+            {
+                var effect = collectableEffectBase as ExpBlockEffect;
+                if( effect) effect.ApplyHitEffect(projectile);
+            }
         }
 
         [Button("Setup Collectable", EButtonEnableMode.Editor)]

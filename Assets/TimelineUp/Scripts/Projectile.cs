@@ -14,9 +14,11 @@ namespace HyperCasualRunner
         [SerializeField] Rigidbody _rigidbody;
         [SerializeField] int _hitDamage;
         [SerializeField] float _speed;
+        [SerializeField] float _range;
 
         Tween _delayedCall;
 
+        public int Damage { get { return _hitDamage; } }
         public ProjectilePool Pool { get; set; }
 
         void OnTriggerEnter(Collider other)
@@ -27,7 +29,7 @@ namespace HyperCasualRunner
             //    damageable.TakeHit(_hitDamage);
             //    Release();
             //}
-            
+
             if (other.TryGetComponent(out PopulationEffect populationEffect))
             {
                 populationEffect.TakeHit(_hitDamage);
@@ -42,8 +44,11 @@ namespace HyperCasualRunner
 
         public void Fire()
         {
+            Debug.Log($"transform.forward {transform.forward}");
             _rigidbody.velocity = transform.forward * _speed;
-            _delayedCall = DOVirtual.DelayedCall(1.5f, Release, false);
+
+            float existTime = _range / _speed;
+            _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
         }
 
         void Release()

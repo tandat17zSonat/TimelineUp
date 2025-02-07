@@ -19,12 +19,16 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public Action OnRestart;
 
+    public int CollectorLevel { get; set; }
+    public float ExpCollectorInGame { get; set; }
+    
     protected override void OnAwake()
     {
         _runnerMover = player.GetComponent<RunnerMover>();
         _crowdManager = player.GetComponent<CrowdManager>();
 
-        _startingEntityCount = 5;
+        _startingEntityCount = 1;
+        CollectorLevel = 0;
 
         State = GameState.Pause;
         OnRestart += LoadGame;
@@ -39,6 +43,8 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         obstacleManager.LoadObstacle();
         _crowdManager.AddPopulation(_startingEntityCount);
+
+        ExpCollectorInGame = GameManager.Instance.PlayerData.expCollector;
     }
 
     public void ReStart()

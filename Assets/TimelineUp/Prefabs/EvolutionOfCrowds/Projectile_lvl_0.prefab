@@ -37,6 +37,10 @@ PrefabInstance:
       value: Projectile_lvl_0
       objectReference: {fileID: 0}
     - target: {fileID: 7752195816536922524, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+      propertyPath: _range
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752195816536922524, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
       propertyPath: _speed
       value: 20
       objectReference: {fileID: 0}
