@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 758513601}
   - component: {fileID: 758513600}
   - component: {fileID: 758513605}
+  - component: {fileID: 758513606}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1191,6 +1192,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootInterval: 0.5
+--- !u!114 &758513606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758513599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48606da4f6214f34b8a2c4b7c06fc6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldSetCollectedEntityToCurrentLevel: 1
+  _shouldResetLostEntityLevel: 0
+  _defaultLevel: 0
+  _maxLevel: 0
+  _currentLevel: 0
+  _currentExperience: 0
 --- !u!1 &836638778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,10 +2598,10 @@ SceneRoots:
   - {fileID: 1257660200}
   - {fileID: 758513604}
   - {fileID: 2001310732}
+  - {fileID: 651420386}
+  - {fileID: 1338085813}
   - {fileID: 1739666576}
   - {fileID: 1582671524}
   - {fileID: 2099954453}
-  - {fileID: 651420386}
-  - {fileID: 1338085813}
   - {fileID: 1044815086}
   - {fileID: 1855696972710379766}

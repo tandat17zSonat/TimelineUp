@@ -12,6 +12,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     private RunnerMover _runnerMover;
     private CrowdManager _crowdManager;
+    public PopulationManagerBase PopulationManager { get { return _crowdManager; } }
 
     private int _startingEntityCount;
 
@@ -21,7 +22,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public int CollectorLevel { get; set; }
     public float ExpCollectorInGame { get; set; }
-    
+
     protected override void OnAwake()
     {
         _runnerMover = player.GetComponent<RunnerMover>();

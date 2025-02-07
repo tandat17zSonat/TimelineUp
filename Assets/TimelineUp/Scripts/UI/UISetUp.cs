@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using HyperCasualRunner.GenericModifiers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 public class UISetUp : MonoBehaviour
 {
     [SerializeField] Button btnTapToPlay;
-
+    
     [Header("Exp Bar")]
     [SerializeField] Slider sliderExp;
     [SerializeField] TMP_Text textNum;
@@ -47,6 +48,14 @@ public class UISetUp : MonoBehaviour
 
     private void Update()
     {
+        // Test upgrade + add population
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var populationManager = GameplayManager.Instance.PopulationManager;
+            populationManager.GetComponent<TransformationModifier>().TransformDirectly(1);
+            populationManager.AddPopulation(1);
+        }
+
         var collectorLevel = GameplayManager.Instance.CollectorLevel;
         var exp = GameplayManager.Instance.ExpCollectorInGame;
 
