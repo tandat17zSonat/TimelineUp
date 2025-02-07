@@ -10,7 +10,7 @@ public class ObstacleManager : MonoBehaviour
 
     private List<ObstacleBase> listObstacles;
 
-    public void Start()
+    public void Awake()
     {
         listObstacles = new List<ObstacleBase>();
     }

@@ -44,7 +44,6 @@ namespace HyperCasualRunner
 
         public void Fire()
         {
-            Debug.Log($"transform.forward {transform.forward}");
             _rigidbody.velocity = transform.forward * _speed;
 
             float existTime = _range / _speed;

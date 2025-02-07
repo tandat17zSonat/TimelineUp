@@ -35,6 +35,7 @@ namespace HyperCasualRunner.Modifiables
         /// </summary>
         public void Shoot()
         {
+            Debug.Log($"Shoot _activeProjectileShooter {_activeProjectileShooter.ToString()}");
             Projectile projectile = _activeProjectileShooter.Get();
             projectile.transform.SetPositionAndRotation(_activeProjectileShooter.ProjectileSpawnPoint.position, transform.rotation);
             projectile.Fire();

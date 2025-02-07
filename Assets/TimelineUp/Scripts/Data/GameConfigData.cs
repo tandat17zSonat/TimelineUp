@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameConfigData
 {
@@ -11,6 +12,13 @@ public class GameConfigData
         {
             ListTimelines.Add(new TimelineData());
         }
+    }
+
+    public int GetNumberLevelCollector()
+    {
+        var timeline = ListTimelines[0];
+        var era = timeline.ListEraData[0];
+        return era.ExpToUpgradeCollector.Count;
     }
 
     public int GetExpToUpgrade(int timelineId, int eraId, int currentLevel)

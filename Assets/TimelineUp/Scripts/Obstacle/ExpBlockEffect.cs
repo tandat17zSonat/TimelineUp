@@ -24,14 +24,15 @@ namespace HyperCasualRunner.CollectableEffects
             exp += projectile.Damage;
 
             var gameConfigData = GameManager.Instance.GameConfigData;
-            var expToUpgrade = gameConfigData.GetExpToUpgrade(0, 0, collectorLevel + 1);
-
-            if ( exp > expToUpgrade)
+            if(collectorLevel + 1 < gameConfigData.GetNumberLevelCollector())
             {
-                GameplayManager.Instance.CollectorLevel += 1;
-                exp -= expToUpgrade;
+                var expToUpgrade = gameConfigData.GetExpToUpgrade(0, 0, collectorLevel + 1);
+                if (exp > expToUpgrade)
+                {
+                    GameplayManager.Instance.CollectorLevel += 1;
+                    exp -= expToUpgrade;
+                }
             }
-
             GameplayManager.Instance.ExpCollectorInGame = exp;
         }
 

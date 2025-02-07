@@ -1,4 +1,6 @@
 using System;
+using HyperCasualRunner.GenericModifiers;
+
 //using HyperCasualRunner.GenericModifiers;
 using HyperCasualRunner.Interfaces;
 using HyperCasualRunner.Locomotion;
@@ -21,10 +23,8 @@ namespace HyperCasualRunner
         [SerializeField, Required] InputChannelSO _inputChannelSO;
         [SerializeField] int _startingEntityCount;
 
-        [SerializeField, HideIf(nameof(_useAnimation))] bool _useAnimator;
-        [SerializeField, HideIf(nameof(_useAnimator))] bool _useAnimation;
-        //[SerializeField, ShowIf(nameof(_useAnimator))] AnimatorModifier _animatorModifier;
-        //[SerializeField, ShowIf(nameof(_useAnimation))] AnimationModifier _animationModifier;
+        [SerializeField] bool _useAnimation;
+        [SerializeField, ShowIf(nameof(_useAnimation))] AnimationModifier _animationModifier;
 
         ITickable[] _tickables;
 
@@ -100,10 +100,10 @@ namespace HyperCasualRunner
         void OnTouchDown()
         {
             _runnerMover.TryStartMovement();
-            //if (_useAnimation)
-            //{
-            //    _animationModifier.PlayLocomotion(1f);
-            //}
+            if (_useAnimation)
+            {
+                _animationModifier.PlayLocomotion(1f);
+            }
             //else if (_useAnimator)
             //{
             //    _animatorModifier.PlayLocomotion(1f);
@@ -117,10 +117,10 @@ namespace HyperCasualRunner
             {
                 return;
             }
-            //if (_useAnimation)
-            //{
-            //    _animationModifier.PlayLocomotion(0f);
-            //}
+            if (_useAnimation)
+            {
+                _animationModifier.PlayLocomotion(0f);
+            }
             //else if (_useAnimator)
             //{
             //    _animatorModifier.PlayLocomotion(0f);

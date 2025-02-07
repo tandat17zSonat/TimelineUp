@@ -62,6 +62,7 @@ public class UISetUp : MonoBehaviour
         var gameConfigData = GameManager.Instance.GameConfigData;
         var expToUpgrade = gameConfigData.GetExpToUpgrade(0, 0, collectorLevel + 1);
 
+        exp = Mathf.Min(exp, expToUpgrade);
         SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
     }
 }

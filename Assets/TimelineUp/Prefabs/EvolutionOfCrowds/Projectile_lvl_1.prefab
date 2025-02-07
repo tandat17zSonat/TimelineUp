@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7551247063413318288, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
@@ -33,9 +34,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7551247063413318303, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
       propertyPath: m_Name
-      value: Projectile_Sniper
+      value: Projectile_lvl_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752195816536922524, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+      propertyPath: _range
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752195816536922524, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+      propertyPath: _speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752195816536922524, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+      propertyPath: _hitDamage
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7551247063413318288, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6684328934621701617}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
 --- !u!4 &7632262432639270779 stripped
 Transform:
@@ -47,6 +66,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7632262432639270779}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5b2f84322b2da4afa8b27f4ed6996778, type: 3}
@@ -98,4 +118,12 @@ PrefabInstance:
       value: carrot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b2f84322b2da4afa8b27f4ed6996778, type: 3}
+--- !u!4 &6684328934621701617 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5b2f84322b2da4afa8b27f4ed6996778, type: 3}
+  m_PrefabInstance: {fileID: 6577851116279595546}
+  m_PrefabAsset: {fileID: 0}

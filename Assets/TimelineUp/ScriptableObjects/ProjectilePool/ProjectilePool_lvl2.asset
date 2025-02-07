@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 293410478a7037d4db13270b35d35f7c, type: 3}
-  m_Name: Obstacle Pool
+  m_Script: {fileID: 11500000, guid: 55065edacf01eb243acfdad31b7e1f89, type: 3}
+  m_Name: ProjectilePool_lvl2
   m_EditorClassIdentifier: 
-  _obstaclePrefabs:
-  - {fileID: 483472651980433884, guid: d5bc06f8e28199d4ea44d6ac98a63e72, type: 3}
-  - {fileID: 5826556898001051813, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
+  _projectilePrefab: {fileID: 7689051978030122103, guid: 071953f40fcfa47b0ad95e2e7e9ad162, type: 3}
   _collectionCheck: 0
-  _defaultCapacity: 10
+  _defaultCapacity: 70
   _maxSize: 100
