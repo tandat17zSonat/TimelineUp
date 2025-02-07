@@ -163,6 +163,12 @@ namespace HyperCasualRunner.PopulationManagers
             //OnPopulationChanged();
         }
 
+        public void Unload()
+        {
+            int size = _shownPopulatedEntities.Count;
+            AddPopulation(-size);
+        }
+
         [Button()]
         void PopulateOne()
         {

@@ -62,7 +62,7 @@ namespace HyperCasualRunner
 
         void Start()
         {
-            _populationManagerBase.AddPopulation(_startingEntityCount);
+            
         }
 
         void Update()
