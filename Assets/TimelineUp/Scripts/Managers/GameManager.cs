@@ -28,6 +28,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        PanelManager.Instance.OpenPanel<PanelLobby>();
         StartCoroutine(IeOnGameInitComplete());
     }
 

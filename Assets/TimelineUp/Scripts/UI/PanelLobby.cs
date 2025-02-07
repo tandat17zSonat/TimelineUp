@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using HyperCasualRunner.GenericModifiers;
+using SonatFramework.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISetUp : MonoBehaviour
+public class PanelLobby : Panel
 {
     [SerializeField] Button btnTapToPlay;
-    
+
     [Header("Exp Bar")]
     [SerializeField] Slider sliderExp;
     [SerializeField] TMP_Text textNum;
     [SerializeField] TMP_Text textNextNum;
 
-    void Start()
+    public override void OnSetup()
     {
+        base.OnSetup();
+
         btnTapToPlay.onClick.AddListener(() =>
         {
             Debug.Log($"Click tap to play");
@@ -37,6 +40,26 @@ public class UISetUp : MonoBehaviour
         };
     }
 
+    public override void Open(UIData uiData)
+    {
+        base.Open(uiData);
+    }
+
+    public override void OnOpenCompleted()
+    {
+        base.OnOpenCompleted();
+    }
+
+    public override void Close()
+    {
+        base.Close();
+    }
+
+    protected override void OnCloseCompleted()
+    {
+        base.OnCloseCompleted();
+    }
+
     public void SetUIExpBar(int currentLevel, float percent)
     {
         textNum.text = currentLevel.ToString();
@@ -44,7 +67,6 @@ public class UISetUp : MonoBehaviour
 
         sliderExp.value = percent;
     }
-
     private void Update()
     {
         // Test upgrade + add population
