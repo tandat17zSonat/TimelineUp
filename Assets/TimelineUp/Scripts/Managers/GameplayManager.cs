@@ -42,7 +42,8 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public void LoadGame()
     {
-        obstacleManager.LoadObstacle();
+        ObstacleData data = new ObstacleData();
+        obstacleManager.LoadObstacle(data);
 
         var beginPlayerData = GameManager.Instance.PlayerData;
         int num = beginPlayerData.warriorNumber,

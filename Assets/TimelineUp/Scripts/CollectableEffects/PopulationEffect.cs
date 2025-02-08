@@ -47,5 +47,10 @@ namespace HyperCasualRunner.CollectableEffects
         {
             amount += number;
         }
+
+        public override void ApplyHitEffect(Projectile projectile)
+        {
+
+        }
     }
 }

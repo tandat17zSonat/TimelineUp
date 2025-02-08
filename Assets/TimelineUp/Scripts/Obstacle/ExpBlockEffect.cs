@@ -15,18 +15,16 @@ namespace HyperCasualRunner.CollectableEffects
 
         }
 
-        public void ApplyHitEffect(Projectile projectile)
+        public override void ApplyHitEffect(Projectile projectile)
         {
-            Debug.Log("Hit");
-
             var collectorLevel = GameplayManager.Instance.CollectorLevel;
             var exp = GameplayManager.Instance.ExpCollectorInGame;
             exp += projectile.Damage;
 
             var gameConfigData = GameManager.Instance.GameConfigData;
-            if(collectorLevel + 1 < gameConfigData.GetNumberLevelCollector())
+            if(collectorLevel + 1 < gameConfigData.GetNumberWarriorInCollector())
             {
-                var expToUpgrade = gameConfigData.GetExpToUpgrade(0, 0, collectorLevel + 1);
+                var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
                 if (exp > expToUpgrade)
                 {
                     GameplayManager.Instance.CollectorLevel += 1;

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.PoolBoss;
 using TimelineUp.Obstacle;
 using TimelineUp.ScriptableObjects;
 using UnityEngine;
@@ -8,6 +10,12 @@ public class ObstacleManager : MonoBehaviour
 {
     [SerializeField] ObstaclePool obstaclePool;
 
+    [SerializeField] Transform container;
+    [SerializeField] Transform gateSpawnPrefab;
+    [SerializeField] Transform expBlockPrefab;
+    [SerializeField] Transform warriorCollectorPrefab;
+    [SerializeField] Transform gateFinishPrefab;
+
     private List<ObstacleBase> listObstacles;
 
     public void Awake()
@@ -15,12 +23,12 @@ public class ObstacleManager : MonoBehaviour
         listObstacles = new List<ObstacleBase>();
     }
 
-    public void LoadObstacle()
+    public void LoadObstacle(ObstacleData data)
     {
-        for (int i = 50; i < 150; i += 15)
+        foreach (var (type, pos) in data.ListObstacles)
         {
-            var obs = obstaclePool.Get<GateObstacle>();
-            obs.transform.position = new Vector3(Random.Range(-2, 2), 0, i);
+            var obs = Spawn(type);
+            obs.transform.position = pos;
             listObstacles.Add(obs);
         }
     }
@@ -29,9 +37,66 @@ public class ObstacleManager : MonoBehaviour
     {
         foreach (var obstacle in listObstacles)
         {
-            obstaclePool.Release(obstacle);
+            PoolBoss.Despawn(obstacle.transform);
         }
 
         listObstacles.Clear();
     }
+
+    public ObstacleBase Spawn(ObstacleType type)
+    {
+        Transform spawned = null;
+
+        switch (type)
+        {
+            case ObstacleType.WarriorCollector:
+                {
+                    spawned = PoolBoss.Spawn(warriorCollectorPrefab, Vector3.zero, Quaternion.identity, container);
+                    var warriorCollectorEffect = spawned.GetComponent<WarriorCollectorEffect>();
+                    warriorCollectorEffect.Initialize();
+                    break;
+                }
+            case ObstacleType.GateSpawn:
+                {
+                    spawned = PoolBoss.Spawn(gateSpawnPrefab, Vector3.zero, Quaternion.identity, container);
+                    break;
+                }
+            case ObstacleType.ExpBlock:
+                {
+                    spawned = PoolBoss.Spawn(expBlockPrefab, Vector3.zero, Quaternion.identity, container);
+                    break;
+                }
+            case ObstacleType.GateFinish:
+                {
+                    spawned = PoolBoss.Spawn(gateFinishPrefab, Vector3.zero, Quaternion.identity, container);
+                    break;
+                }
+        }
+        return spawned.GetComponent<ObstacleBase>();
+    }
+}
+
+public class ObstacleData
+{
+    public List<(ObstacleType, Vector3)> ListObstacles;
+
+    public ObstacleData()
+    {
+        ListObstacles = new();
+        //ListObstacles.Add((ObstacleType.ExpBlock, new Vector3(-2, 0, 10)));
+        ListObstacles.Add((ObstacleType.WarriorCollector, new Vector3(-2, 0, 30)));
+        //ListObstacles.Add((ObstacleType.GateSpawn, new Vector3(-2, 0, 50)));
+        //ListObstacles.Add((ObstacleType.GateFinish, new Vector3(-2, 0, 70)));
+    }
+
+}
+
+public enum ObstacleType
+{
+    ExpBlock,
+
+    WarriorCollector,
+    GateSpawn,
+
+    GateFinish
 }

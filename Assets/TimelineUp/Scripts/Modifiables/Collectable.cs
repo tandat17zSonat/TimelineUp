@@ -73,8 +73,7 @@ namespace HyperCasualRunner
         {
             foreach (CollectableEffectBase collectableEffectBase in _collectableEffects)
             {
-                var effect = collectableEffectBase as ExpBlockEffect;
-                if( effect) effect.ApplyHitEffect(projectile);
+                collectableEffectBase.ApplyHitEffect(projectile);
             }
         }
 

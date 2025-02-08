@@ -16,8 +16,8 @@ public class GameManager : Singleton<GameManager>
     private PlayerData playerData;
     public PlayerData PlayerData { get { return playerData; } }
 
-    private GameConfigData gameConfigData;
-    public GameConfigData GameConfigData { get { return gameConfigData; } }
+    private GameplayData gameConfigData;
+    public GameplayData GameConfigData { get { return gameConfigData; } }
 
 
     protected override void OnAwake()
@@ -97,7 +97,7 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadGameConfig()
     {
-        gameConfigData = new GameConfigData();
+        gameConfigData = new GameplayData();
     }
 }
 
