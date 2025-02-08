@@ -34,7 +34,12 @@ public class WarriorCollectorEffect : CollectableEffectBase
     }
     public override void ApplyEffect(PopulationManagerBase populationManager)
     {
-
+        var dict = GameplayManager.Instance.DictWarriorSpawned;
+        if(!dict.ContainsKey(level))
+        {
+            dict[level] = 0;
+        }
+        dict[level] += numWarrior;
     }
 
     public override void ApplyHitEffect(Projectile projectile)

@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using Base.Singleton;
 using HyperCasualRunner;
 using HyperCasualRunner.Locomotion;
@@ -20,8 +21,10 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public Action OnRestart;
 
+    // Data trong màn chơi ----------------------------------------------
     public int CollectorLevel { get; set; }
     public float ExpCollectorInGame { get; set; }
+    public Dictionary<int, int> DictWarriorSpawned {  get; set; }
 
     protected override void OnAwake()
     {
@@ -29,10 +32,13 @@ public class GameplayManager : Singleton<GameplayManager>
         _crowdManager = player.GetComponent<CrowdManager>();
 
         _startingEntityCount = 1;
-        CollectorLevel = 0;
 
         State = GameState.Pause;
         OnRestart += LoadGame;
+
+        CollectorLevel = 0;
+        ExpCollectorInGame = 0;
+        DictWarriorSpawned = new Dictionary<int, int>();
     }
 
     private void Start()
@@ -50,8 +56,10 @@ public class GameplayManager : Singleton<GameplayManager>
             level = beginPlayerData.warriorLevel;
         _crowdManager.AddPopulation(level, num);
 
+        // ResetData
+        CollectorLevel = 0;
         ExpCollectorInGame = GameManager.Instance.PlayerData.ExpCollector;
-        
+        DictWarriorSpawned.Clear();
     }
 
     public void Restart()

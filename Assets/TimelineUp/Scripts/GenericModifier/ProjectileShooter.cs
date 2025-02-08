@@ -11,7 +11,6 @@ namespace HyperCasualRunner
     public class ProjectileShooter : MonoBehaviour
     {
         [Header("Pooling")]
-        [SerializeField] Transform container;
         [SerializeField] Transform projectilePrefab;
 
         [Header("")]
@@ -21,7 +20,7 @@ namespace HyperCasualRunner
 
         public Projectile Get()
         {
-            var projectile = PoolBoss.Spawn(projectilePrefab, Vector3.zero, Quaternion.identity, container).GetComponent<Projectile>();
+            var projectile = PoolBoss.Spawn(projectilePrefab, Vector3.zero, Quaternion.identity, null).GetComponent<Projectile>();
             return projectile;
         }
     }

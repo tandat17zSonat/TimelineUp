@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].isExpanded
@@ -458,6 +458,10 @@ PrefabInstance:
       value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[7].itemHardLimit
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].prefabTransform
       value: 
       objectReference: {fileID: 7632262432639270779, guid: acb4d1c4472674f32b59a2d36fb5c03c, type: 3}
@@ -476,19 +480,19 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[4].prefabTransform
       value: 
-      objectReference: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
+      objectReference: {fileID: 2264167919004722978, guid: 82d2ffa2a4b007d4d9189a7b27750484, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[5].prefabTransform
       value: 
-      objectReference: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
+      objectReference: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[6].prefabTransform
       value: 
-      objectReference: {fileID: 7311562713678637607, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
+      objectReference: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[7].prefabTransform
       value: 
-      objectReference: {fileID: 2714365574825087355, guid: dc5d9d39306bf0e48bdd73ce9271348a, type: 3}
+      objectReference: {fileID: 7311562713678637607, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].instancesToPreload
       value: 1
@@ -515,6 +519,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[6].instancesToPreload
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[7].instancesToPreload
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
@@ -1375,99 +1383,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424147609}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1546280142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1546280143}
-  - component: {fileID: 1546280145}
-  - component: {fileID: 1546280144}
-  m_Layer: 0
-  m_Name: Terrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &1546280143
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546280142}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1788942081}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!154 &1546280144
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546280142}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 7f1100a1b26e9654c95eedf017cf259b, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &1546280145
-Terrain:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546280142}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 7f1100a1b26e9654c95eedf017cf259b, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
-  m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
-  m_DrawHeightmap: 1
-  m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
-  m_StaticShadowCaster: 0
-  m_IgnoreQualitySettings: 0
-  m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
-  m_BakeLightProbesForTrees: 1
-  m_PreserveTreePrototypeLayers: 0
-  m_DeringLightProbesForTrees: 1
-  m_ReceiveGI: 1
-  m_ScaleInLightmap: 0.0256
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
-  m_GroupingID: 0
-  m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
-  m_EnableTreesAndDetailsRayTracing: 0
-  m_TreeMotionVectorModeOverride: 3
 --- !u!1 &1582671523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1558,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1424147610}
-  - {fileID: 1546280143}
   m_Father: {fileID: 1582671524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1788942082
@@ -2027,7 +1941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePool: {fileID: 11400000, guid: 7fa29ae158eca004abc43202e1163786, type: 2}
   container: {fileID: 2099954453}
-  gateSpawnPrefab: {fileID: 0}
+  gateSpawnPrefab: {fileID: 2264167919004722978, guid: 82d2ffa2a4b007d4d9189a7b27750484, type: 3}
   expBlockPrefab: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
   warriorCollectorPrefab: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
   gateFinishPrefab: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}

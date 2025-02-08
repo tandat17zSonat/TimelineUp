@@ -13,5 +13,5 @@ public class PlayerData
 
     // Khởi tạo đầu ván chơi
     public int warriorNumber = 2;
-    public int warriorLevel = 1;
+    public int warriorLevel = 2;
 }

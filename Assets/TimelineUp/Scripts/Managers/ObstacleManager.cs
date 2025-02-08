@@ -59,6 +59,8 @@ public class ObstacleManager : MonoBehaviour
             case ObstacleType.GateSpawn:
                 {
                     spawned = PoolBoss.Spawn(gateSpawnPrefab, Vector3.zero, Quaternion.identity, container);
+                    var gateSpawn = spawned.GetComponent<GateSpawnEffect>();
+                    gateSpawn.Initialize();
                     break;
                 }
             case ObstacleType.ExpBlock:
@@ -84,8 +86,8 @@ public class ObstacleData
     {
         ListObstacles = new();
         //ListObstacles.Add((ObstacleType.ExpBlock, new Vector3(-2, 0, 10)));
-        ListObstacles.Add((ObstacleType.WarriorCollector, new Vector3(-2, 0, 30)));
-        //ListObstacles.Add((ObstacleType.GateSpawn, new Vector3(-2, 0, 50)));
+        ListObstacles.Add((ObstacleType.WarriorCollector, new Vector3(-2, 0, 50)));
+        ListObstacles.Add((ObstacleType.GateSpawn, new Vector3(0, 0, 100)));
         //ListObstacles.Add((ObstacleType.GateFinish, new Vector3(-2, 0, 70)));
     }
 
