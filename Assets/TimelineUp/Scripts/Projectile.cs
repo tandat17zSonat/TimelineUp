@@ -1,4 +1,5 @@
 ﻿using System;
+using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.ScriptableObjects;
@@ -12,14 +13,11 @@ namespace HyperCasualRunner
     public class Projectile : MonoBehaviour
     {
         [SerializeField] Rigidbody _rigidbody;
-        [SerializeField] int _hitDamage;
-        [SerializeField] float _speed;
-        [SerializeField] float _range;
+        private ProjectileData projectileData;
 
         Tween _delayedCall;
 
-        public int Damage { get { return _hitDamage; } }
-        public ProjectilePool Pool { get; set; }
+        public int Damage { get { return projectileData.Damage; } }
 
         void OnTriggerEnter(Collider other)
         {
@@ -32,7 +30,7 @@ namespace HyperCasualRunner
 
             if (other.TryGetComponent(out PopulationEffect populationEffect))
             {
-                populationEffect.TakeHit(_hitDamage);
+                populationEffect.TakeHit(projectileData.Damage);
                 Release();
             }
         }
@@ -44,16 +42,21 @@ namespace HyperCasualRunner
 
         public void Fire()
         {
-            _rigidbody.velocity = transform.forward * _speed;
+            _rigidbody.velocity = transform.forward * projectileData.Speed;
 
-            float existTime = _range / _speed;
+            float existTime = projectileData.Range / projectileData.Speed;
             _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
         }
 
         void Release()
         {
             _delayedCall.Kill();
-            Pool.Release(this);
+            PoolBoss.Despawn(transform);
+        }
+
+        public void SetInfo(ProjectileData data)
+        {
+            projectileData = data;
         }
     }
 }

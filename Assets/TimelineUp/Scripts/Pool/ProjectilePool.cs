@@ -22,7 +22,7 @@ namespace HyperCasualRunner.ScriptableObjects
             _projectilePool = new ObjectPool<Projectile>(() =>
             {
                 Projectile instantiated = Instantiate(_projectilePrefab);
-                instantiated.Pool = this;
+                //instantiated.Pool = this;
                 return instantiated;
             }, shape =>
             {

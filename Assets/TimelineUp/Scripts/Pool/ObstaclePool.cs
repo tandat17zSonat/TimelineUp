@@ -40,6 +40,8 @@ namespace TimelineUp.ScriptableObjects
                 }, _collectionCheck, _defaultCapacity, _maxSize);
 
                 _dictPool.Add(prefab.GetType(), pool);
+
+                Debug.Log($"Type in pool {prefab.GetType()}");
             }
         }
 

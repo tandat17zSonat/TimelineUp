@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class GameConfigData
 {
-    private List<TimelineData> ListTimelines;
+    public List<TimelineData> ListTimelines;
+    public List<WarriorData> ListWarriorDatas;
 
     public GameConfigData()
     {
@@ -11,6 +12,24 @@ public class GameConfigData
         for (int i = 0; i < 5; i++)
         {
             ListTimelines.Add(new TimelineData());
+        }
+
+        //---------------------------------------------
+        ListWarriorDatas = new List<WarriorData>();
+        for (int i = 0; i < 4; i++)
+        {
+            ListWarriorDatas.Add(new WarriorData()
+            {
+                Type = 0,
+                Level = i,
+                Speed = 25,
+                ProjectileData = new ProjectileData()
+                {
+                    Damage = i + 1,
+                    Speed = 25,
+                    Range = (i + 1) * 75 * 1.5f,
+                }
+            });
         }
     }
 
@@ -26,6 +45,17 @@ public class GameConfigData
         var timeline = ListTimelines[timelineId];
         var era = timeline.ListEraData[eraId];
         return era.ExpToUpgradeCollector[currentLevel];
+    }
+
+    public WarriorData GetWarriorData(int level)
+    {
+        if( level >= ListWarriorDatas.Count)
+        {
+            Debug.Log($"Khong co WarriorData level {level}");
+            return ListWarriorDatas[0];
+        }
+
+        return ListWarriorDatas[level];
     }
 }
 

@@ -132,10 +132,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7551247063413318288, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2838476592932277643}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7551247063413318303, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1443356261996531741}
   m_SourcePrefab: {fileID: 100100000, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
 --- !u!4 &5999016266512608645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7551247063413318288, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
   m_PrefabInstance: {fileID: 4290701949863481109}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5999016266512608650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7551247063413318303, guid: 7f6dad3dec96e478583625df10bfec5e, type: 3}
+  m_PrefabInstance: {fileID: 4290701949863481109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1443356261996531741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999016266512608650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2094b3483abfa294e8f875d77c46178a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItemName: Projectile_lvl_3

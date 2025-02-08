@@ -37,18 +37,23 @@ public class GameplayManager : Singleton<GameplayManager>
 
     private void Start()
     {
-        ReStart();
+        Restart();
     }
 
     public void LoadGame()
     {
         obstacleManager.LoadObstacle();
-        _crowdManager.AddPopulation(_startingEntityCount);
 
-        ExpCollectorInGame = GameManager.Instance.PlayerData.expCollector;
+        var beginPlayerData = GameManager.Instance.PlayerData;
+        int num = beginPlayerData.warriorNumber,
+            level = beginPlayerData.warriorLevel;
+        _crowdManager.AddPopulation(level, num);
+
+        ExpCollectorInGame = GameManager.Instance.PlayerData.ExpCollector;
+        
     }
 
-    public void ReStart()
+    public void Restart()
     {
         OnRestart?.Invoke();
     }
@@ -70,7 +75,7 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         State = state;
         Unload();
-        ReStart();
+        Restart();
     }
 }
 

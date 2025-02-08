@@ -81,23 +81,23 @@ namespace HyperCasualRunner.PopulationManagers
             }
         }
 
-        /// <summary>
-        /// Create new populated entities by multiplying shown populated entities.
-        /// </summary>
-        /// <param name="ratio">Ratio to multiply.</param>
-        public void MultiplyPopulation(float ratio)
-        {
-            int multipliedCount = Mathf.RoundToInt(_shownPopulatedEntities.Count * ratio);
-            int deltaAbsolute = Mathf.Abs(multipliedCount - _shownPopulatedEntities.Count);
-            if (ratio > 1)
-            {
-                PopulateMultiple(deltaAbsolute);
-            }
-            else
-            {
-                DepopulateMultiple(deltaAbsolute);
-            }
-        }
+        ///// <summary>
+        ///// Create new populated entities by multiplying shown populated entities.
+        ///// </summary>
+        ///// <param name="ratio">Ratio to multiply.</param>
+        //public void MultiplyPopulation(float ratio)
+        //{
+        //    int multipliedCount = Mathf.RoundToInt(_shownPopulatedEntities.Count * ratio);
+        //    int deltaAbsolute = Mathf.Abs(multipliedCount - _shownPopulatedEntities.Count);
+        //    if (ratio > 1)
+        //    {
+        //        PopulateMultiple(deltaAbsolute);
+        //    }
+        //    else
+        //    {
+        //        DepopulateMultiple(deltaAbsolute);
+        //    }
+        //}
 
         /// <summary>
         /// Depopulates specific PopulatedEntity instead of random one. Useful when one takes a hit and you want to kill it.
@@ -109,6 +109,7 @@ namespace HyperCasualRunner.PopulationManagers
         /// Populates random PopulatedEntity.
         /// </summary>
         protected abstract void Populate();
+        protected abstract void Populate(int level);
 
         /// <summary>
         /// Depopulates random PopulatedEntity.
@@ -191,6 +192,25 @@ namespace HyperCasualRunner.PopulationManagers
         void DepopulateTen()
         {
             AddPopulation(-10);
+        }
+
+        public void AddPopulation(int level, int amount)
+        {
+            if (_shownPopulatedEntities.Count >= maxPopulationCount)
+            {
+                return;
+            }
+
+            if (_shownPopulatedEntities.Count + amount > maxPopulationCount)
+            {
+                amount = maxPopulationCount - _shownPopulatedEntities.Count;
+            }
+
+            for (int i = 0; i < amount; i++)
+            {
+                Populate(level);
+            }
+            OnPopulationChanged();
         }
     }
 }

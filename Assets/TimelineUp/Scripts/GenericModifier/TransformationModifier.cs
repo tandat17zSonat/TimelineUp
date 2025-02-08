@@ -57,18 +57,12 @@ namespace HyperCasualRunner.GenericModifiers
 
         void PopulationManagerBase_PopulatedEntityEnabled(PopulatedEntity.PopulatedEntity obj)
         {
-            if (_shouldSetCollectedEntityToCurrentLevel)
-            {
-                obj.GetComponent<TransformationModifiable>().SetLevel(_currentLevel);
-            }
+           
         }
 
         void PopulationManagerBase_PopulatedEntityDisabled(PopulatedEntity.PopulatedEntity obj)
         {
-            if (_shouldResetLostEntityLevel)
-            {
-                obj.GetComponent<TransformationModifiable>().SetLevel(_defaultLevel);
-            }
+            
         }
         
         void AdjustEffectReceiverLevels(int level)

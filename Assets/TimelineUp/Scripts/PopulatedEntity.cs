@@ -19,15 +19,15 @@ namespace HyperCasualRunner.PopulatedEntity
         [SerializeField, Required, Tooltip("GameObject that contains the visuals of the gameObject.")] Transform _visuals;
         [SerializeField] float _visibilityChangeDuration = 0.5f;
 
-        [Space(15)]
-        [SerializeField] bool _disappearParticleEnabled;
-        [ShowIf(nameof(_disappearParticleEnabled)), Required]
-        [SerializeField] ParticleSystem _disappearParticle;
+        //[Space(15)]
+        //[SerializeField] bool _disappearParticleEnabled;
+        //[ShowIf(nameof(_disappearParticleEnabled)), Required]
+        //[SerializeField] ParticleSystem _disappearParticle;
 
-        [Space(10)]
-        [SerializeField] bool _appearParticleEnabled;
-        [ShowIf(nameof(_appearParticleEnabled)), Required]
-        [SerializeField] ParticleSystem _appearParticle;
+        //[Space(10)]
+        //[SerializeField] bool _appearParticleEnabled;
+        //[ShowIf(nameof(_appearParticleEnabled)), Required]
+        //[SerializeField] ParticleSystem _appearParticle;
 
         Tween _scaleTween;
         Tween _jumpTween;
@@ -139,5 +139,10 @@ namespace HyperCasualRunner.PopulatedEntity
         //    }
         //    _jumpTween = transform.DOLocalJump(transform.localPosition, jumpPower, 1, duration).SetEase(Ease.Linear);
         //}
+
+        public virtual void SetInfo(int level)
+        {
+
+        }
     }
 }

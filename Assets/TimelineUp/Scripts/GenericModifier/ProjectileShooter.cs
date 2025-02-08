@@ -1,3 +1,4 @@
+using DarkTonic.PoolBoss;
 using HyperCasualRunner.ScriptableObjects;
 using UnityEngine;
 
@@ -9,14 +10,19 @@ namespace HyperCasualRunner
     /// </summary>
     public class ProjectileShooter : MonoBehaviour
     {
-        [SerializeField] ProjectilePool _projectilePool;
+        [Header("Pooling")]
+        [SerializeField] Transform container;
+        [SerializeField] Transform projectilePrefab;
+
+        [Header("")]
         [SerializeField] Transform _projectileSpawnPoint;
 
         public Transform ProjectileSpawnPoint { get => _projectileSpawnPoint; set => _projectileSpawnPoint = value; }
 
         public Projectile Get()
         {
-            return _projectilePool.Get();
+            var projectile = PoolBoss.Spawn(projectilePrefab, Vector3.zero, Quaternion.identity, container).GetComponent<Projectile>();
+            return projectile;
         }
     }
 }

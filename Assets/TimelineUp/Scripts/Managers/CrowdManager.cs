@@ -162,5 +162,25 @@ namespace HyperCasualRunner.PopulationManagers
 
             StopEntitiesMovement();
         }
+
+        protected override void Populate(int level)
+        {
+            int hiddenListCount = HiddenPopulatedEntities.Count;
+            if (hiddenListCount == 0)
+            {
+                return;
+            }
+
+            PopulatedEntity.PopulatedEntity populated = HiddenPopulatedEntities[hiddenListCount - 1];
+            HiddenPopulatedEntities.RemoveAt(hiddenListCount - 1);
+            float rndX = Random.Range(-0.5f, 0.5f);
+            float rndZ = Random.Range(-0.5f, 0.5f);
+
+            populated.SetInfo(level);
+            populated.transform.localPosition = new Vector3(rndX, 0f, rndZ);
+            populated.Appear();
+            ShownPopulatedEntities.Add(populated);
+            PopulatedEntityEnabled?.Invoke(populated);
+        }
     }
 }

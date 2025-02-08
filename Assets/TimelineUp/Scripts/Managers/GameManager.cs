@@ -92,7 +92,7 @@ public class GameManager : Singleton<GameManager>
     {
         string json = PlayerPrefs.GetString("PlayerData");
         PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-        Debug.Log($"Load data: level - {data.level}    coin - {data.coin}");
+        Debug.Log($"Load data: level - {data.Level}    coin - {data.Coin}");
     }
 
     private void LoadGameConfig()

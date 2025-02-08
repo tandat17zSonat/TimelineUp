@@ -1,4 +1,5 @@
 using System;
+using System.Net.WebSockets;
 using DG.Tweening;
 using HyperCasualRunner.Interfaces;
 using HyperCasualRunner.Tweening;
@@ -21,9 +22,9 @@ namespace HyperCasualRunner.Modifiables
         Tweener _deactivateTween;
         Tween _activateTween;
         readonly float _smoothingDuration = 0.5f;
-        int _currentLevel;
+        int _currentLevel = 0;
         int _defaultLevel;
-        
+
         public int MaxLevel => _renderersByLevel.Length;
         public int DefaultLevel
         {
@@ -56,7 +57,7 @@ namespace HyperCasualRunner.Modifiables
             int add = Mathf.Clamp(_currentLevel + value, 0, MaxLevel - 1);
             SetLevel(add);
         }
-        
+
         public void SetLevel(int level)
         {
             if (_currentLevel == level)
@@ -65,7 +66,7 @@ namespace HyperCasualRunner.Modifiables
             }
 
             ChangeGameObject(level);
-            
+
             _currentLevel = level;
 
             //if (_useTransformationParticle)
@@ -73,6 +74,7 @@ namespace HyperCasualRunner.Modifiables
             //    _transformationParticle.Play(true);
             //}
         }
+
         void ChangeGameObject(int level)
         {
             _deactivateTween = _renderersByLevel[_currentLevel].transform.DeactivateSlowly(_smoothingDuration);
