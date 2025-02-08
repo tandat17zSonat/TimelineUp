@@ -48,7 +48,7 @@ namespace HyperCasualRunner
             _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
         }
 
-        void Release()
+        public void Release()
         {
             _delayedCall.Kill();
             PoolBoss.Despawn(transform);

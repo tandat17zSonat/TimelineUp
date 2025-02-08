@@ -1,4 +1,5 @@
 ﻿using System;
+using DarkTonic.PoolBoss;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulationManagers;
 using NaughtyAttributes;
@@ -66,7 +67,7 @@ namespace HyperCasualRunner
                 _collectingParticleFeedback.Play();
             }
 
-            gameObject.SetActive(false);
+            PoolBoss.Despawn(this.transform);
         }
 
         void ApplyHitEffect(Projectile projectile)
@@ -75,6 +76,9 @@ namespace HyperCasualRunner
             {
                 collectableEffectBase.ApplyHitEffect(projectile);
             }
+
+            Debug.Log("Projectile Despawn");
+            projectile.Release();
         }
 
         [Button("Setup Collectable", EButtonEnableMode.Editor)]

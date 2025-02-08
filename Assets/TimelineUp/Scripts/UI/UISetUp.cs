@@ -55,7 +55,7 @@ public class UISetUp : MonoBehaviour
             populationManager.AddPopulation(1);
         }
 
-        var collectorLevel = GameplayManager.Instance.CollectorLevel;
+        var collectorLevel = GameplayManager.Instance.NumberInCollector;
         var exp = GameplayManager.Instance.ExpCollectorInGame;
 
         var gameConfigData = GameManager.Instance.GameConfigData;

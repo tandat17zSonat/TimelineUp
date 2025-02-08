@@ -16,12 +16,12 @@ public class GameplayData
             {
                 Type = 0,
                 Level = i,
-                Speed = 25,
+                Speed = 5,
                 ProjectileData = new ProjectileData()
                 {
-                    Damage = i + 1,
+                    Damage = (i + 1) * 10,
                     Speed = 25,
-                    Range = (i + 1) * 75 * 1.5f,
+                    Range = (i + 1) * 25 * 1.5f,
                 }
             });
         }
@@ -55,6 +55,11 @@ public class GameplayData
     {
         return ListWarriorCollectorDatas.DamageToUpgrade[level];
     }
+
+    public int GetForwardMoveSpeed()
+    {
+        return ListWarriorDatas[0].Speed;
+    }
 }
 
 public class WarriorCollectorConfig
@@ -71,7 +76,7 @@ public class WarriorCollectorConfig
         }
 
         ExpToUpgradeNumberWarrior = new List<int>();
-        for( int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             ExpToUpgradeNumberWarrior.Add((i + 1) * 100);
         }

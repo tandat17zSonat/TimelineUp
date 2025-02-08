@@ -17,7 +17,7 @@ namespace HyperCasualRunner.CollectableEffects
 
         public override void ApplyHitEffect(Projectile projectile)
         {
-            var collectorLevel = GameplayManager.Instance.CollectorLevel;
+            var collectorLevel = GameplayManager.Instance.NumberInCollector;
             var exp = GameplayManager.Instance.ExpCollectorInGame;
             exp += projectile.Damage;
 
@@ -27,7 +27,7 @@ namespace HyperCasualRunner.CollectableEffects
                 var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
                 if (exp > expToUpgrade)
                 {
-                    GameplayManager.Instance.CollectorLevel += 1;
+                    GameplayManager.Instance.NumberInCollector += 1;
                     exp -= expToUpgrade;
                 }
             }

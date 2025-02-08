@@ -69,4 +69,10 @@ public class WarriorCollectorEffect : CollectableEffectBase
         textLevel.text = level.ToString();
         textNum.text = numWarrior.ToString();
     }
+
+    private void Update()
+    {
+        numWarrior = GameplayManager.Instance.NumberInCollector;
+        UpdateUI();
+    }
 }

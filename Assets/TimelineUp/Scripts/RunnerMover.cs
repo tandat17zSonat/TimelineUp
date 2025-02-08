@@ -57,6 +57,7 @@ namespace HyperCasualRunner.Locomotion
 
         public void TryStartMovement()
         {
+            ForwardMoveSpeed = GameManager.Instance.GameConfigData.GetForwardMoveSpeed();
             _canGoForward = true;
         }
 

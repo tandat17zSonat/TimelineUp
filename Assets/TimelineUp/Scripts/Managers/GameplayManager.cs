@@ -22,7 +22,7 @@ public class GameplayManager : Singleton<GameplayManager>
     public Action OnRestart;
 
     // Data trong màn chơi ----------------------------------------------
-    public int CollectorLevel { get; set; }
+    public int NumberInCollector { get; set; }
     public float ExpCollectorInGame { get; set; }
     public Dictionary<int, int> DictWarriorSpawned {  get; set; }
 
@@ -36,7 +36,7 @@ public class GameplayManager : Singleton<GameplayManager>
         State = GameState.Pause;
         OnRestart += LoadGame;
 
-        CollectorLevel = 0;
+        NumberInCollector = 1;
         ExpCollectorInGame = 0;
         DictWarriorSpawned = new Dictionary<int, int>();
     }
@@ -57,7 +57,7 @@ public class GameplayManager : Singleton<GameplayManager>
         _crowdManager.AddPopulation(level, num);
 
         // ResetData
-        CollectorLevel = 0;
+        NumberInCollector = 1;
         ExpCollectorInGame = GameManager.Instance.PlayerData.ExpCollector;
         DictWarriorSpawned.Clear();
     }
