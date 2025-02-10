@@ -13,11 +13,12 @@ namespace HyperCasualRunner.PopulationManagers
     public abstract class PopulationManagerBase : MonoBehaviour
     {
         [SerializeField, Range(1, 500), Tooltip("This limit can't be exceedable later on, so give it a higher number")]
-        protected int maxPopulationCount = 20;
+        protected int maxPopulationCount = 50;
+
         [SerializeField, Tooltip("Prefab to use for populated entities")]
         protected PopulatedEntity.PopulatedEntity populatedEntityPrefab;
-        [SerializeField] bool _shouldSpawnEntitiesAsChild = true;
-        [SerializeField, Required(), ShowIf(nameof(_shouldSpawnEntitiesAsChild)), Tooltip("Populated entities will be spawned as a child of this game object")]
+
+        [SerializeField, Required(), Tooltip("Populated entities will be spawned as a child of this game object")]
         protected Transform instantiateRoot;
 
         [SerializeField] protected UnityEvent OnLastEntityDied;
@@ -44,77 +45,16 @@ namespace HyperCasualRunner.PopulationManagers
 
         public virtual void Initialize()
         {
-            if (_shouldSpawnEntitiesAsChild)
+            for (int i = 0; i < maxPopulationCount; i++)
             {
-                for (int i = 0; i < maxPopulationCount; i++)
-                {
-                    PopulatedEntity.PopulatedEntity instantiated = Instantiate(populatedEntityPrefab, instantiateRoot);
-                    instantiated.Initialize(this);
-                    _hiddenPopulatedEntities.Add(instantiated);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < maxPopulationCount; i++)
-                {
-                    PopulatedEntity.PopulatedEntity instantiated = Instantiate(populatedEntityPrefab);
-                    instantiated.Initialize(this);
-                    _hiddenPopulatedEntities.Add(instantiated);
-                }
+                PopulatedEntity.PopulatedEntity instantiated = Instantiate(populatedEntityPrefab, instantiateRoot);
+                instantiated.Initialize(this);
+                _hiddenPopulatedEntities.Add(instantiated);
             }
         }
 
-        /// <summary>
-        /// Create new populated entities by adding specified amount.
-        /// </summary>
-        /// <param name="amount">How many populated entities should be added.</param>
-        public void AddPopulation(int amount)
-        {
-            int absoluteAmount = Mathf.Abs(amount);
-            if (Mathf.Sign(amount) > 0)
-            {
-                PopulateMultiple(absoluteAmount);
-            }
-            else
-            {
-                DepopulateMultiple(absoluteAmount);
-            }
-        }
-
-        ///// <summary>
-        ///// Create new populated entities by multiplying shown populated entities.
-        ///// </summary>
-        ///// <param name="ratio">Ratio to multiply.</param>
-        //public void MultiplyPopulation(float ratio)
-        //{
-        //    int multipliedCount = Mathf.RoundToInt(_shownPopulatedEntities.Count * ratio);
-        //    int deltaAbsolute = Mathf.Abs(multipliedCount - _shownPopulatedEntities.Count);
-        //    if (ratio > 1)
-        //    {
-        //        PopulateMultiple(deltaAbsolute);
-        //    }
-        //    else
-        //    {
-        //        DepopulateMultiple(deltaAbsolute);
-        //    }
-        //}
-
-        /// <summary>
-        /// Depopulates specific PopulatedEntity instead of random one. Useful when one takes a hit and you want to kill it.
-        /// </summary>
-        /// <param name="populatedEntity"></param>
-        public abstract void Depopulate(PopulatedEntity.PopulatedEntity populatedEntity);
-
-        /// <summary>
-        /// Populates random PopulatedEntity.
-        /// </summary>
-        protected abstract void Populate();
         protected abstract void Populate(int level);
-
-        /// <summary>
-        /// Depopulates random PopulatedEntity.
-        /// </summary>
-        protected abstract void Depopulate();
+        public abstract void Depopulate(PopulatedEntity.PopulatedEntity populatedEntity);
 
         protected virtual void OnPopulationChanged()
         {
@@ -123,75 +63,6 @@ namespace HyperCasualRunner.PopulationManagers
             {
                 OnLastEntityDied.Invoke();
             }
-        }
-
-        void PopulateMultiple(int amount)
-        {
-            if (_shownPopulatedEntities.Count >= maxPopulationCount)
-            {
-                return;
-            }
-
-            if (_shownPopulatedEntities.Count + amount > maxPopulationCount)
-            {
-                amount = maxPopulationCount - _shownPopulatedEntities.Count;
-            }
-
-            for (int i = 0; i < amount; i++)
-            {
-                Populate();
-            }
-            OnPopulationChanged();
-        }
-
-        void DepopulateMultiple(int amount)
-        {
-            if (_shownPopulatedEntities.Count == 0)
-            {
-                return;
-            }
-
-            if (_shownPopulatedEntities.Count - amount < 0)
-            {
-                amount = _shownPopulatedEntities.Count;
-            }
-
-            for (int i = 0; i < amount; i++)
-            {
-                Depopulate();
-            }
-
-            //OnPopulationChanged();
-        }
-
-        public void Unload()
-        {
-            int size = _shownPopulatedEntities.Count;
-            AddPopulation(-size);
-        }
-
-        [Button()]
-        void PopulateOne()
-        {
-            AddPopulation(1);
-        }
-
-        [Button()]
-        void DepopulateOne()
-        {
-            AddPopulation(-1);
-        }
-
-        [Button()]
-        void PopulateTen()
-        {
-            AddPopulation(10);
-        }
-
-        [Button()]
-        void DepopulateTen()
-        {
-            AddPopulation(-10);
         }
 
         public void AddPopulation(int level, int amount)
@@ -211,6 +82,16 @@ namespace HyperCasualRunner.PopulationManagers
                 Populate(level);
             }
             OnPopulationChanged();
+        }
+
+        public void Unload()
+        {
+            foreach (var entity in _shownPopulatedEntities)
+            {
+                entity.Disappear();
+                _hiddenPopulatedEntities.Add(entity);
+            }
+            _shownPopulatedEntities.Clear();
         }
     }
 }

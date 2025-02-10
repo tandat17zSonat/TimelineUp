@@ -68,60 +68,10 @@ namespace HyperCasualRunner.PopulationManagers
             _organizeCoroutine = StartCoroutine(Co_Organize());
         }
 
-        //// TODO: To battle
-        //public void MoveRotated(Transform target, float moveSpeed)
-        //{
-        //    _shouldRotate = true;
-        //    _currentEntityMoveSpeed = moveSpeed;
-        //    Move(target);
-        //}
-
-        public override void Depopulate(PopulatedEntity.PopulatedEntity entity)
-        {
-            ShownPopulatedEntities.Remove(entity);
-            HiddenPopulatedEntities.Add(entity);
-            entity.Disappear();
-            if (!_canMovePopulatedEntities)
-            {
-                StartDelayedOrganizing();
-            }
-            base.OnPopulationChanged();
-        }
-
         protected override void OnPopulationChanged()
         {
             base.OnPopulationChanged();
             StartOrganizing();
-        }
-
-        protected override void Populate()
-        {
-            int hiddenListCount = HiddenPopulatedEntities.Count;
-            if (hiddenListCount == 0)
-            {
-                return;
-            }
-
-            PopulatedEntity.PopulatedEntity populated = HiddenPopulatedEntities[hiddenListCount - 1];
-            HiddenPopulatedEntities.RemoveAt(hiddenListCount - 1);
-            float rndX = Random.Range(-0.5f, 0.5f);
-            float rndZ = Random.Range(-0.5f, 0.5f);
-            populated.transform.localPosition = new Vector3(rndX, 0f, rndZ);
-            populated.Appear();
-            ShownPopulatedEntities.Add(populated);
-            PopulatedEntityEnabled?.Invoke(populated);
-        }
-
-        protected override void Depopulate()
-        {
-            if (ShownPopulatedEntities.Count == 0)
-            {
-                return;
-            }
-
-            int lastIndex = ShownPopulatedEntities.Count - 1;
-            PopulatedEntity.PopulatedEntity entity = ShownPopulatedEntities[lastIndex];
-            entity.TakeHit();
         }
 
         void StopEntitiesMovement()
@@ -185,5 +135,18 @@ namespace HyperCasualRunner.PopulationManagers
             ShownPopulatedEntities.Add(populated);
             PopulatedEntityEnabled?.Invoke(populated);
         }
+
+        public override void Depopulate(PopulatedEntity.PopulatedEntity entity)
+        {
+            ShownPopulatedEntities.Remove(entity);
+            HiddenPopulatedEntities.Add(entity);
+            entity.Disappear();
+            if (!_canMovePopulatedEntities)
+            {
+                StartDelayedOrganizing();
+            }
+            base.OnPopulationChanged();
+        }
+
     }
 }
