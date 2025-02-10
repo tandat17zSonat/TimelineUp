@@ -1,10 +1,6 @@
-using System;
 using DarkTonic.PoolBoss;
 using DG.Tweening;
-using HyperCasualRunner.PopulationManagers;
 using NaughtyAttributes;
-using TimelineUp.Obstacle;
-using TimelineUp.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

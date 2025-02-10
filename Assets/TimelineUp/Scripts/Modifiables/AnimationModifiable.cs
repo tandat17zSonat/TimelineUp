@@ -31,13 +31,6 @@ namespace HyperCasualRunner.Modifiables
 			}
 		}
 
-        void OnDisable()
-        {
-            if( _activeAnimation != null)
-			{
-				_activeAnimation.Stop();
-			}
-        }
         void OnDestroy()
 		{
 			if (_transformator != null)
@@ -61,6 +54,11 @@ namespace HyperCasualRunner.Modifiables
 			{
 				Play(_playingAnimationName);
 			}
+		}
+
+		public void PlayIdle()
+		{
+			Play("IdleLegacy");
 		}
 	}
 }

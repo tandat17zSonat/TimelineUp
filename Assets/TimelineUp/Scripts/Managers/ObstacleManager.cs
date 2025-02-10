@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DarkTonic.PoolBoss;
+using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
 using Sirenix.Serialization.Internal;
 using TimelineUp.Obstacle;
@@ -94,6 +95,8 @@ public class ObstacleManager : MonoBehaviour
             case ObstacleType.ExpBlock:
                 {
                     spawned = PoolBoss.Spawn(expBlockPrefab, Vector3.zero, Quaternion.identity, container);
+                    var expBlock = spawned.GetComponent<ExpBlockEffect>();
+                    expBlock.Initialize();
                     break;
                 }
             case ObstacleType.GateFinish:
@@ -102,6 +105,8 @@ public class ObstacleManager : MonoBehaviour
                     break;
                 }
         }
+
+        spawned.GetComponent<Collectable>().Init();
         return spawned.GetComponent<ObstacleBase>();
     }
 }

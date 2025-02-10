@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].isExpanded
@@ -462,6 +462,10 @@ PrefabInstance:
       value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[8].itemHardLimit
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].prefabTransform
       value: 
       objectReference: {fileID: 7632262432639270779, guid: acb4d1c4472674f32b59a2d36fb5c03c, type: 3}
@@ -484,13 +488,17 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[5].prefabTransform
       value: 
-      objectReference: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
+      objectReference: {fileID: 1318551965670141577, guid: fcc45b128c27e5f46b12a3d338b8f1cb, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[6].prefabTransform
       value: 
-      objectReference: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
+      objectReference: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[7].prefabTransform
+      value: 
+      objectReference: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[8].prefabTransform
       value: 
       objectReference: {fileID: 7311562713678637607, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
@@ -523,6 +531,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[7].instancesToPreload
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[8].instancesToPreload
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
@@ -764,7 +776,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758513604}
-  - component: {fileID: 758513603}
   - component: {fileID: 758513602}
   - component: {fileID: 758513601}
   - component: {fileID: 758513600}
@@ -797,7 +808,7 @@ MonoBehaviour:
   OnLastEntityDied:
     m_PersistentCalls:
       m_Calls: []
-  _organizeDurationInSeconds: 1.5
+  _organizeDurationInSeconds: 1
   _entityMoveSpeed: 2
   CrowdOrganizingPoint: {fileID: 758513604}
 --- !u!114 &758513601
@@ -812,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbf5c0c620fc564484bd2cf9fd37b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardMoveSpeed: 7
+  _forwardMoveSpeed: 10
   _canControlForwardMovement: 0
   _shouldConstrainMovement: 1
   _movementConstrainer: {fileID: 11400000, guid: fba3aac4b48c5314199a2f30226f91ec, type: 2}
@@ -834,32 +845,6 @@ MonoBehaviour:
   _startingEntityCount: 1
   _useAnimation: 1
   _animationModifier: {fileID: 758513607}
---- !u!143 &758513603
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758513599}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.7
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.04
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &758513604
 Transform:
   m_ObjectHideFlags: 0
@@ -1934,12 +1919,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f86eae09745b7488d7a5b73f7c36c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePool: {fileID: 11400000, guid: 7fa29ae158eca004abc43202e1163786, type: 2}
   container: {fileID: 2099954453}
   gateSpawnPrefab: {fileID: 2264167919004722978, guid: 82d2ffa2a4b007d4d9189a7b27750484, type: 3}
   expBlockPrefab: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
   warriorCollectorPrefab: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
   gateFinishPrefab: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
+  endBlockPrefab: {fileID: 1318551965670141577, guid: fcc45b128c27e5f46b12a3d338b8f1cb, type: 3}
 --- !u!4 &2099954453
 Transform:
   m_ObjectHideFlags: 0

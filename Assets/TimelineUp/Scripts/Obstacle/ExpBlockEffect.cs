@@ -10,6 +10,11 @@ namespace HyperCasualRunner.CollectableEffects
     {
 
         private Sequence seqEffect;
+
+        public void Initialize()
+        {
+            
+        }
         public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
         {
 

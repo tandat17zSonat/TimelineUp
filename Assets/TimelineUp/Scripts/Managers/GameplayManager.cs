@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Base.Singleton;
 using HyperCasualRunner;
+using HyperCasualRunner.GenericModifiers;
 using HyperCasualRunner.Locomotion;
+using HyperCasualRunner.Modifiables;
 using HyperCasualRunner.PopulationManagers;
 using UnityEngine;
 
@@ -55,6 +57,13 @@ public class GameplayManager : Singleton<GameplayManager>
         int num = beginPlayerData.warriorNumber,
             level = beginPlayerData.warriorLevel;
         _crowdManager.AddPopulation(level, num);
+
+        // reset anim -> idle
+        foreach(var entity in _crowdManager.ShownPopulatedEntities)
+        {
+            var animationModider = entity.GetComponent<AnimationModifiable>();
+            animationModider.PlayIdle();
+        }
 
         // ResetData
         NumberInCollector = 1;
