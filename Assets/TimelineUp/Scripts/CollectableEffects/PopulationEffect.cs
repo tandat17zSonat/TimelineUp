@@ -19,7 +19,7 @@ namespace HyperCasualRunner.CollectableEffects
         [SerializeField] Material materialPositive;
         [SerializeField] Material materialNegative;
 
-        public override void ApplyEffect(PopulationManagerBase manager)
+        public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
         {
             amount = -100;
             Reset();

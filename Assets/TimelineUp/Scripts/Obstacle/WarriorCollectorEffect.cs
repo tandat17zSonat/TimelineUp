@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
+using HyperCasualRunner.PopulatedEntity;
 using HyperCasualRunner.PopulationManagers;
 using TMPro;
 using UnityEngine;
@@ -33,7 +34,7 @@ public class WarriorCollectorEffect : CollectableEffectBase
         UpdateUI();
 
     }
-    public override void ApplyEffect(PopulationManagerBase populationManager)
+    public override void ApplyEffect(PopulatedEntity entity)
     {
         var dict = GameplayManager.Instance.DictWarriorSpawned;
         if(!dict.ContainsKey(level))

@@ -1,9 +1,6 @@
 using System;
 using DG.Tweening;
-using HyperCasualRunner.PopulationManagers;
 using NaughtyAttributes;
-using TimelineUp.Obstacle;
-using TimelineUp.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +10,7 @@ namespace HyperCasualRunner.CollectableEffects
     {
 
         private Sequence seqEffect;
-        public override void ApplyEffect(PopulationManagerBase manager)
+        public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
         {
 
         }

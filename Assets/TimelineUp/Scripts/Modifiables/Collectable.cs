@@ -36,13 +36,9 @@ namespace HyperCasualRunner
 
             if (other)
             {
-                if (other.TryGetComponent(out PopulationManagerBase manager))
+                if (other.TryGetComponent(out PopulatedEntity.PopulatedEntity entity))
                 {
-                    ApplyCollectEffects(manager);
-                }
-                else if (other.TryGetComponent(out PopulatedEntity.PopulatedEntity entity))
-                {
-                    ApplyCollectEffects(entity.PopulationManagerBase);
+                    ApplyCollectEffects(entity);
                 }
                 else if (other.TryGetComponent(out Projectile projectile))
                 {
@@ -55,11 +51,11 @@ namespace HyperCasualRunner
             Collected?.Invoke(this);
         }
 
-        void ApplyCollectEffects(PopulationManagerBase populationManager)
+        void ApplyCollectEffects(PopulatedEntity.PopulatedEntity entity)
         {
             foreach (CollectableEffectBase collectableEffectBase in _collectableEffects)
             {
-                collectableEffectBase.ApplyEffect(populationManager);
+                collectableEffectBase.ApplyEffect(entity);
             }
 
             if (_particleFeedbackEnabled)

@@ -29,9 +29,15 @@ namespace HyperCasualRunner.CollectableEffects
             UpdateUi();
         }
 
-        public override void ApplyEffect(PopulationManagerBase manager)
+        public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
         {
-            GameplayManager.Instance.SetResult(GameState.Loss);
+            var populationManagerBase = entity.PopulationManagerBase;
+            populationManagerBase.Depopulate(entity);
+
+            if(populationManagerBase.ShownPopulatedEntities.Count == 0)
+            {
+                GameplayManager.Instance.SetResult(GameState.Loss);
+            }
         }
 
         public override void ApplyHitEffect(Projectile projectile)
@@ -43,6 +49,7 @@ namespace HyperCasualRunner.CollectableEffects
                 return;
             }
             EnableEffect();
+            UpdateUi();
         }
 
         private void EnableEffect()

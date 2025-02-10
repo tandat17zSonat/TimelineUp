@@ -10,7 +10,7 @@ namespace HyperCasualRunner.CollectableEffects
     [RequireComponent(typeof(Collectable))]
     public abstract class CollectableEffectBase : MonoBehaviour
     {
-        public abstract void ApplyEffect(PopulationManagerBase populationManager);
+        public abstract void ApplyEffect(PopulatedEntity.PopulatedEntity entity);
         public abstract void ApplyHitEffect(Projectile projectile);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
+using HyperCasualRunner.PopulatedEntity;
 using HyperCasualRunner.PopulationManagers;
 using TMPro;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class GateSpawnEffect : CollectableEffectBase
         dictWarriorSpawned.Clear();
     }
 
-    public override void ApplyEffect(PopulationManagerBase populationManager)
+    public override void ApplyEffect(PopulatedEntity entity)
     {
         // Có người đi qua bình thường
         dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
@@ -26,7 +27,7 @@ public class GateSpawnEffect : CollectableEffectBase
         {
             var level = kvp.Key;
             var number = kvp.Value;
-            populationManager.AddPopulation(level, number);
+            entity.PopulationManagerBase.AddPopulation(level, number);
         }
     }
 
