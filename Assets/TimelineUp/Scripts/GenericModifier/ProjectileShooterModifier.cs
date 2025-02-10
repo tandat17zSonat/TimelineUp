@@ -37,7 +37,6 @@ namespace HyperCasualRunner.GenericModifiers
 
         void Shoot()
         {
-            Debug.Log("Shoot");
             foreach (ProjectileShooterModifiable projectileShooter in EffectReceivers)
             {
                 if (projectileShooter.gameObject.activeInHierarchy)

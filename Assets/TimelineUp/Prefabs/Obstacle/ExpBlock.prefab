@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5604290813910461231}
   - component: {fileID: 4875362507534536327}
   - component: {fileID: 1152438732984745104}
-  - component: {fileID: 3568354637349526353}
   - component: {fileID: 70229798489680751}
   m_Layer: 0
   m_Name: ExpBlock
@@ -88,18 +87,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 151a21ebafee3be42ba3bca2d1afeb32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3568354637349526353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684627300561971044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95ff861b075d6b47aa4b39dbeaae48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &70229798489680751

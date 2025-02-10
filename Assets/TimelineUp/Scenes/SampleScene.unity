@@ -411,7 +411,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].isExpanded
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[1].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[2].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[3].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[4].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[5].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[6].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[7].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[8].isExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[5].logMessages
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].allowRecycle
@@ -428,6 +464,10 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[3].allowRecycle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[9].categoryName
+      value: ItemInGame
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].itemHardLimit
@@ -463,6 +503,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[8].itemHardLimit
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[9].itemHardLimit
       value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
@@ -502,6 +546,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7311562713678637607, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[9].prefabTransform
+      value: 
+      objectReference: {fileID: 7311562713678637607, guid: 9afeef1a8300b42c5af746b5fbb39b16, type: 3}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].instancesToPreload
       value: 1
       objectReference: {fileID: 0}
@@ -538,6 +586,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[9].instancesToPreload
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].allowInstantiateMore
       value: 1
       objectReference: {fileID: 0}
@@ -559,6 +611,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[5].allowInstantiateMore
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[9].allowInstantiateMore
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
+      propertyPath: poolItems.Array.data[9].delayNavMeshEnableByFrames
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -801,9 +861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e73a71063a397e49bcb2eda0529383e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPopulationCount: 50
+  maxPopulationCount: 20
   populatedEntityPrefab: {fileID: 4627471186920289551, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-  _shouldSpawnEntitiesAsChild: 1
   instantiateRoot: {fileID: 1597092622}
   OnLastEntityDied:
     m_PersistentCalls:
@@ -825,7 +884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forwardMoveSpeed: 10
   _canControlForwardMovement: 0
-  _shouldConstrainMovement: 1
+  _shouldConstrainMovement: 0
   _movementConstrainer: {fileID: 11400000, guid: fba3aac4b48c5314199a2f30226f91ec, type: 2}
 --- !u!114 &758513602
 MonoBehaviour:
@@ -842,8 +901,6 @@ MonoBehaviour:
   _runnerMover: {fileID: 758513601}
   _populationManagerBase: {fileID: 758513600}
   _inputChannelSO: {fileID: 11400000, guid: 6301075bcbf33d24ba4276a669512535, type: 2}
-  _startingEntityCount: 1
-  _useAnimation: 1
   _animationModifier: {fileID: 758513607}
 --- !u!4 &758513604
 Transform:
@@ -1743,10 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7b3fd807c372c4b8c759129e354cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _background: {fileID: 68601476}
   _inputChannelSO: {fileID: 11400000, guid: 6301075bcbf33d24ba4276a669512535, type: 2}
-  _pressedOpacity: 0.5
-  _maxRange: 0.2
   _horizontalAxisEnabled: 1
   _verticalAxisEnabled: 1
 --- !u!114 &2001310730
@@ -1956,6 +2010,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1753151548554003054, guid: 79997aff9c7a8284fb464cd4550478cd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753151548554003054, guid: 79997aff9c7a8284fb464cd4550478cd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753151548554003054, guid: 79997aff9c7a8284fb464cd4550478cd, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4372979888837904549, guid: 79997aff9c7a8284fb464cd4550478cd, type: 3}
       propertyPath: m_Name
       value: PanelLobby
@@ -2055,6 +2121,7 @@ SceneRoots:
   - {fileID: 214904747}
   - {fileID: 836638780}
   - {fileID: 1736313387}
+  - {fileID: 2099954453}
   - {fileID: 193460285}
   - {fileID: 1257660200}
   - {fileID: 758513604}
@@ -2063,6 +2130,5 @@ SceneRoots:
   - {fileID: 1338085813}
   - {fileID: 1739666576}
   - {fileID: 1582671524}
-  - {fileID: 2099954453}
   - {fileID: 1172302964}
   - {fileID: 314285022}

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DarkTonic.PoolBoss;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
-using Sirenix.Serialization.Internal;
-using TimelineUp.Obstacle;
-using TimelineUp.ScriptableObjects;
 using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
@@ -18,11 +13,11 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] Transform gateFinishPrefab;
     [SerializeField] Transform endBlockPrefab;
 
-    private List<ObstacleBase> listObstacles;
+    private List<CollectableEffectBase> listObstacles;
 
     public void Awake()
     {
-        listObstacles = new List<ObstacleBase>();
+        listObstacles = new List<CollectableEffectBase>();
     }
 
     public void LoadObstacle(ObstacleData data)
@@ -72,7 +67,7 @@ public class ObstacleManager : MonoBehaviour
         listObstacles.Clear();
     }
 
-    public ObstacleBase Spawn(ObstacleType type)
+    public CollectableEffectBase Spawn(ObstacleType type)
     {
         Transform spawned = null;
 
@@ -107,7 +102,7 @@ public class ObstacleManager : MonoBehaviour
         }
 
         spawned.GetComponent<Collectable>().Init();
-        return spawned.GetComponent<ObstacleBase>();
+        return spawned.GetComponent<CollectableEffectBase>();
     }
 }
 
