@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulationManagers;
@@ -19,7 +20,7 @@ public class WarriorCollectorEffect : CollectableEffectBase
     [SerializeField] TMP_Text textLevel;
     [SerializeField] TMP_Text textNum;
 
-
+    private Sequence seqEffect;
     public void Initialize()
     {
         numWarrior = 1;
@@ -54,6 +55,7 @@ public class WarriorCollectorEffect : CollectableEffectBase
             // chưa tính phần damage thừa
         }
 
+        EnableEffect();
         UpdateUI();
     }
 
@@ -74,5 +76,14 @@ public class WarriorCollectorEffect : CollectableEffectBase
     {
         numWarrior = GameplayManager.Instance.NumberInCollector;
         UpdateUI();
+    }
+
+    private void EnableEffect()
+    {
+        seqEffect.Kill();
+
+        seqEffect = DOTween.Sequence();
+        seqEffect.Append(transform.DOScale(Vector3.one * 1.1f, 0.1f));
+        seqEffect.Append(transform.DOScale(Vector3.one, 0.1f));
     }
 }

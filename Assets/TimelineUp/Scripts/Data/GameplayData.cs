@@ -5,7 +5,8 @@ public class GameplayData
 {
     public List<WarriorData> ListWarriorDatas;
     public WarriorCollectorConfig ListWarriorCollectorDatas;
-
+    public List<EndBlockData> ListEndBlockDatas;
+    public int CountEndBlock;
     public GameplayData()
     {
         // config của warrior----------
@@ -20,7 +21,7 @@ public class GameplayData
                 ProjectileData = new ProjectileData()
                 {
                     Damage = (i + 1) * 10,
-                    Speed = 25,
+                    Speed = 30,
                     Range = (i + 1) * 25 * 1.5f,
                 }
             });
@@ -28,6 +29,20 @@ public class GameplayData
 
         // config của gate_spawn
         ListWarriorCollectorDatas = new WarriorCollectorConfig();
+
+        // config của các khối lúc kết thúc
+        CountEndBlock = 3;
+
+        ListEndBlockDatas = new List<EndBlockData>();
+        for (int i = 0; i < 10; i++)
+        {
+            ListEndBlockDatas.Add(new EndBlockData()
+            {
+                Order = i,
+                Hp = (i + 1) * 10,
+                Coin = (i + 1) * 5
+            });
+        }
     }
 
     public int GetNumberWarriorInCollector()
@@ -60,6 +75,11 @@ public class GameplayData
     {
         return ListWarriorDatas[0].Speed;
     }
+
+    public int GetEndBlockHp(int order)
+    {
+        return ListEndBlockDatas[order].Hp;
+    }
 }
 
 public class WarriorCollectorConfig
@@ -81,4 +101,11 @@ public class WarriorCollectorConfig
             ExpToUpgradeNumberWarrior.Add((i + 1) * 100);
         }
     }
+}
+
+public class EndBlockData
+{
+    public int Order;
+    public int Hp;
+    public int Coin;
 }

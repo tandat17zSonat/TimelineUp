@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -42,6 +42,7 @@ namespace HyperCasualRunner.PopulationManagers
                 return;
             }
 
+            // Cho các warrior đừng gần lại nhau
             foreach (PopulatedEntity.PopulatedEntity shownPopulatedEntity in ShownPopulatedEntities)
             {
                 shownPopulatedEntity.Move(_moveTarget, _currentEntityMoveSpeed, _shouldRotate);

@@ -31,7 +31,14 @@ namespace HyperCasualRunner.Modifiables
 			}
 		}
 
-		void OnDestroy()
+        void OnDisable()
+        {
+            if( _activeAnimation != null)
+			{
+				_activeAnimation.Stop();
+			}
+        }
+        void OnDestroy()
 		{
 			if (_transformator != null)
 				_transformator.Transformed -= Transformator_Transformed;

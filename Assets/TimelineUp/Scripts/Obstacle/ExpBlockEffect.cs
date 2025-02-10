@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using HyperCasualRunner.PopulationManagers;
 using NaughtyAttributes;
 using TimelineUp.Obstacle;
@@ -10,6 +12,7 @@ namespace HyperCasualRunner.CollectableEffects
     public class ExpBlockEffect : CollectableEffectBase
     {
 
+        private Sequence seqEffect;
         public override void ApplyEffect(PopulationManagerBase manager)
         {
 
@@ -31,7 +34,18 @@ namespace HyperCasualRunner.CollectableEffects
                     exp -= expToUpgrade;
                 }
             }
+
+            EnableEffect();
             GameplayManager.Instance.ExpCollectorInGame = exp;
+        }
+
+        private void EnableEffect()
+        {
+            if(seqEffect != null) seqEffect.Kill();
+
+            seqEffect = DOTween.Sequence();
+            seqEffect.Append(transform.DOScale(Vector3.one * 1.1f, 0.1f));
+            seqEffect.Append(transform.DOScale(Vector3.one, 0.1f));
         }
 
         [Button("Setup", EButtonEnableMode.Editor)]

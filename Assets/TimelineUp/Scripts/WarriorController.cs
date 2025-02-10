@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HyperCasualRunner.PopulatedEntity;
@@ -27,6 +27,8 @@ public class WarriorController : PopulatedEntity
         var gameConfigData = GameManager.Instance.GameConfigData;
         _warriorData = gameConfigData.GetWarriorData(level);
 
+        // có thể là không có level nên reset lại level
+        level = _warriorData.Level;
         _transformationModifiable.SetLevel(level);
         _projectileShooterModifiable.SetProjectileData();
     }
