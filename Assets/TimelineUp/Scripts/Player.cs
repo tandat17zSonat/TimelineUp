@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using HyperCasualRunner.GenericModifiers;
 
 //using HyperCasualRunner.GenericModifiers;
@@ -21,14 +21,12 @@ namespace HyperCasualRunner
         [SerializeField, Required] RunnerMover _runnerMover;
         [SerializeField, Required] PopulationManagerBase _populationManagerBase;
         [SerializeField, Required] InputChannelSO _inputChannelSO;
-        [SerializeField] int _startingEntityCount;
 
-        [SerializeField] bool _useAnimation;
-        [SerializeField, ShowIf(nameof(_useAnimation))] AnimationModifier _animationModifier;
+        [SerializeField] AnimationModifier _animationModifier;
 
         ITickable[] _tickables;
 
-        private Vector3 _originalPosition;
+        private Vector3 _beginPosition;
 
         void Awake()
         {
@@ -42,7 +40,7 @@ namespace HyperCasualRunner
 
             _tickables = GetComponents<ITickable>();
 
-            _originalPosition = transform.position;
+            _beginPosition = transform.position;
         }
 
         void OnEnable()
@@ -92,7 +90,7 @@ namespace HyperCasualRunner
             enabled = true;
         }
 
-        void OnJoystickUpdate(Vector2 direction)
+        void OnJoystickUpdate()
         {
             _runnerMover.Move();
         }
@@ -100,14 +98,7 @@ namespace HyperCasualRunner
         void OnTouchDown()
         {
             _runnerMover.TryStartMovement();
-            if (_useAnimation)
-            {
-                _animationModifier.PlayLocomotion(1f);
-            }
-            //else if (_useAnimator)
-            //{
-            //    _animatorModifier.PlayLocomotion(1f);
-            //}
+            _animationModifier.PlayLocomotion(1f);
         }
 
         void OnTouchUp()
@@ -117,19 +108,14 @@ namespace HyperCasualRunner
             {
                 return;
             }
-            if (_useAnimation)
-            {
-                _animationModifier.PlayLocomotion(0f);
-            }
-            //else if (_useAnimator)
-            //{
-            //    _animatorModifier.PlayLocomotion(0f);
-            //}
+
+            // Stop -> Dừng animation
+            _animationModifier.PlayLocomotion(0f);
         }
 
         public void Unload()
         {
-            transform.position = _originalPosition;
+            transform.position = _beginPosition;
         }
     }
 }

@@ -40,16 +40,5 @@ namespace HyperCasualRunner.GenericModifiers
 				}
 			}
 		}
-
-		public void Jump()
-		{
-			foreach (AnimationModifiable effectReceiver in EffectReceivers)
-			{
-				if (effectReceiver.gameObject.activeInHierarchy)
-				{
-					effectReceiver.Play(_jumpAnimationName);
-				}
-			}
-		}
 	}
 }

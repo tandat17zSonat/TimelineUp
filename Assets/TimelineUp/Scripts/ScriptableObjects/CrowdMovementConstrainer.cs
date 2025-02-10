@@ -17,10 +17,13 @@ namespace HyperCasualRunner.Locomotion
         Tween _delayedCall;
         Bounds _movableBounds;
 
+        private float delayCalculateBounds;
         public override void Initialize(GameObject runnerGameObject)
         {
             _crowdManager = runnerGameObject.GetComponent<CrowdManager>();
             _crowdManager.PopulationChanged += CrowdManager_PopulationChanged;
+
+            delayCalculateBounds = _crowdManager.OrganizeDurationInSeconds;
         }
 
         void OnDisable()
@@ -39,7 +42,7 @@ namespace HyperCasualRunner.Locomotion
         void CrowdManager_PopulationChanged(int amount)
         {
             _delayedCall.Kill();
-            _delayedCall = DOVirtual.DelayedCall(0.3f, CalculateBoundaries, false);
+            _delayedCall = DOVirtual.DelayedCall(delayCalculateBounds, CalculateBoundaries, false);
         }
 
         void CalculateBoundaries()
@@ -50,26 +53,6 @@ namespace HyperCasualRunner.Locomotion
                 bounds.Encapsulate(populatedEntity.transform.position);
             }
             _movableBounds = bounds;
-        }
-
-        public override Vector3 GetConstrainedMotion(Vector3 motionVector, Vector3 position)
-        {
-            if (position.x > _xLimit - _movableBounds.extents.x)
-            {
-                if (motionVector.x > 0)
-                {
-                    return new Vector3(0f, motionVector.y, motionVector.z);
-                }
-            }
-            else if (position.x < -_xLimit + _movableBounds.extents.x)
-            {
-                if (motionVector.x < 0)
-                {
-                    return new Vector3(0f, motionVector.y, motionVector.z);
-                }
-            }
-
-            return motionVector;
         }
 
         public override Vector3 GetConstrainedPosition(Vector3 position)

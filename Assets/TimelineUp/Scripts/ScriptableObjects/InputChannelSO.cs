@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace HyperCasualRunner.ScriptableObjects
@@ -9,15 +9,17 @@ namespace HyperCasualRunner.ScriptableObjects
     [CreateAssetMenu(menuName = "HyperCasualPack/Channels/Input Channel", fileName = "Input Channel", order = 0)]
     public class InputChannelSO : ScriptableObject
     {
-        public event Action<Vector2> JoystickUpdated;
+        public event Action JoystickUpdated;
         public event Action PointerDown;
         public event Action PointerUp;
         public event Action Tapped;
-        public event Action<bool> SetActiveInput;
 
-        public void OnJoystickUpdated(Vector2 value)
+        /// <summary>
+        /// Cập nhật liên tục khi sử dụng Joystick
+        /// </summary>
+        public void OnJoystickUpdated()
         {
-            JoystickUpdated?.Invoke(value);
+            JoystickUpdated?.Invoke();
         }
 
         public void OnPointerDown()
@@ -33,11 +35,6 @@ namespace HyperCasualRunner.ScriptableObjects
         public void OnTapped()
         {
             Tapped?.Invoke();
-        }
-
-        public void OnSetActiveInput(bool activeness)
-        {
-            SetActiveInput?.Invoke(activeness);
         }
     }
 }

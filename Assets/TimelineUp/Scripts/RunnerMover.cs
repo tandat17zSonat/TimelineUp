@@ -10,23 +10,14 @@ namespace HyperCasualRunner.Locomotion
     public class RunnerMover : MonoBehaviour
     {
         [Header("Properties")]
-        [SerializeField] float _forwardMoveSpeed = 3f;
+        [SerializeField, ReadOnly] float _forwardMoveSpeed;
         [SerializeField] bool _canControlForwardMovement;
-        //[SerializeField, Tooltip("If it's true, object will rotate itself so it's up is aligned with the ground's up direction")] bool _shouldOrientUpDirectionToGround;
-        //[SerializeField, ShowIf(nameof(_shouldOrientUpDirectionToGround)), Tooltip("Detection range of the ground when orienting itself")] float _orientUpDirectionRange = 2f
-
-        //[SerializeField] bool _turnToMovingDirection;
-        //[SerializeField, ShowIf(nameof(_turnToMovingDirection)), Required]
-        //GameObject _gameObjectToTurn;
-        //[SerializeField, ShowIf(nameof(_turnToMovingDirection))] float _maxRotatingLimit = 15f;
-        //[SerializeField, ShowIf(nameof(_turnToMovingDirection))] float _rotationSpeed = 9f;
 
         [Header("Movement Constrain")]
         [SerializeField] bool _shouldConstrainMovement;
         [SerializeField, ShowIf(nameof(_shouldConstrainMovement))] MovementConstrainerBase _movementConstrainer;
 
         bool _canGoForward = true; // 1 yes, 0 no
-        Vector3 _initialForwardDirection;
 
         bool _canControl = false;
         Vector3 _oldPosition;
@@ -37,7 +28,6 @@ namespace HyperCasualRunner.Locomotion
         public void Initialize()
         {
             _movementConstrainer.Initialize(gameObject);
-            _initialForwardDirection = transform.forward;
         }
 
         public void OnDestroying()
@@ -50,6 +40,7 @@ namespace HyperCasualRunner.Locomotion
             ForwardMoveSpeed = GameManager.Instance.GameConfigData.GetForwardMoveSpeed();
             _canGoForward = true;
 
+            // Lưu lại những giá trị lần chạm đầu
             _canControl = true;
             _oldPosition = transform.position;
             _oldTouchPositionX = ConvertScreenToGround().x;
@@ -63,9 +54,8 @@ namespace HyperCasualRunner.Locomotion
         }
 
         /// <summary>
-        /// If you feed this method with Vector2, it will move the RunnerMover towards that.
+        /// Move được gọi liên tục trong hàm update của Joystick
         /// </summary>
-        /// <param name="moveDirection">Move Direction to go. It has to be normalized. It will be multiplied by the movement speed.</param>
         public void Move()
         {
             if (!enabled)
@@ -79,27 +69,14 @@ namespace HyperCasualRunner.Locomotion
                 position.x = ConvertScreenToGround().x - _oldTouchPositionX + _oldPosition.x;
             }
 
-            if (!_canControl && _canControlForwardMovement)
+            if (!_canGoForward)
             {
                 position.z = transform.position.z;
             }
+
+            // Giới hạn lại vùng di chuyển
             var finalPosition = _movementConstrainer.GetConstrainedPosition(position);
             transform.position = finalPosition;
-
-            //if (_shouldOrientUpDirectionToGround)
-            //{
-            //    bool isNearGround = Physics.Raycast(transform.position, Vector3.down * _orientUpDirectionRange, out RaycastHit hitInfo, 2f);
-            //    if (isNearGround) _groundNormal = hitInfo.normal;
-            //}
-
-            //if (_turnToMovingDirection)
-            //{
-            //    // TODO: This part might cause problem when rotating
-            //    Quaternion targetRotation = Quaternion.LookRotation(_initialForwardDirection + horizontalMovementRaw * _maxRotatingLimit, _groundNormal);
-
-            //    _gameObjectToTurn.transform.rotation = Quaternion.Slerp(
-            //        _gameObjectToTurn.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-            //}
         }
 
         Vector3 ConvertScreenToGround()

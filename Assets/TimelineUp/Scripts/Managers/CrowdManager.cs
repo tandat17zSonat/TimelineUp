@@ -18,6 +18,8 @@ namespace HyperCasualRunner.PopulationManagers
         [Tooltip("All populated entities will try to regroup themselves based on this point")]
         public Transform CrowdOrganizingPoint;
 
+        public float OrganizeDurationInSeconds { get { return _organizeDurationInSeconds; } }
+
         Tween _delayedCallTween;
         WaitForSeconds _organizeWait;
         Coroutine _organizeCoroutine;

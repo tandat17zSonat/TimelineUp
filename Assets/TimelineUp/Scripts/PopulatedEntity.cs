@@ -126,19 +126,6 @@ namespace HyperCasualRunner.PopulatedEntity
             _visuals.rotation = Quaternion.identity;
         }
 
-        ///// <summary>
-        ///// It's useful if you want to create jumping effect.
-        ///// </summary>
-        ///// <param name="jumpPower"></param>
-        ///// <param name="duration"></param>
-        //public void Jump(float jumpPower, float duration)
-        //{
-        //    if (_jumpTween?.IsActive() ?? false)
-        //    {
-        //        _jumpTween.Complete();
-        //    }
-        //    _jumpTween = transform.DOLocalJump(transform.localPosition, jumpPower, 1, duration).SetEase(Ease.Linear);
-        //}
 
         public virtual void SetInfo(int level)
         {
