@@ -71,5 +71,19 @@ namespace HyperCasualRunner.Locomotion
 
             return motionVector;
         }
+
+        public override Vector3 GetConstrainedPosition(Vector3 position)
+        {
+            if (position.x > _xLimit - _movableBounds.extents.x)
+            {
+                return new Vector3(_xLimit - _movableBounds.extents.x, position.y, position.z);
+            }
+            else if (position.x < -_xLimit + _movableBounds.extents.x)
+            {
+                return new Vector3(-_xLimit + _movableBounds.extents.x, position.y, position.z);
+            }
+
+            return position;
+        }
     }
 }

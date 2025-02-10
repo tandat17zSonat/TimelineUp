@@ -94,7 +94,7 @@ namespace HyperCasualRunner
 
         void OnJoystickUpdate(Vector2 direction)
         {
-            _runnerMover.Move(direction);
+            _runnerMover.Move();
         }
 
         void OnTouchDown()

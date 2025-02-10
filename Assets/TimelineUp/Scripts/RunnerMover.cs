@@ -10,19 +10,11 @@ namespace HyperCasualRunner.Locomotion
     public class RunnerMover : MonoBehaviour
     {
         [Header("Properties")]
-        [SerializeField] float _horizontalMoveSpeed = 3f;
         [SerializeField] float _forwardMoveSpeed = 3f;
         [SerializeField] bool _canControlForwardMovement;
         //[SerializeField, Tooltip("If it's true, object will rotate itself so it's up is aligned with the ground's up direction")] bool _shouldOrientUpDirectionToGround;
-        //[SerializeField, ShowIf(nameof(_shouldOrientUpDirectionToGround)), Tooltip("Detection range of the ground when orienting itself")] float _orientUpDirectionRange = 2f;
-        [SerializeField, Tooltip("Lower the number, higher the gravity power")] float _gravityPower = -8f;
-        [SerializeField, Range(0f, 1f), Tooltip("0 for tight control")]
-        float _horizontalSmoothingTime = 0.13f;
-        [SerializeField, Range(0f, 1f), Tooltip("0 for tight control")]
-        float _forwardSmoothingTime = 0.17f;
+        //[SerializeField, ShowIf(nameof(_shouldOrientUpDirectionToGround)), Tooltip("Detection range of the ground when orienting itself")] float _orientUpDirectionRange = 2f
 
-        [Header("Dependencies")]
-        [SerializeField] CharacterController _characterController;
         //[SerializeField] bool _turnToMovingDirection;
         //[SerializeField, ShowIf(nameof(_turnToMovingDirection)), Required]
         //GameObject _gameObjectToTurn;
@@ -34,13 +26,11 @@ namespace HyperCasualRunner.Locomotion
         [SerializeField, ShowIf(nameof(_shouldConstrainMovement))] MovementConstrainerBase _movementConstrainer;
 
         bool _canGoForward = true; // 1 yes, 0 no
-        float _gravitationalVelocity;
-        Vector3 _horizontalMovement;
-        Vector3 _forwardMovement;
-        Vector3 _horizontalVelocity;
-        Vector3 _forwardVelocity;
         Vector3 _initialForwardDirection;
-        Vector3 _groundNormal = Vector3.up;
+
+        bool _canControl = false;
+        Vector3 _oldPosition;
+        float _oldTouchPositionX;
 
         public float ForwardMoveSpeed { get => _forwardMoveSpeed; set => _forwardMoveSpeed = value; }
 
@@ -59,10 +49,15 @@ namespace HyperCasualRunner.Locomotion
         {
             ForwardMoveSpeed = GameManager.Instance.GameConfigData.GetForwardMoveSpeed();
             _canGoForward = true;
+
+            _canControl = true;
+            _oldPosition = transform.position;
+            _oldTouchPositionX = ConvertScreenToGround().x;
         }
 
         public bool TryStopMovement()
         {
+            _canControl = false;
             if (_canControlForwardMovement) _canGoForward = false;
             return _canControlForwardMovement;
         }
@@ -71,15 +66,25 @@ namespace HyperCasualRunner.Locomotion
         /// If you feed this method with Vector2, it will move the RunnerMover towards that.
         /// </summary>
         /// <param name="moveDirection">Move Direction to go. It has to be normalized. It will be multiplied by the movement speed.</param>
-        public void Move(Vector2 moveDirection)
+        public void Move()
         {
             if (!enabled)
             {
                 return;
             }
 
-            var finalMovement = GetFinalMovement(moveDirection);
-            _characterController.Move(finalMovement);
+            var position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * _forwardMoveSpeed);
+            if (_canControl)
+            {
+                position.x = ConvertScreenToGround().x - _oldTouchPositionX + _oldPosition.x;
+            }
+
+            if (!_canControl && _canControlForwardMovement)
+            {
+                position.z = transform.position.z;
+            }
+            var finalPosition = _movementConstrainer.GetConstrainedPosition(position);
+            transform.position = finalPosition;
 
             //if (_shouldOrientUpDirectionToGround)
             //{
@@ -97,37 +102,21 @@ namespace HyperCasualRunner.Locomotion
             //}
         }
 
-        Vector3 GetFinalMovement(Vector2 moveDirection)
+        Vector3 ConvertScreenToGround()
         {
-            var trans = transform;
-            Vector3 horizontalMovementRaw = trans.right * moveDirection.x;
-            Vector3 forwardMovementRaw = trans.forward * (_canGoForward ? 1 : 0);
-            _horizontalMovement = Vector3.SmoothDamp(_horizontalMovement, horizontalMovementRaw * _horizontalMoveSpeed, ref _horizontalVelocity, _horizontalSmoothingTime);
-            _forwardMovement = Vector3.SmoothDamp(_forwardMovement, forwardMovementRaw * _forwardMoveSpeed, ref _forwardVelocity, _forwardSmoothingTime);
-            Vector3 totalInputMovement = _horizontalMovement + _forwardMovement;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits = Physics.RaycastAll(ray);
 
-            if (_characterController.isGrounded)
+            foreach (RaycastHit hit in hits)
             {
-                _gravitationalVelocity = _gravityPower * Time.deltaTime;
+                if (hit.collider.gameObject.tag == "Ground")
+                {
+                    return hit.point;
+                }
             }
-            else
-            {
-                _gravitationalVelocity += _gravityPower * Time.deltaTime;
-            }
-
-            Vector3 finalMovement = (totalInputMovement + transform.up * _gravitationalVelocity) * Time.deltaTime;
-
-            // Now: Giới hạn phạm vi của player
-            if (_shouldConstrainMovement)
-            {
-                finalMovement = _movementConstrainer.GetConstrainedMotion(finalMovement, transform.position);
-            }
-            return finalMovement;
-        }
-
-        void Reset()
-        {
-            _characterController = GetComponent<CharacterController>();
+            Debug.Log($"Can't ConvertScreenToGround");
+            _canControl = false;
+            return Vector3.zero;
         }
     }
 }

@@ -18,5 +18,6 @@ namespace HyperCasualRunner.Locomotion
         }
 
         public abstract Vector3 GetConstrainedMotion(Vector3 motionVector, Vector3 position);
+        public abstract Vector3 GetConstrainedPosition(Vector3 position);
     }
 }
