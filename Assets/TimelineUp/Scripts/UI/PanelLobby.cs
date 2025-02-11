@@ -8,10 +8,7 @@ public class PanelLobby : Panel
 {
     [SerializeField] Button btnTapToPlay;
 
-    [Header("Exp Bar")]
-    [SerializeField] Slider sliderExp;
-    [SerializeField] TMP_Text textNum;
-    [SerializeField] TMP_Text textNextNum;
+    [SerializeField] BaseButtonBooster[] BtnBoosters;
 
     public override void OnSetup()
     {
@@ -24,17 +21,11 @@ public class PanelLobby : Panel
             btnTapToPlay.gameObject.SetActive(false);
         });
 
-        // effect button
-        var oldScale = btnTapToPlay.transform.localScale;
-        var seq = DOTween.Sequence();
-        seq.Append(btnTapToPlay.transform.DOScale(new Vector3(1.1f, 1.1f, 1f), 1f).SetEase(Ease.InOutQuad));
-        seq.Append(btnTapToPlay.transform.DOScale(oldScale, 1f).SetEase(Ease.InOutQuad));
-        seq.SetLoops(-1, LoopType.Yoyo);
-
-        GameplayManager.Instance.OnRestart += () =>
+        foreach(var btn in BtnBoosters)
         {
-            btnTapToPlay.gameObject.SetActive(true);
-        };
+            btn.Initialize();
+
+        }
     }
 
     public override void Open(UIData uiData)
@@ -57,33 +48,11 @@ public class PanelLobby : Panel
         base.OnCloseCompleted();
     }
 
-    public void SetUIExpBar(int currentLevel, float percent)
-    {
-        textNum.text = currentLevel.ToString();
-        textNextNum.text = (currentLevel + 1).ToString();
-
-        sliderExp.value = percent;
-    }
-
     private void Update()
     {
-        var collectorLevel = GameplayManager.Instance.NumberInCollector;
-        var exp = GameplayManager.Instance.ExpCollectorInGame;
-
-        var gameConfigData = GameManager.Instance.GameConfigData;
-
-        if (collectorLevel == gameConfigData.ListWarriorCollectorDatas.NumberMaxWarrior)
+        foreach(var btn in BtnBoosters)
         {
-            SetUIExpBar(collectorLevel, 0);
+            btn.UpdateVisual();
         }
-        else
-        {
-            var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
-
-            exp = Mathf.Min(exp, expToUpgrade);
-            SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
-        }
-
-
     }
 }

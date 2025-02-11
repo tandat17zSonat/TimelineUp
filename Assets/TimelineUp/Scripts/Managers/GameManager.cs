@@ -28,7 +28,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        PanelManager.Instance.OpenPanel<PanelLobby>();
         StartCoroutine(IeOnGameInitComplete());
     }
 
@@ -45,13 +44,8 @@ public class GameManager : Singleton<GameManager>
 
         yield return new WaitForEndOfFrame();
 
-        //Vibration.Init();
-
-        //BoosterManager.isLockingAll = false;
-
-        //UserDataManager.Instance.Init();
-        //LevelManager.CountLevel();
-        //TutorialManager.SetupOnStart();
+        PanelManager.Instance.OpenPanel<UIInGame>();
+        PanelManager.Instance.OpenPanel<PanelLobby>();
 
         yield return new WaitForEndOfFrame();
 

@@ -1,12 +1,22 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameplayData
 {
-    public List<WarriorData> ListWarriorDatas;
-    public WarriorCollectorData ListWarriorCollectorDatas;
-    public List<EndBlockData> ListEndBlockDatas;
+    public List<WarriorData> ListWarriorDatas; // config của warrior
+
+    public WarriorCollectorData ListWarriorCollectorDatas; // config của collector
+
+    public List<EndBlockData> ListEndBlockDatas;// config của endblock
     public int CountEndBlock;
+
+    public List<List<int>> ListBoosterDatas;
+
+    public List<int> ListBoosterCapacity;
+
+
+
     public GameplayData()
     {
         // config của warrior----------
@@ -17,7 +27,7 @@ public class GameplayData
             {
                 Type = 0,
                 Level = i,
-                Damage = 10* (i + 1)
+                Damage = 10 * (i + 1)
             });
         }
 
@@ -36,6 +46,25 @@ public class GameplayData
                 Hp = (i + 1) * 10,
                 Coin = (i + 1) * 5
             });
+        }
+
+        // config giá các booster
+        ListBoosterDatas = new List<List<int>>();
+        for (int i = 0; i < 4; i++)
+        {
+            var listCost = new List<int>();
+            for( int j = 0; j<30; j++)
+            {
+                listCost.Add((j + 1) * 5);
+            }
+            ListBoosterDatas.Add(listCost);
+        }
+
+        // config lượng kinh nghiệm nhận thêm khi booster capacity
+        ListBoosterCapacity = new List<int>();
+        for(int i = 0; i< 30; i++)
+        {
+            ListBoosterCapacity.Add((i + 1) * 5); 
         }
     }
 

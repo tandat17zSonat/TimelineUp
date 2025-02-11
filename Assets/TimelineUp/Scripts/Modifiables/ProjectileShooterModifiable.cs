@@ -21,7 +21,12 @@ public class ProjectileShooterModifiable : BaseModifiable
     public void Shoot()
     {
         Debug.Log("Shoot");
-        var spawned = PoolBoss.Spawn(_projectilePrefab, Vector3.zero, Quaternion.identity, _container);
+        var spawned = PoolBoss.Spawn(_projectilePrefab, Vector3.zero, Quaternion.identity, null);
+        if (spawned == null) Debug.Log("Can't spawned projectile");
+        else
+        {
+            Debug.Log($"Spawned projectile {spawned.name}");
+        }
         spawned.transform.SetPositionAndRotation(_spawnPoint.position, transform.rotation); 
 
         Projectile projectile = spawned.GetComponent<Projectile>();

@@ -21,7 +21,7 @@ public class GateProjectileRateEffect : CollectableEffectBase
 
     public override void ApplyEffect(PopulatedEntity entity)
     {
-        GameplayManager.Instance.ProjectileRate += (float)amount / 10;
+        GameplayManager.Instance.ProjectileRate += (float)amount / 100;
         PoolBoss.Despawn(transform);
     }
 

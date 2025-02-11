@@ -34,23 +34,19 @@ public class Projectile : MonoBehaviour
         //}
     }
 
-    void OnDestroy()
-    {
-        _delayedCall.Kill();
-    }
-
     public void Fire()
     {
         _rigidbody.velocity = transform.forward * _speed;
 
         _delayedCall.Kill();
         float existTime = _range / _speed;
+        Debug.Log($"existTime {existTime}");
         _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
     }
 
     public void Release()
     {
-        _delayedCall.Kill();
+        Debug.Log("release");
         PoolBoss.Despawn(transform);
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Base.Singleton;
 using HyperCasualRunner;
 using HyperCasualRunner.Locomotion;
+using SonatFramework.UI;
 using UnityEngine;
 
 public class GameplayManager : Singleton<GameplayManager>
@@ -71,6 +72,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public void Restart()
     {
+        PanelManager.Instance.OpenPanel<PanelLobby>();
         Unload();
         LoadGame();
         OnRestart?.Invoke();
@@ -78,6 +80,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public void StartGame()
     {
+        PanelManager.Instance.ClosePanel<PanelLobby>();
         State = GameState.Playing;
 
         _animationModifier.CurrentAnimationName = _animationModifier.RunAnimationName;
