@@ -11,6 +11,8 @@ public class ProjectileShooterModifiable : BaseModifiable
     [SerializeField] Transform _projectilePrefab;
     [SerializeField] Transform _container;
 
+    [SerializeField] Transform _spawnPoint;
+
     public override void Initialize(int level)
     {
 
@@ -19,6 +21,8 @@ public class ProjectileShooterModifiable : BaseModifiable
     public void Shoot()
     {
         var spawned = PoolBoss.Spawn(_projectilePrefab, Vector3.zero, Quaternion.identity, _container);
+        spawned.transform.SetPositionAndRotation(_spawnPoint.position, transform.rotation); 
+
         Projectile projectile = spawned.GetComponent<Projectile>();
         projectile.Initialize(_entity.Level);
         projectile.Fire();

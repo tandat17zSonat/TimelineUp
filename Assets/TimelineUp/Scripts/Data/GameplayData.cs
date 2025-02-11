@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameplayData
 {
     public List<WarriorData> ListWarriorDatas;
-    public WarriorCollectorConfig ListWarriorCollectorDatas;
+    public WarriorCollectorData ListWarriorCollectorDatas;
     public List<EndBlockData> ListEndBlockDatas;
     public int CountEndBlock;
     public GameplayData()
@@ -22,7 +22,7 @@ public class GameplayData
         }
 
         // config của gate_spawn
-        ListWarriorCollectorDatas = new WarriorCollectorConfig();
+        ListWarriorCollectorDatas = new WarriorCollectorData();
 
         // config của các khối lúc kết thúc
         CountEndBlock = 3;
@@ -71,30 +71,4 @@ public class GameplayData
     }
 }
 
-public class WarriorCollectorConfig
-{
-    public List<int> DamageToUpgrade; // Để nâng cấp level
-    public List<int> ExpToUpgradeNumberWarrior; // Để nâng cấp số người
 
-    public WarriorCollectorConfig()
-    {
-        DamageToUpgrade = new List<int>();
-        for (int i = 0; i < 10; i++)
-        {
-            DamageToUpgrade.Add((i + 1) * 20);
-        }
-
-        ExpToUpgradeNumberWarrior = new List<int>();
-        for (int i = 0; i < 4; i++)
-        {
-            ExpToUpgradeNumberWarrior.Add((i + 1) * 100);
-        }
-    }
-}
-
-public class EndBlockData
-{
-    public int Order;
-    public int Hp;
-    public int Coin;
-}

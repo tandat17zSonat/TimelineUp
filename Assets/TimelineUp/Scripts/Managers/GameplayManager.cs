@@ -23,7 +23,7 @@ public class GameplayManager : Singleton<GameplayManager>
     public float ExpCollectorInGame { get; set; }
     public Dictionary<int, int> DictWarriorSpawned { get; set; }
 
-    public float ProjectileSpeed { get { return Speed * 3; } }
+    public float ProjectileSpeed { get { return Speed * 4; } }
     public float ProjectileRate { get; set; }
     public float ProjectileRange { get; set; }
 
