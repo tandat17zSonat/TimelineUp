@@ -79,6 +79,17 @@ public class PopulationManager : MonoBehaviour
     }
 
 
+    public void Unload()
+    {
+        foreach(var entity in _listEntityInCrowd)
+        {
+            entity.Disappear();
+            PoolBoss.Despawn(entity.transform);
+        }
+
+        _listEntityInCrowd.Clear();
+    }
+
     // -----Các function để sắp xếp lại đám đông----------------------------------------------------------------------------------
     public void StartOrganizing()
     {
@@ -145,10 +156,5 @@ public class PopulationManager : MonoBehaviour
         {
             entity.Move(_moveTarget, entityMoveSpeed, _shouldRotate);
         }
-    }
-
-    public void Unload()
-    {
-        _listEntityInCrowd.Clear();
     }
 }

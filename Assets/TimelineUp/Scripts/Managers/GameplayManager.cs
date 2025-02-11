@@ -71,6 +71,8 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public void Restart()
     {
+        Unload();
+        LoadGame();
         OnRestart?.Invoke();
     }
 
@@ -90,7 +92,6 @@ public class GameplayManager : Singleton<GameplayManager>
     public void SetResult(GameState state)
     {
         State = state;
-        Unload();
         Restart();
     }
 }
