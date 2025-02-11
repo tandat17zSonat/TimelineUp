@@ -43,6 +43,7 @@ public class Projectile : MonoBehaviour
     {
         _rigidbody.velocity = transform.forward * _speed;
 
+        _delayedCall.Kill();
         float existTime = _range / _speed;
         _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
     }

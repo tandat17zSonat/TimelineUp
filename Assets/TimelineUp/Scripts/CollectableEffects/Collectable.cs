@@ -56,12 +56,13 @@ namespace HyperCasualRunner
                 collectableEffectBase.ApplyEffect(entity);
             }
 
+
             //if (_particleFeedbackEnabled)
             //{
             //    _collectingParticleFeedback.Play();
             //}
 
-            PoolBoss.Despawn(transform);
+            //if(checkRemove) PoolBoss.Despawn(transform);
         }
 
         void ApplyHitEffect(Projectile projectile)

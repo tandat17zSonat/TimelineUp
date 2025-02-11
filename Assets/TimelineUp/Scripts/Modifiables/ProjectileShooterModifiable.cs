@@ -20,6 +20,7 @@ public class ProjectileShooterModifiable : BaseModifiable
 
     public void Shoot()
     {
+        Debug.Log("Shoot");
         var spawned = PoolBoss.Spawn(_projectilePrefab, Vector3.zero, Quaternion.identity, _container);
         spawned.transform.SetPositionAndRotation(_spawnPoint.position, transform.rotation); 
 

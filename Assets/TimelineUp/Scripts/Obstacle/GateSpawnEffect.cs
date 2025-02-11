@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.PoolBoss;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulatedEntity;
@@ -33,6 +34,8 @@ public class GateSpawnEffect : CollectableEffectBase
                 populationManager.AddToCrowd(spawned);
             }
         }
+
+        PoolBoss.Despawn(transform);
     }
 
     public override void ApplyHitEffect(Projectile projectile)

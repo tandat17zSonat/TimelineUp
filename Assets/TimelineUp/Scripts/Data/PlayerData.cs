@@ -8,7 +8,7 @@
     public int ExpCollector = 0;
 
     // property
-    public int NumberOfWarriors = 2;
+    public int NumberOfWarriors = 5;
     public int LevelOfWarriors = 0;
     public int Speed = 7;
 

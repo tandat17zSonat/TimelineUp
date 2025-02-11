@@ -1,4 +1,5 @@
 ﻿using System;
+using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulatedEntity;
@@ -15,7 +16,7 @@ public class ExpBlockEffect : CollectableEffectBase
 
     public override void ApplyEffect(PopulatedEntity entity)
     {
-
+        PoolBoss.Despawn(transform);
     }
 
     public override void ApplyHitEffect(Projectile projectile)
@@ -25,7 +26,7 @@ public class ExpBlockEffect : CollectableEffectBase
         exp += projectile.Damage;
 
         var gameConfigData = GameManager.Instance.GameConfigData;
-        if (collectorLevel + 1 < gameConfigData.GetNumberWarriorInCollector())
+        if (collectorLevel < gameConfigData.ListWarriorCollectorDatas.NumberMaxWarrior)
         {
             var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
             if (exp > expToUpgrade)

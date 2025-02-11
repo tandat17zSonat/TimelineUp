@@ -80,6 +80,8 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         State = GameState.Playing;
 
+        _animationModifier.CurrentAnimationName = _animationModifier.RunAnimationName;
+        _animationModifier.ApplyAll(); // start animation -> run
     }
 
     public void Unload()

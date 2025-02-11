@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
@@ -31,16 +32,17 @@ public class WarriorCollectorEffect : CollectableEffectBase
         damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(level + 1);
 
         UpdateUI();
-
     }
     public override void ApplyEffect(PopulatedEntity entity)
     {
         var dict = GameplayManager.Instance.DictWarriorSpawned;
-        if(!dict.ContainsKey(level))
+        if (!dict.ContainsKey(level))
         {
             dict[level] = 0;
         }
         dict[level] += numWarrior;
+
+        PoolBoss.Despawn(transform);
     }
 
     public override void ApplyHitEffect(Projectile projectile)
@@ -50,6 +52,12 @@ public class WarriorCollectorEffect : CollectableEffectBase
         if (currentDamage > damageToUpgrade)
         {
             level += 1;
+
+            var gameConfigData = GameManager.Instance.GameConfigData;
+            if (level >= gameConfigData.ListWarriorDatas.Count)
+            {
+                level = gameConfigData.ListWarriorDatas.Count - 1;
+            }
             currentDamage = 0;
             UpdateInfo();
             // chưa tính phần damage thừa

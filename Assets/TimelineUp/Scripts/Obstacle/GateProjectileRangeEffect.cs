@@ -5,9 +5,9 @@ using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
-public class GateProjectileRateEffect : CollectableEffectBase
+public class GateProjectileRangeEffect : CollectableEffectBase
 {
-    [SerializeField] int amount;
+    [SerializeField] int amount = -5;
     [SerializeField] MeshRenderer meshRender;
     [SerializeField] TMP_Text textAmount;
 
@@ -21,16 +21,16 @@ public class GateProjectileRateEffect : CollectableEffectBase
 
     public override void ApplyEffect(PopulatedEntity entity)
     {
-        GameplayManager.Instance.ProjectileRate += (float)amount / 10;
+        GameplayManager.Instance.ProjectileRange += (float) amount / 10;
         PoolBoss.Despawn(transform);
     }
-
 
     public override void ApplyHitEffect(Projectile projectile)
     {
         amount += projectile.Damage;
         UpdateVisual();
     }
+
 
     private void UpdateVisual()
     {

@@ -11,6 +11,8 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] Transform expBlockPrefab;
     [SerializeField] Transform warriorCollectorPrefab;
     [SerializeField] Transform gateFinishPrefab;
+    [SerializeField] Transform gateProjectileRangePrefab;
+    [SerializeField] Transform gateProjectileRatePrefab;
     [SerializeField] Transform endBlockPrefab;
 
     private List<CollectableEffectBase> listObstacles;
@@ -99,6 +101,20 @@ public class ObstacleManager : MonoBehaviour
                     spawned = PoolBoss.Spawn(gateFinishPrefab, Vector3.zero, Quaternion.identity, container);
                     break;
                 }
+            case ObstacleType.GateProjectileRange:
+                {
+                    spawned = PoolBoss.Spawn(gateProjectileRangePrefab, Vector3.zero, Quaternion.identity, container);
+                    var effect = spawned.GetComponent<GateProjectileRangeEffect>();
+                    effect.Initialize();
+                    break;
+                }
+            case ObstacleType.GateProjectileRate:
+                {
+                    spawned = PoolBoss.Spawn(gateProjectileRatePrefab, Vector3.zero, Quaternion.identity, container);
+                    var effect = spawned.GetComponent<GateProjectileRateEffect>();
+                    effect.Initialize();
+                    break;
+                }
         }
 
         spawned.GetComponent<Collectable>().Init();
@@ -113,8 +129,11 @@ public enum ObstacleType
 
     WarriorCollector,
     GateSpawn,
+    GateProjectileRange,
+    GateProjectileRate,
 
     EndBlock,
 
     GateFinish,
+
 }

@@ -64,15 +64,26 @@ public class PanelLobby : Panel
 
         sliderExp.value = percent;
     }
+
     private void Update()
     {
         var collectorLevel = GameplayManager.Instance.NumberInCollector;
         var exp = GameplayManager.Instance.ExpCollectorInGame;
 
         var gameConfigData = GameManager.Instance.GameConfigData;
-        var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
 
-        exp = Mathf.Min(exp, expToUpgrade);
-        SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
+        if (collectorLevel == gameConfigData.ListWarriorCollectorDatas.NumberMaxWarrior)
+        {
+            SetUIExpBar(collectorLevel, 0);
+        }
+        else
+        {
+            var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
+
+            exp = Mathf.Min(exp, expToUpgrade);
+            SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
+        }
+
+
     }
 }

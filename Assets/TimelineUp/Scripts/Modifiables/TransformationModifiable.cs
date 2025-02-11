@@ -16,7 +16,7 @@ public class TransformationModifiable : BaseModifiable
 
     public override void Initialize(int level)
     {
-        _currentLevel = -1;
+        if( _currentLevel == level ) return;
         ChangeGameObject(level);
 
         _currentLevel = level;
