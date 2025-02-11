@@ -1,10 +1,5 @@
-﻿using System;
-using HyperCasualRunner.GenericModifiers;
-
-//using HyperCasualRunner.GenericModifiers;
-using HyperCasualRunner.Interfaces;
+﻿using HyperCasualRunner.Interfaces;
 using HyperCasualRunner.Locomotion;
-using HyperCasualRunner.PopulationManagers;
 using HyperCasualRunner.ScriptableObjects;
 using NaughtyAttributes;
 using UnityEngine;
@@ -19,24 +14,24 @@ namespace HyperCasualRunner
     public class Player : MonoBehaviour, IInteractor
     {
         [SerializeField, Required] RunnerMover _runnerMover;
-        [SerializeField, Required] PopulationManagerBase _populationManagerBase;
+        [SerializeField, Required] PopulationManager _populationManagerBase;
         [SerializeField, Required] InputChannelSO _inputChannelSO;
 
         [SerializeField] AnimationModifier _animationModifier;
 
         ITickable[] _tickables;
 
-        private Vector3 _beginPosition;
+        private Vector3 _beginPosition; 
 
         void Awake()
         {
             _runnerMover.Initialize();
-            _populationManagerBase.Initialize();
+            //_populationManagerBase.Initialize();
 
-            foreach (IInitializable initializable in GetComponents<IInitializable>())
-            {
-                initializable.Initialize(_populationManagerBase);
-            }
+            //foreach (IInitializable initializable in GetComponents<IInitializable>())
+            //{
+            //    initializable.Initialize(_populationManagerBase);
+            //}
 
             _tickables = GetComponents<ITickable>();
 
@@ -60,11 +55,6 @@ namespace HyperCasualRunner
         void OnDestroy()
         {
             _runnerMover.OnDestroying();
-        }
-
-        void Start()
-        {
-
         }
 
         void Update()
@@ -98,7 +88,8 @@ namespace HyperCasualRunner
         void OnTouchDown()
         {
             _runnerMover.TryStartMovement();
-            _animationModifier.PlayLocomotion(1f);
+            _animationModifier.CurrentAnimationName = _animationModifier.RunAnimationName;
+            _animationModifier.ApplyAll();
         }
 
         void OnTouchUp()
@@ -110,7 +101,8 @@ namespace HyperCasualRunner
             }
 
             // Stop -> Dừng animation
-            _animationModifier.PlayLocomotion(0f);
+            _animationModifier.CurrentAnimationName = _animationModifier.IdleAnimationName;
+            _animationModifier.ApplyAll();
         }
 
         public void Unload()

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulatedEntity;
-using HyperCasualRunner.PopulationManagers;
 using TMPro;
 using UnityEngine;
 
@@ -21,14 +20,14 @@ public class GateSpawnEffect : CollectableEffectBase
 
     public override void ApplyEffect(PopulatedEntity entity)
     {
-        // Có người đi qua bình thường
-        dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
-        foreach(var kvp in dictWarriorSpawned)
-        {
-            var level = kvp.Key;
-            var number = kvp.Value;
-            entity.PopulationManagerBase.AddPopulation(level, number);
-        }
+        //// Có người đi qua bình thường
+        //dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
+        //foreach(var kvp in dictWarriorSpawned)
+        //{
+        //    var level = kvp.Key;
+        //    var number = kvp.Value;
+        //    entity.PopulationManagerBase.AddPopulation(level, number);
+        //}
     }
 
     public override void ApplyHitEffect(Projectile projectile)

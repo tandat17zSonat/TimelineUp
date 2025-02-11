@@ -1,6 +1,5 @@
 using System;
 using DG.Tweening;
-using HyperCasualRunner.PopulationManagers;
 using UnityEngine;
 
 namespace HyperCasualRunner.Locomotion
@@ -13,14 +12,14 @@ namespace HyperCasualRunner.Locomotion
     {
         [SerializeField] float _xLimit;
 
-        CrowdManager _crowdManager;
+        PopulationManager _crowdManager;
         Tween _delayedCall;
         Bounds _movableBounds;
 
         private float delayCalculateBounds;
         public override void Initialize(GameObject runnerGameObject)
         {
-            _crowdManager = runnerGameObject.GetComponent<CrowdManager>();
+            _crowdManager = runnerGameObject.GetComponent<PopulationManager>();
             _crowdManager.PopulationChanged += CrowdManager_PopulationChanged;
 
             delayCalculateBounds = _crowdManager.OrganizeDurationInSeconds;
@@ -39,7 +38,7 @@ namespace HyperCasualRunner.Locomotion
             _delayedCall.Kill();
         }
 
-        void CrowdManager_PopulationChanged(int amount)
+        void CrowdManager_PopulationChanged()
         {
             _delayedCall.Kill();
             _delayedCall = DOVirtual.DelayedCall(delayCalculateBounds, CalculateBoundaries, false);
@@ -48,7 +47,7 @@ namespace HyperCasualRunner.Locomotion
         void CalculateBoundaries()
         {
             Bounds bounds = new Bounds(_crowdManager.transform.position, Vector3.zero);
-            foreach (PopulatedEntity.PopulatedEntity populatedEntity in _crowdManager.ShownPopulatedEntities)
+            foreach (PopulatedEntity.PopulatedEntity populatedEntity in _crowdManager.ListEntityInCrowd)
             {
                 bounds.Encapsulate(populatedEntity.transform.position);
             }

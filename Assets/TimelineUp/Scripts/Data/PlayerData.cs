@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerData
+﻿public class PlayerData
 {
     public int Level = 0;
     public int Timeline = 0;
@@ -11,7 +7,11 @@ public class PlayerData
     public int Coin = 0;
     public int ExpCollector = 0;
 
-    // Khởi tạo đầu ván chơi
-    public int warriorNumber = 2;
-    public int warriorLevel = 2;
+    // property
+    public int NumberOfWarriors = 10;
+    public int LevelOfWarriors = 2;
+    public int Speed = 7;
+
+    public float ProjectileRate = 0.5f;
+    public float ProjectileRange = 25f;
 }

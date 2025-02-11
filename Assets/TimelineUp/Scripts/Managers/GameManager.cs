@@ -1,9 +1,8 @@
-using Base.Singleton;
+﻿using Base.Singleton;
 using SonatFramework.UI;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Device;
 
 
 public class GameManager : Singleton<GameManager>
@@ -13,12 +12,13 @@ public class GameManager : Singleton<GameManager>
 
     public static Action<GameScene> OnSwitchScene;
 
+    // Data của user trong game -----------------------------------------------------
     private PlayerData playerData;
     public PlayerData PlayerData { get { return playerData; } }
 
+    // Các config của game ----------------------------------------------------------
     private GameplayData gameConfigData;
     public GameplayData GameConfigData { get { return gameConfigData; } }
-
 
     protected override void OnAwake()
     {
@@ -36,11 +36,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (PlayerPrefs.HasKey("PLAYER_DATA"))
         {
-            LoadData();
+            LoadPlayerData();
         }
         else
         {
-            SaveData();
+            SavePlayerData();
         }
 
         yield return new WaitForEndOfFrame();
@@ -71,6 +71,7 @@ public class GameManager : Singleton<GameManager>
             //GameplayManager.Instance.StartLevel(1);
 
             //Kernel.Resolve<AdsManager>().ShowBanner();
+            GameplayManager.Instance.LoadGame();
         }
         else if (gameScene == GameScene.home)
         {
@@ -80,7 +81,7 @@ public class GameManager : Singleton<GameManager>
         OnSwitchScene?.Invoke(scene);
     }
 
-    public void SaveData()
+    public void SavePlayerData()
     {
         string json = JsonUtility.ToJson(playerData);
         PlayerPrefs.SetString("PlayerData", json);
@@ -88,7 +89,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log($"Save playeData");
     }
 
-    public void LoadData()
+    public void LoadPlayerData()
     {
         string json = PlayerPrefs.GetString("PlayerData");
         PlayerData data = JsonUtility.FromJson<PlayerData>(json);

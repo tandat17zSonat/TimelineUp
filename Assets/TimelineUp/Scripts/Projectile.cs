@@ -1,62 +1,62 @@
-﻿using System;
-using DarkTonic.PoolBoss;
+﻿using DarkTonic.PoolBoss;
 using DG.Tweening;
-using HyperCasualRunner.CollectableEffects;
-using HyperCasualRunner.ScriptableObjects;
 using UnityEngine;
 
-namespace HyperCasualRunner
+public class Projectile : MonoBehaviour
 {
-    /// <summary>
-    /// Projectile Pool spawns this, ProjectileShooterModifier uses this to shoot Projectile. It contains damage and speed of the projectiles. It damages Damageable types.
-    /// </summary>
-    public class Projectile : MonoBehaviour
+    [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] GameObject[] _renderersByLevel;
+    Tween _delayedCall;
+
+    private int _damage;
+    private float _speed;
+    private float _range;
+    private GameObject _activeProjectile;
+    public int Damage { get { return _damage; } }
+
+    public void Initialize(int level)
     {
-        [SerializeField] Rigidbody _rigidbody;
-        private ProjectileData projectileData;
+        var gameConfigData = GameManager.Instance.GameConfigData;
 
-        Tween _delayedCall;
+        _damage = gameConfigData.ListWarriorDatas[level].Damage;
+        _speed = GameplayManager.Instance.ProjectileSpeed;
+        _range = GameplayManager.Instance.ProjectileRange;
 
-        public int Damage { get { return projectileData.Damage; } }
+        SetVisual(level);
+    }
 
-        void OnTriggerEnter(Collider other)
-        {
-            //// Bắn chết quái vật
-            //if (other.TryGetComponent(out Damageable damageable))
-            //{
-            //    damageable.TakeHit(_hitDamage);
-            //    Release();
-            //}
+    void OnTriggerEnter(Collider other)
+    {
+        //if (other.TryGetComponent(out PopulationEffect populationEffect))
+        //{
+        //    populationEffect.TakeHit(projectileData.Damage);
+        //    Release();
+        //}
+    }
 
-            if (other.TryGetComponent(out PopulationEffect populationEffect))
-            {
-                populationEffect.TakeHit(projectileData.Damage);
-                Release();
-            }
-        }
+    void OnDestroy()
+    {
+        _delayedCall.Kill();
+    }
 
-        void OnDestroy()
-        {
-            _delayedCall.Kill();
-        }
+    public void Fire()
+    {
+        _rigidbody.velocity = transform.forward * _speed;
 
-        public void Fire()
-        {
-            _rigidbody.velocity = transform.forward * projectileData.Speed;
+        float existTime = _range / _speed;
+        _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
+    }
 
-            float existTime = projectileData.Range / projectileData.Speed;
-            _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
-        }
+    public void Release()
+    {
+        _delayedCall.Kill();
+        PoolBoss.Despawn(transform);
+    }
 
-        public void Release()
-        {
-            _delayedCall.Kill();
-            PoolBoss.Despawn(transform);
-        }
-
-        public void SetInfo(ProjectileData data)
-        {
-            projectileData = data;
-        }
+    void SetVisual(int level)
+    {
+        if (_activeProjectile != null) _activeProjectile.SetActive(false);
+        _activeProjectile = _renderersByLevel[level];
+        _activeProjectile.SetActive(true);
     }
 }

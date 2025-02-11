@@ -1,85 +1,37 @@
 using System;
-using System.Net.WebSockets;
 using DG.Tweening;
-using HyperCasualRunner.Interfaces;
 using HyperCasualRunner.Tweening;
-using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace HyperCasualRunner.Modifiables
+public class TransformationModifiable : BaseModifiable
 {
-    /// <summary>
-    /// Controls transformation of the PopulatedEntities. It also informs other ITransformator listeners for the updated child gameObject.
-    /// </summary>
-    [DisallowMultipleComponent]
-    public class TransformationModifiable : MonoBehaviour, ITransformator
+    [SerializeField] GameObject[] _renderersByLevel;
+
+    Tweener _deactivateTween;
+    Tween _activateTween;
+    readonly float _smoothingDuration = 0.5f;
+    int _currentLevel = -1;
+
+    public event Action<GameObject> Transformed;
+
+    public override void Initialize(int level)
     {
-        [SerializeField] GameObject[] _renderersByLevel;
-        //[SerializeField] bool _useTransformationParticle;
-        //[SerializeField, ShowIf(nameof(_useTransformationParticle))] ParticleSystem _transformationParticle;
+        _currentLevel = -1;
+        ChangeGameObject(level);
 
-        Tweener _deactivateTween;
-        Tween _activateTween;
-        readonly float _smoothingDuration = 0.5f;
-        int _currentLevel = 0;
-        int _defaultLevel;
+        _currentLevel = level;
+    }
 
-        public int MaxLevel => _renderersByLevel.Length;
-        public int DefaultLevel
-        {
-            get
-            {
-                return _defaultLevel;
-            }
-            set
-            {
-                _defaultLevel = value;
-                _currentLevel = DefaultLevel;
-            }
-        }
+    void OnDestroy()
+    {
+        _deactivateTween.Kill();
+        _activateTween.Kill();
+    }
 
-        public Action<GameObject> Transformed { get; set; }
-
-        void OnDisable()
-        {
-            SetLevel(DefaultLevel);
-        }
-
-        void OnDestroy()
-        {
-            _deactivateTween.Kill();
-            _activateTween.Kill();
-        }
-
-        public void SetLevelAdditive(int value)
-        {
-            int add = Mathf.Clamp(_currentLevel + value, 0, MaxLevel - 1);
-            SetLevel(add);
-        }
-
-        public void SetLevel(int level)
-        {
-            if (_currentLevel == level)
-            {
-                return;
-            }
-
-            ChangeGameObject(level);
-
-            _currentLevel = level;
-
-            //if (_useTransformationParticle)
-            //{
-            //    _transformationParticle.Play(true);
-            //}
-        }
-
-        void ChangeGameObject(int level)
-        {
-            _deactivateTween = _renderersByLevel[_currentLevel].transform.DeactivateSlowly(_smoothingDuration);
-            _activateTween = _renderersByLevel[level].transform.ShowSmoothly(_smoothingDuration);
-            Transformed?.Invoke(_renderersByLevel[level]);
-        }
+    void ChangeGameObject(int level)
+    {
+        if (_currentLevel != -1) _deactivateTween = _renderersByLevel[_currentLevel].transform.DeactivateSlowly(_smoothingDuration);
+        _activateTween = _renderersByLevel[level].transform.ShowSmoothly(_smoothingDuration);
+        Transformed?.Invoke(_renderersByLevel[level]);
     }
 }

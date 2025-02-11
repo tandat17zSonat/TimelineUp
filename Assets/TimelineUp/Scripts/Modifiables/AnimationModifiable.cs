@@ -1,64 +1,40 @@
-using HyperCasualRunner.Interfaces;
-using NaughtyAttributes;
 using UnityEngine;
 
-namespace HyperCasualRunner.Modifiables
+public class AnimationModifiable : BaseModifiable
 {
-	/// <summary>
-	/// Use when you plan to use Animation instead of Animator.
-	/// </summary>
-	public class AnimationModifiable : MonoBehaviour
-	{
-		[SerializeField, Required, Tooltip("Animation component that is used on start.")] Animation _defaultAnimation;
+    [SerializeField] TransformationModifiable _transformationModifiable;
 
-		ITransformator _transformator;
-		Animation _activeAnimation;
-		string _playingAnimationName;
+    Animation _activeAnimation;
+    string _playingAnimationName;
 
-		public void Initialize()
-		{
-			_activeAnimation = _defaultAnimation;
-			_transformator = GetComponent<ITransformator>();
-			if (_transformator != null)
-				_transformator.Transformed += Transformator_Transformed;
-		}
+    public void Awake()
+    {
+        _transformationModifiable.Transformed += Transformator_Transformed;
+    }
 
-		void OnEnable()
-		{
-			if (_playingAnimationName != null)
-			{
-				Play(_playingAnimationName);
-			}
-		}
+    void OnDestroy()
+    {
+        _transformationModifiable.Transformed -= Transformator_Transformed;
+    }
 
-        void OnDestroy()
-		{
-			if (_transformator != null)
-				_transformator.Transformed -= Transformator_Transformed;
-		}
+    void Transformator_Transformed(GameObject obj)
+    {
+        _activeAnimation = obj.GetComponent<Animation>();
 
-		/// <summary>
-		/// Pass the name of the animation and it plays those. 
-		/// </summary>
-		/// <param name="animationName"></param>
-		public void Play(string animationName)
-		{
-			_activeAnimation.Play(animationName);
-			_playingAnimationName = animationName;
-		}
-		
-		void Transformator_Transformed(GameObject obj)
-		{
-			_activeAnimation = obj.GetComponent<Animation>();
-			if (_playingAnimationName != null)
-			{
-				Play(_playingAnimationName);
-			}
-		}
+        //if (_playingAnimationName != null)
+        //{
+        //    Play(_playingAnimationName);
+        //}
+    }
 
-		public void PlayIdle()
-		{
-			Play("IdleLegacy");
-		}
-	}
+    public override void Initialize(int level)
+    {
+
+    }
+
+    public void Play(string animationName)
+    {
+        _activeAnimation.Play(animationName);
+        _playingAnimationName = animationName;
+    }
 }

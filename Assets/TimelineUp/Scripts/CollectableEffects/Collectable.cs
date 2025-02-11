@@ -1,7 +1,6 @@
 ﻿using System;
 using DarkTonic.PoolBoss;
 using HyperCasualRunner.CollectableEffects;
-using HyperCasualRunner.PopulationManagers;
 using NaughtyAttributes;
 using UnityEngine;
 

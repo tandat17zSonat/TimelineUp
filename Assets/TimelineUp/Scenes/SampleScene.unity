@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.size
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].isExpanded
@@ -512,31 +512,31 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].prefabTransform
       value: 
-      objectReference: {fileID: 7632262432639270779, guid: acb4d1c4472674f32b59a2d36fb5c03c, type: 3}
+      objectReference: {fileID: 4395439681568626544, guid: 93d5bc98614ea55489afe39e01d4dcbf, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[1].prefabTransform
       value: 
-      objectReference: {fileID: 7632262432639270779, guid: 071953f40fcfa47b0ad95e2e7e9ad162, type: 3}
+      objectReference: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[2].prefabTransform
       value: 
-      objectReference: {fileID: 5999016266512608645, guid: e6cd46e2987cb48088fa962b0291ae31, type: 3}
+      objectReference: {fileID: 2264167919004722978, guid: 82d2ffa2a4b007d4d9189a7b27750484, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[3].prefabTransform
       value: 
-      objectReference: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
+      objectReference: {fileID: 1318551965670141577, guid: fcc45b128c27e5f46b12a3d338b8f1cb, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[4].prefabTransform
       value: 
-      objectReference: {fileID: 2264167919004722978, guid: 82d2ffa2a4b007d4d9189a7b27750484, type: 3}
+      objectReference: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[5].prefabTransform
       value: 
-      objectReference: {fileID: 1318551965670141577, guid: fcc45b128c27e5f46b12a3d338b8f1cb, type: 3}
+      objectReference: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[6].prefabTransform
       value: 
-      objectReference: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
+      objectReference: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[7].prefabTransform
       value: 
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 758513604}
   - component: {fileID: 758513602}
   - component: {fileID: 758513601}
-  - component: {fileID: 758513600}
+  - component: {fileID: 758513608}
   - component: {fileID: 758513605}
   - component: {fileID: 758513606}
   - component: {fileID: 758513607}
@@ -849,27 +849,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &758513600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758513599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e73a71063a397e49bcb2eda0529383e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPopulationCount: 20
-  populatedEntityPrefab: {fileID: 4627471186920289551, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-  instantiateRoot: {fileID: 1597092622}
-  OnLastEntityDied:
-    m_PersistentCalls:
-      m_Calls: []
-  _organizeDurationInSeconds: 1
-  _entityMoveSpeed: 2
-  CrowdOrganizingPoint: {fileID: 758513604}
 --- !u!114 &758513601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,7 +878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _runnerMover: {fileID: 758513601}
-  _populationManagerBase: {fileID: 758513600}
+  _populationManagerBase: {fileID: 758513608}
   _inputChannelSO: {fileID: 11400000, guid: 6301075bcbf33d24ba4276a669512535, type: 2}
   _animationModifier: {fileID: 758513607}
 --- !u!4 &758513604
@@ -930,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455286737c8ea8643ad1355f7dc54ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootInterval: 0.5
+  _populationManager: {fileID: 758513608}
 --- !u!114 &758513606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,12 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48606da4f6214f34b8a2c4b7c06fc6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldSetCollectedEntityToCurrentLevel: 1
-  _shouldResetLostEntityLevel: 0
-  _defaultLevel: 0
-  _maxLevel: 0
-  _currentLevel: 0
-  _currentExperience: 0
+  _populationManager: {fileID: 758513608}
 --- !u!114 &758513607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,9 +935,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d4547cb2cf7c54b8c51f90f97794d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleAnimationName: IdleLegacy
-  _runAnimationName: RunLegacy
-  _jumpAnimationName: JumpLegacy
+  _populationManager: {fileID: 758513608}
+  IdleAnimationName: IdleLegacy
+  RunAnimationName: RunLegacy
+  JumpAnimationName: JumpLegacy
+--- !u!114 &758513608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758513599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb6b3a1690d9954ea34bdc2329188e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityPrefab: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
+  container: {fileID: 1597092622}
+  crowdOrganizingPoint: {fileID: 758513604}
+  organizeDurationInSeconds: 1
+  entityMoveSpeed: 2
 --- !u!1 &836638778
 GameObject:
   m_ObjectHideFlags: 0

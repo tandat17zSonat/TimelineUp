@@ -27,13 +27,13 @@ namespace HyperCasualRunner.CollectableEffects
 
         public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
         {
-            var populationManagerBase = entity.PopulationManagerBase;
-            populationManagerBase.Depopulate(entity);
+            //var populationManagerBase = entity.PopulationManagerBase;
+            //populationManagerBase.Depopulate(entity);
 
-            if(populationManagerBase.ShownPopulatedEntities.Count == 0)
-            {
-                GameplayManager.Instance.SetResult(GameState.Loss);
-            }
+            //if(populationManagerBase.ShownPopulatedEntities.Count == 0)
+            //{
+            //    GameplayManager.Instance.SetResult(GameState.Loss);
+            //}
         }
 
         public override void ApplyHitEffect(Projectile projectile)

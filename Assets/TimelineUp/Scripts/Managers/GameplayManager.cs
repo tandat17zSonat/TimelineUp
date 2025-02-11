@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using Base.Singleton;
 using HyperCasualRunner;
-using HyperCasualRunner.GenericModifiers;
 using HyperCasualRunner.Locomotion;
-using HyperCasualRunner.Modifiables;
-using HyperCasualRunner.PopulationManagers;
 using UnityEngine;
 
 public class GameplayManager : Singleton<GameplayManager>
@@ -14,61 +11,60 @@ public class GameplayManager : Singleton<GameplayManager>
     [SerializeField] ObstacleManager obstacleManager;
 
     private RunnerMover _runnerMover;
-    private CrowdManager _crowdManager;
-    public PopulationManagerBase PopulationManager { get { return _crowdManager; } }
-
-    private int _startingEntityCount;
-
+    private PopulationManager _crowdManager;
+    private AnimationModifier _animationModifier;
     public GameState State { get; private set; }
 
     public Action OnRestart;
 
     // Data trong màn chơi ----------------------------------------------
+    public float Speed { get; set; }
     public int NumberInCollector { get; set; }
     public float ExpCollectorInGame { get; set; }
-    public Dictionary<int, int> DictWarriorSpawned {  get; set; }
+    public Dictionary<int, int> DictWarriorSpawned { get; set; }
+
+    public float ProjectileSpeed { get { return Speed * 3; } }
+    public float ProjectileRate { get; set; }
+    public float ProjectileRange { get; set; }
+
 
     protected override void OnAwake()
     {
         _runnerMover = player.GetComponent<RunnerMover>();
-        _crowdManager = player.GetComponent<CrowdManager>();
-
-        _startingEntityCount = 1;
+        _crowdManager = player.GetComponent<PopulationManager>();
+        _animationModifier = player.GetComponent<AnimationModifier>();
 
         State = GameState.Pause;
-        OnRestart += LoadGame;
-
-        NumberInCollector = 1;
-        ExpCollectorInGame = 0;
-        DictWarriorSpawned = new Dictionary<int, int>();
-    }
-
-    private void Start()
-    {
-        Restart();
     }
 
     public void LoadGame()
     {
+        State = GameState.Pause;
+
+        // Load playerData
+        var playerData = GameManager.Instance.PlayerData;
+        Speed = playerData.Speed;
+        ExpCollectorInGame = playerData.ExpCollector;
+        ProjectileRate = playerData.ProjectileRate;
+        ProjectileRange = playerData.ProjectileRange;
+
+        NumberInCollector = 1;
+        DictWarriorSpawned = new Dictionary<int, int>();
+
+        // Load các obstacle
         ObstacleData data = new ObstacleData();
         obstacleManager.LoadObstacle(data);
 
-        var beginPlayerData = GameManager.Instance.PlayerData;
-        int num = beginPlayerData.warriorNumber,
-            level = beginPlayerData.warriorLevel;
-        _crowdManager.AddPopulation(level, num);
-
-        // reset anim -> idle
-        foreach(var entity in _crowdManager.ShownPopulatedEntities)
+        // Khởi tạo các warrior đầu tiên
+        int levelOfWarriors = playerData.LevelOfWarriors;
+        for(int _ = 0; _ < playerData.NumberOfWarriors; _++)
         {
-            var animationModider = entity.GetComponent<AnimationModifiable>();
-            animationModider.PlayIdle();
+            var entity = _crowdManager.Spawn(levelOfWarriors);
+            _crowdManager.AddToCrowd(entity);
         }
 
-        // ResetData
-        NumberInCollector = 1;
-        ExpCollectorInGame = GameManager.Instance.PlayerData.ExpCollector;
-        DictWarriorSpawned.Clear();
+        //_animationModifier.CurrentAnimationName = _animationModifier.IdleAnimationName;
+        //_animationModifier.ApplyAll(); // reset animation -> Idle
     }
 
     public void Restart()

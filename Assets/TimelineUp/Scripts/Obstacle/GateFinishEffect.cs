@@ -1,7 +1,5 @@
-using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulatedEntity;
-using HyperCasualRunner.PopulationManagers;
 
 public class GateFinishEffect : CollectableEffectBase
 {

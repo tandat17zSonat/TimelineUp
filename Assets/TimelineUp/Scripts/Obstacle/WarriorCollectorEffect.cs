@@ -5,7 +5,6 @@ using DG.Tweening;
 using HyperCasualRunner;
 using HyperCasualRunner.CollectableEffects;
 using HyperCasualRunner.PopulatedEntity;
-using HyperCasualRunner.PopulationManagers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

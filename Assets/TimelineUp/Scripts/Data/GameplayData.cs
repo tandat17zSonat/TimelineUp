@@ -17,13 +17,7 @@ public class GameplayData
             {
                 Type = 0,
                 Level = i,
-                Speed = 5,
-                ProjectileData = new ProjectileData()
-                {
-                    Damage = (i + 1) * 10,
-                    Speed = 30,
-                    Range = (i + 1) * 25 * 1.5f,
-                }
+                Damage = 10* (i + 1)
             });
         }
 
@@ -69,11 +63,6 @@ public class GameplayData
     public int GetDamageToUpgradeCollector(int level)
     {
         return ListWarriorCollectorDatas.DamageToUpgrade[level];
-    }
-
-    public int GetForwardMoveSpeed()
-    {
-        return ListWarriorDatas[0].Speed;
     }
 
     public int GetEndBlockHp(int order)

@@ -1,6 +1,4 @@
 using DG.Tweening;
-using HyperCasualRunner.Interfaces;
-using HyperCasualRunner.PopulationManagers;
 using HyperCasualRunner.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
@@ -12,36 +10,48 @@ namespace HyperCasualRunner.PopulatedEntity
     /// But in examples like Car Evolution, you can use one for the rest of the game and use other stuff like transformation.
     /// </summary>
     [DisallowMultipleComponent]
-    public class PopulatedEntity : MonoBehaviour, IInitializable
+    public class PopulatedEntity : MonoBehaviour
     {
         [SerializeField, Required] Rigidbody _rigidbody;
-        [SerializeField, Required, Tooltip("Collider the populated entity uses.")] Collider _collider;
-        [SerializeField, Required, Tooltip("GameObject that contains the visuals of the gameObject.")] Transform _visuals;
+        [SerializeField, Required] Collider _collider;
+        [SerializeField, Required] Transform _visuals;
         [SerializeField] float _visibilityChangeDuration = 0.5f;
-
-        //[Space(15)]
-        //[SerializeField] bool _disappearParticleEnabled;
-        //[ShowIf(nameof(_disappearParticleEnabled)), Required]
-        //[SerializeField] ParticleSystem _disappearParticle;
-
-        //[Space(10)]
-        //[SerializeField] bool _appearParticleEnabled;
-        //[ShowIf(nameof(_appearParticleEnabled)), Required]
-        //[SerializeField] ParticleSystem _appearParticle;
 
         Tween _scaleTween;
         Tween _jumpTween;
 
-        public PopulationManagerBase PopulationManagerBase { get; set; }
+        private int _level;
+        private int _damage;
+        public int Level { get { return _level; } }
+        public int Damage { get { return _damage; } }
+
+        private TransformationModifiable _transformationModifiable;
+        private ProjectileShooterModifiable _projectileShootModifiable;
+        private AnimationModifiable _animationModifiable;
+
+        public PopulationManager PopulationManagerBase { get; set; }
         public Transform Visuals => _visuals;
 
-        public void Initialize(PopulationManagerBase manager)
+        public void Initialize(PopulationManager manager)
         {
             PopulationManagerBase = manager;
-            DisablePhysicsInteraction();
-            gameObject.SetActive(false);
+            //DisablePhysicsInteraction();
+            //gameObject.SetActive(false);
+
+            _transformationModifiable = GetComponent<TransformationModifiable>();
+            _projectileShootModifiable = GetComponent<ProjectileShooterModifiable>();
+            _animationModifiable = GetComponent<AnimationModifiable>();
         }
 
+        public void SetInfo(int level)
+        {
+            _level = level;
+
+            var gameConfigData = GameManager.Instance.GameConfigData;
+            _damage = gameConfigData.ListWarriorDatas[level].Damage;
+
+            _transformationModifiable.Initialize(level);
+        }
         void OnDestroy()
         {
             _scaleTween.Kill();
@@ -60,17 +70,11 @@ namespace HyperCasualRunner.PopulatedEntity
             //}
         }
 
-        /// <summary>
-        /// It informs the PopulationManagerBase and if it's stack based manager, it throws collectable populated entities. If it's crowd based, then it disappears.
-        /// </summary>
         public void TakeHit()
         {
-            PopulationManagerBase.Depopulate(this);
+            //PopulationManagerBase.Depopulate(this);
         }
 
-        /// <summary>
-        /// Makes this disappear smoothly.
-        /// </summary>
         public void Disappear()
         {
             _scaleTween.Kill();
@@ -84,12 +88,6 @@ namespace HyperCasualRunner.PopulatedEntity
         }
 
 
-        /// <summary>
-        /// Moves this to the target point. It's useful in crowd battling games. 
-        /// </summary>
-        /// <param name="target">Target point to reach.</param>
-        /// <param name="moveSpeed">Move speed to use for reaching that point.</param>
-        /// <param name="shouldRotate">Whether this should rotate when moving to target point.</param>
         public void Move(Transform target, float moveSpeed, bool shouldRotate)
         {
             EnablePhysicsInteraction();
@@ -126,10 +124,5 @@ namespace HyperCasualRunner.PopulatedEntity
             _visuals.rotation = Quaternion.identity;
         }
 
-
-        public virtual void SetInfo(int level)
-        {
-
-        }
     }
 }

@@ -1,4 +1,3 @@
-using HyperCasualRunner.PopulationManagers;
 using UnityEngine;
 
 namespace HyperCasualRunner.CollectableEffects

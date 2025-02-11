@@ -1,44 +1,16 @@
-using HyperCasualRunner.Modifiables;
-using HyperCasualRunner.PopulationManagers;
 using UnityEngine;
 
-namespace HyperCasualRunner.GenericModifiers
+
+public class AnimationModifier : GenericModifier<AnimationModifiable>
 {
-	/// <summary>
-	/// Modifies all the AnimationModifiables. It uses common Modifier-Modifiable pattern, so it acts on top of every Modifiable object.
-	/// </summary>
-	public class AnimationModifier : GenericModifier<AnimationModifiable>
-	{
-		[SerializeField, Tooltip("Name of the parameter in Animator.")] string _idleAnimationName = "IdleLegacy";
-		[SerializeField, Tooltip("Name of the parameter in Animator.")] string _runAnimationName = "RunLegacy";
-		[SerializeField, Tooltip("Name of the parameter in Animator.")] string _jumpAnimationName = "JumpLegacy";
+    [SerializeField, Tooltip("Name of the parameter in Animator.")] public string IdleAnimationName = "IdleLegacy";
+    [SerializeField, Tooltip("Name of the parameter in Animator.")] public string RunAnimationName = "RunLegacy";
+    [SerializeField, Tooltip("Name of the parameter in Animator.")] public string JumpAnimationName = "JumpLegacy";
 
-		public override void Initialize(PopulationManagerBase populationManagerBase)
-		{
-			base.Initialize(populationManagerBase);
+    public string CurrentAnimationName { get; set; }
 
-			foreach (AnimationModifiable animationController in EffectReceivers)
-			{
-				animationController.Initialize();
-			}
-		}
-
-		public void PlayLocomotion(float motion)
-		{
-			if (motion > 0.2f)
-			{
-				foreach (AnimationModifiable effectReceiver in EffectReceivers)
-				{
-					effectReceiver.Play(_runAnimationName);
-				}
-			}
-			else
-			{
-				foreach (AnimationModifiable effectReceiver in EffectReceivers)
-				{
-					effectReceiver.Play(_idleAnimationName);
-				}
-			}
-		}
-	}
+    public override void Apply(AnimationModifiable modifiable)
+    {
+        modifiable.Play(CurrentAnimationName);
+    }
 }
