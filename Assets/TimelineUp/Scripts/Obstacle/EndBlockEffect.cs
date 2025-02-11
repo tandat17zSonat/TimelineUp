@@ -12,7 +12,7 @@ namespace HyperCasualRunner.CollectableEffects
         [SerializeField] Slider sliderHp;
         [SerializeField] TMP_Text textNum;
         private int hp;
-        private int maxHp;
+        private float maxHp;
 
         private Sequence seqEffect;
 
@@ -27,13 +27,13 @@ namespace HyperCasualRunner.CollectableEffects
 
         public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
         {
-            //var populationManagerBase = entity.PopulationManagerBase;
-            //populationManagerBase.Depopulate(entity);
+            var populationManager = GameplayManager.Instance.PopulationManager;
+            populationManager.RemoveEntityFromCrowd(entity);
 
-            //if(populationManagerBase.ShownPopulatedEntities.Count == 0)
-            //{
-            //    GameplayManager.Instance.SetResult(GameState.Loss);
-            //}
+            if( populationManager.ListEntityInCrowd.Count == 0 )
+            {
+                GameplayManager.Instance.SetResult(GameState.Loss);
+            }
         }
 
         public override void ApplyHitEffect(Projectile projectile)
@@ -55,12 +55,6 @@ namespace HyperCasualRunner.CollectableEffects
             seqEffect = DOTween.Sequence();
             seqEffect.Append(transform.DOScale(Vector3.one * 1.1f, 0.1f));
             seqEffect.Append(transform.DOScale(Vector3.one, 0.1f));
-        }
-
-        [Button("Setup", EButtonEnableMode.Editor)]
-        void Reset()
-        {
-
         }
 
         void UpdateUi()

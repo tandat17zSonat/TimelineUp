@@ -20,14 +20,19 @@ public class GateSpawnEffect : CollectableEffectBase
 
     public override void ApplyEffect(PopulatedEntity entity)
     {
-        //// Có người đi qua bình thường
-        //dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
-        //foreach(var kvp in dictWarriorSpawned)
-        //{
-        //    var level = kvp.Key;
-        //    var number = kvp.Value;
-        //    entity.PopulationManagerBase.AddPopulation(level, number);
-        //}
+        // Có người đi qua bình thường
+        var populationManager = GameplayManager.Instance.PopulationManager;
+        dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
+        foreach (var kvp in dictWarriorSpawned)
+        {
+            var level = kvp.Key;
+            var number = kvp.Value;
+            for(int i = 0; i < number; i++)
+            {
+                var spawned = populationManager.Spawn(level);
+                populationManager.AddToCrowd(spawned);
+            }
+        }
     }
 
     public override void ApplyHitEffect(Projectile projectile)

@@ -73,9 +73,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collectableEffects:
   - {fileID: 1152438732984745104}
-  _visuals: {fileID: 5793250264306394052}
-  _particleFeedbackEnabled: 0
-  _collectingParticleFeedback: {fileID: 0}
   IsCollected: 0
 --- !u!114 &1152438732984745104
 MonoBehaviour:

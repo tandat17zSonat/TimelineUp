@@ -65,17 +65,17 @@ public class WarriorCollectorEffect : CollectableEffectBase
         damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(level + 1);
     }
 
-    public void UpdateUI()
-    {
-        sliderToUpgrade.value = (float) currentDamage / damageToUpgrade;
-        textLevel.text = level.ToString();
-        textNum.text = numWarrior.ToString();
-    }
-
     private void Update()
     {
         numWarrior = GameplayManager.Instance.NumberInCollector;
         UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        sliderToUpgrade.value = (float)currentDamage / damageToUpgrade;
+        textLevel.text = level.ToString();
+        textNum.text = numWarrior.ToString();
     }
 
     private void EnableEffect()

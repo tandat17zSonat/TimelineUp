@@ -8,8 +8,8 @@
     public int ExpCollector = 0;
 
     // property
-    public int NumberOfWarriors = 10;
-    public int LevelOfWarriors = 2;
+    public int NumberOfWarriors = 2;
+    public int LevelOfWarriors = 0;
     public int Speed = 7;
 
     public float ProjectileRate = 1f;

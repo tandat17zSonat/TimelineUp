@@ -14,12 +14,12 @@ namespace HyperCasualRunner
     {
         [InfoBox("This component centralizes collectableEffects by binding all the effects on the same gameObject")]
         [SerializeField] CollectableEffectBase[] _collectableEffects;
-        [SerializeField] GameObject _visuals;
-        [SerializeField] bool _particleFeedbackEnabled;
-        [ShowIf(nameof(_particleFeedbackEnabled)), Required("you need to assign a particle if you enable Particle Feedback Enabled")]
-        [SerializeField] ParticleSystem _collectingParticleFeedback;
+        //[SerializeField] GameObject _visuals;
+        //[SerializeField] bool _particleFeedbackEnabled;
+        //[ShowIf(nameof(_particleFeedbackEnabled)), Required("you need to assign a particle if you enable Particle Feedback Enabled")]
+        //[SerializeField] ParticleSystem _collectingParticleFeedback;
 
-        [ReadOnly] public bool IsCollected;
+        [ReadOnly] public bool IsCollected = false;
 
         public event Action<Collectable> Collected;
 
@@ -35,18 +35,17 @@ namespace HyperCasualRunner
 
             if (other)
             {
+                // Nếu va chạm với entity
                 if (other.TryGetComponent(out PopulatedEntity.PopulatedEntity entity))
                 {
                     ApplyCollectEffects(entity);
                 }
+                // Nếu va chạm với projectile
                 else if (other.TryGetComponent(out Projectile projectile))
                 {
                     ApplyHitEffect(projectile);
-                    return;
                 }
             }
-
-            IsCollected = true;
             Collected?.Invoke(this);
         }
 
@@ -57,12 +56,12 @@ namespace HyperCasualRunner
                 collectableEffectBase.ApplyEffect(entity);
             }
 
-            if (_particleFeedbackEnabled)
-            {
-                _collectingParticleFeedback.Play();
-            }
+            //if (_particleFeedbackEnabled)
+            //{
+            //    _collectingParticleFeedback.Play();
+            //}
 
-            PoolBoss.Despawn(this.transform);
+            PoolBoss.Despawn(transform);
         }
 
         void ApplyHitEffect(Projectile projectile)
@@ -73,6 +72,7 @@ namespace HyperCasualRunner
             }
             projectile.Release();
         }
+
 
         [Button("Setup Collectable", EButtonEnableMode.Editor)]
         void Reset()

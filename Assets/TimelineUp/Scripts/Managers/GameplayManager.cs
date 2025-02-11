@@ -11,8 +11,10 @@ public class GameplayManager : Singleton<GameplayManager>
     [SerializeField] ObstacleManager obstacleManager;
 
     private RunnerMover _runnerMover;
-    private PopulationManager _crowdManager;
+    private PopulationManager _populationManager;
     private AnimationModifier _animationModifier;
+
+    public PopulationManager PopulationManager { get { return _populationManager; } }
     public GameState State { get; private set; }
 
     public Action OnRestart;
@@ -31,7 +33,7 @@ public class GameplayManager : Singleton<GameplayManager>
     protected override void OnAwake()
     {
         _runnerMover = player.GetComponent<RunnerMover>();
-        _crowdManager = player.GetComponent<PopulationManager>();
+        _populationManager = player.GetComponent<PopulationManager>();
         _animationModifier = player.GetComponent<AnimationModifier>();
 
         State = GameState.Pause;
@@ -59,8 +61,8 @@ public class GameplayManager : Singleton<GameplayManager>
         int levelOfWarriors = playerData.LevelOfWarriors;
         for(int _ = 0; _ < playerData.NumberOfWarriors; _++)
         {
-            var entity = _crowdManager.Spawn(levelOfWarriors);
-            _crowdManager.AddToCrowd(entity);
+            var entity = _populationManager.Spawn(levelOfWarriors);
+            _populationManager.AddToCrowd(entity);
         }
 
         //_animationModifier.CurrentAnimationName = _animationModifier.IdleAnimationName;
@@ -82,7 +84,7 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         player.Unload();
         obstacleManager.Unload();
-        _crowdManager.Unload();
+        _populationManager.Unload();
     }
 
     public void SetResult(GameState state)
