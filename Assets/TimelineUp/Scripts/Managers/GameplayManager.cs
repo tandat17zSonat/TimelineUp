@@ -16,6 +16,8 @@ public class GameplayManager : Singleton<GameplayManager>
     private AnimationModifier _animationModifier;
 
     public PopulationManager PopulationManager { get { return _populationManager; } }
+    public ObstacleManager ObstacleManager {  get { return obstacleManager; } }
+
     public GameState State { get; private set; }
 
     public Action OnRestart;

@@ -120,6 +120,26 @@ public class ObstacleManager : MonoBehaviour
         spawned.GetComponent<Collectable>().Init();
         return spawned.GetComponent<CollectableEffectBase>();
     }
+
+    public GateSpawnEffect GetNextGateSpawn()
+    {
+        foreach (var obs in listObstacles)
+        {
+            if (obs.Type == ObstacleType.GateSpawn)
+            {
+                return obs as GateSpawnEffect;
+            }
+        }
+
+        return null;
+    }
+
+    public void Remove(CollectableEffectBase obs)
+    {
+        listObstacles.Remove(obs);
+        Debug.LogWarning($"{obs.gameObject.name}");
+        PoolBoss.Despawn(obs.transform);
+    }
 }
 
 

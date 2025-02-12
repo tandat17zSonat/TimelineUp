@@ -9,7 +9,15 @@ namespace HyperCasualRunner.CollectableEffects
     [RequireComponent(typeof(Collectable))]
     public abstract class CollectableEffectBase : MonoBehaviour
     {
+        public ObstacleType Type { get; set; }
+
         public abstract void ApplyEffect(PopulatedEntity.PopulatedEntity entity);
         public abstract void ApplyHitEffect(Projectile projectile);
+
+        public virtual void Destroy()
+        {
+            var obstacleManager = GameplayManager.Instance.ObstacleManager;
+            obstacleManager.Remove(this);
+        }
     }
 }

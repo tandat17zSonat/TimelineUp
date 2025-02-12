@@ -34,7 +34,7 @@ public class AnimationModifiable : BaseModifiable
 
     public void Play(string animationName)
     {
-        _activeAnimation.Play(animationName);
-        _playingAnimationName = animationName;
+        //_activeAnimation.Play(animationName);
+        //_playingAnimationName = animationName;
     }
 }

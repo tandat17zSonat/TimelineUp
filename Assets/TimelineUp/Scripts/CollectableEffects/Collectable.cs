@@ -71,7 +71,6 @@ namespace HyperCasualRunner
             {
                 collectableEffectBase.ApplyHitEffect(projectile);
             }
-            Debug.LogWarning($"{gameObject.name}");
             projectile.Release();
         }
 

@@ -40,13 +40,11 @@ public class Projectile : MonoBehaviour
 
         _delayedCall.Kill();
         float existTime = _range / _speed;
-        Debug.Log($"existTime {existTime}");
         _delayedCall = DOVirtual.DelayedCall(existTime, Release, false);
     }
 
     public void Release()
     {
-        Debug.Log("release");
         PoolBoss.Despawn(transform);
     }
 

@@ -44,9 +44,13 @@ public class PopulationManager : MonoBehaviour
         _listEntityOutsideCrowd = new List<PopulatedEntity>();
     }
 
-    public PopulatedEntity Spawn(int level)
+    public PopulatedEntity Spawn(int level, bool inCrowd = true)
     {
-        var spawned = PoolBoss.Spawn(entityPrefab, Vector3.zero, Quaternion.identity, container);
+        var parent = inCrowd ? container : null;
+        var spawned = PoolBoss.Spawn(entityPrefab, Vector3.zero, Quaternion.identity, parent);
+
+        spawned.GetComponent<CapsuleCollider>().enabled = inCrowd ? true : false;
+
         float rndX = UnityEngine.Random.Range(-0.5f, 0.5f);
         float rndZ = UnityEngine.Random.Range(-0.5f, 0.5f);
         spawned.transform.localPosition = new Vector3(rndX, 0, rndZ);
@@ -71,6 +75,10 @@ public class PopulationManager : MonoBehaviour
         _listEntityOutsideCrowd.Add(entity);
     }
 
+    public void Remove(PopulatedEntity entity)
+    {
+        PoolBoss.Despawn(entity.transform);
+    }
     public void RemoveEntityFromCrowd(PopulatedEntity entity)
     {
         _listEntityInCrowd.Remove(entity);
@@ -81,7 +89,7 @@ public class PopulationManager : MonoBehaviour
 
     public void Unload()
     {
-        foreach(var entity in _listEntityInCrowd)
+        foreach (var entity in _listEntityInCrowd)
         {
             entity.Disappear();
             PoolBoss.Despawn(entity.transform);

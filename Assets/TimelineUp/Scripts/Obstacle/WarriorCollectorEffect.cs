@@ -24,6 +24,8 @@ public class WarriorCollectorEffect : CollectableEffectBase
     private Sequence seqEffect;
     public void Initialize()
     {
+        Type = ObstacleType.WarriorCollector;
+
         numWarrior = 1;
         level = 0;
         currentDamage = 0;
@@ -35,6 +37,18 @@ public class WarriorCollectorEffect : CollectableEffectBase
     }
     public override void ApplyEffect(PopulatedEntity entity)
     {
+        // Thêm nhân vật ở gate spawn
+        var populationManager = GameplayManager.Instance.PopulationManager;
+        var obstacleManager = GameplayManager.Instance.ObstacleManager;
+        var gateSpawn = obstacleManager.GetNextGateSpawn();
+
+        for (int i = 0; i < numWarrior; i++)
+        {
+            var spawned = populationManager.Spawn(level, false);
+            gateSpawn.Add(spawned);
+        }
+
+        // --------------------
         var dict = GameplayManager.Instance.DictWarriorSpawned;
         if (!dict.ContainsKey(level))
         {
@@ -42,7 +56,7 @@ public class WarriorCollectorEffect : CollectableEffectBase
         }
         dict[level] += numWarrior;
 
-        PoolBoss.Despawn(transform);
+        Destroy();
     }
 
     public override void ApplyHitEffect(Projectile projectile)
