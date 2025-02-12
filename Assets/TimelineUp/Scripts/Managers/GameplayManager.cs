@@ -19,6 +19,7 @@ public class GameplayManager : Singleton<GameplayManager>
     private AnimationModifier _animationModifier;
     private ProjectileShooterModifier _projectileShooterModifier;
 
+    public RunnerMover RunnerMover {  get { return _runnerMover; } }
     public PopulationManager PopulationManager { get { return _populationManager; } }
     public ObstacleManager ObstacleManager {  get { return obstacleManager; } }
 

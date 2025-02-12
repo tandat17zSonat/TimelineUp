@@ -15,7 +15,7 @@ namespace TimelineUp.Obstacle
 
         public virtual void Destroy()
         {
-            var obs = GetComponent<BaseObstacle>();
+            var obs = GetComponentInParent<BaseObstacle>();
             GameplayManager.Instance.ObstacleManager.Remove(obs);
         }
 

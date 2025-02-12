@@ -9,11 +9,11 @@ namespace TimelineUp.Obstacle
         public DataInMatch()
         {
             ListMainObstacles = new();
-            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateProjectileRate, 2, 150, false));
-            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateProjectileRange, -2, 180, true));
-            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.ExpBlock, 2, 220, false));
-            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.WarriorCollector, -2, 250, true));
-            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateSpawn, 0, 300, false));
+            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateProjectileRate, 2, 50, false));
+            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateProjectileRange, -2, 80, true));
+            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.ExpBlock, 2, 120, false));
+            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.WarriorCollector, -2, 150, true));
+            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateSpawn, 0, 200, false));
         }
     }
 

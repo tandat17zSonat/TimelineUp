@@ -9,6 +9,8 @@ namespace TimelineUp.Obstacle
         [SerializeField] TMP_Text textHp;
 
         private bool _locked = false;
+        private int _collisionCount = 0;
+
         public bool Locked
         {
             get { return _locked; }
@@ -23,13 +25,17 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            //// Đẩy lùi
-            //var player = GameplayManager.Instance.Player;
-            //var pos = player.transform.position;
-            //pos.z = pos.z - 5;
-            //player.transform.position = pos;
-
-            //gameObject.SetActive(false);
+            // Đẩy lùi
+            if (_collisionCount == 0)
+            {
+                var runnerMover = GameplayManager.Instance.RunnerMover;
+                runnerMover.SetPushback();
+            }
+            else
+            {
+                Destroy();
+            }
+            _collisionCount++;
         }
 
         public override void ApplyEffect(Projectile projectile)
@@ -49,6 +55,8 @@ namespace TimelineUp.Obstacle
 
         public override void Reset()
         {
+            _collisionCount = 0;
+            hp = 10;
         }
     }
 }

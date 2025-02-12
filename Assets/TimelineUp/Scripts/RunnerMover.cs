@@ -20,6 +20,11 @@ namespace HyperCasualRunner.Locomotion
         bool _canGoForward = true; // 1 yes, 0 no
 
         bool _canControl = false;
+
+        // Liên quan tới đẩy lùi
+        bool _isPushBack = false;
+        float _timePushBack = 0.5f;
+
         Vector3 _oldPosition;
         float _oldTouchPositionX;
 
@@ -28,6 +33,7 @@ namespace HyperCasualRunner.Locomotion
         public void Initialize()
         {
             _movementConstrainer.Initialize(gameObject);
+            _isPushBack = false;
         }
 
         public void OnDestroying()
@@ -63,20 +69,38 @@ namespace HyperCasualRunner.Locomotion
                 return;
             }
 
-            var position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * _forwardMoveSpeed);
-            if (_canControl)
+            if (_isPushBack)
             {
-                position.x = ConvertScreenToGround().x - _oldTouchPositionX + _oldPosition.x;
+                // Bị tác động bởi đẩy lùi
+                var pos = transform.position;
+                pos.z = pos.z - Time.deltaTime * _forwardMoveSpeed * 3;
+                transform.position = pos;
+                _timePushBack -= Time.deltaTime;
+                if (_timePushBack < 0)
+                {
+                    _isPushBack = false;
+                    _timePushBack = 0.5f;
+                }
             }
-
-            if (!_canGoForward)
+            else
             {
-                position.z = transform.position.z;
-            }
+                // Điều khiển bằng input
+                var pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * _forwardMoveSpeed);
+                if (_canControl)
+                {
+                    pos.x = ConvertScreenToGround().x - _oldTouchPositionX + _oldPosition.x;
+                }
 
-            // Giới hạn lại vùng di chuyển
-            var finalPosition = _movementConstrainer.GetConstrainedPosition(position);
-            transform.position = finalPosition;
+                if (!_canGoForward)
+                {
+                    pos.z = transform.position.z;
+                }
+
+                // Giới hạn lại vùng di chuyển
+                var finalPosition = _movementConstrainer.GetConstrainedPosition(pos);
+                transform.position = finalPosition;
+            }
+            
         }
 
         Vector3 ConvertScreenToGround()
@@ -96,6 +120,9 @@ namespace HyperCasualRunner.Locomotion
             return Vector3.zero;
         }
 
-
+        public void SetPushback()
+        {
+            _isPushBack = true;
+        }
     }
 }
