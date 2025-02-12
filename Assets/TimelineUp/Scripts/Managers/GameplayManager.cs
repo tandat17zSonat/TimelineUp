@@ -11,6 +11,8 @@ public class GameplayManager : Singleton<GameplayManager>
     [SerializeField] Player player;
     [SerializeField] ObstacleManager obstacleManager;
 
+    public Player Player { get { return player; } }
+
     private RunnerMover _runnerMover;
     private PopulationManager _populationManager;
     private AnimationModifier _animationModifier;

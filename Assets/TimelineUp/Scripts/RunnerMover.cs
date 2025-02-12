@@ -95,5 +95,7 @@ namespace HyperCasualRunner.Locomotion
             _canControl = false;
             return Vector3.zero;
         }
+
+
     }
 }

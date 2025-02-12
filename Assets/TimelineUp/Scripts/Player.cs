@@ -11,7 +11,7 @@ namespace HyperCasualRunner
     /// ticks all the tickables, etc. So it's the most crucial piece when you create player controlled character.
     /// </summary>
     [DisallowMultipleComponent]
-    public class Player : MonoBehaviour, IInteractor
+    public class Player : MonoBehaviour
     {
         [SerializeField, Required] RunnerMover _runnerMover;
         [SerializeField, Required] PopulationManager _populationManagerBase;
@@ -66,18 +66,6 @@ namespace HyperCasualRunner
                     tickable.Tick();
                 }
             }
-        }
-
-        public void OnInteractionBegin()
-        {
-            _runnerMover.enabled = false;
-            enabled = false;
-        }
-
-        public void OnInteractionEnded()
-        {
-            _runnerMover.enabled = true;
-            enabled = true;
         }
 
         void OnJoystickUpdate()
