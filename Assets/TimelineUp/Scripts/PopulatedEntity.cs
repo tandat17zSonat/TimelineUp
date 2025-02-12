@@ -51,7 +51,14 @@ namespace HyperCasualRunner.PopulatedEntity
             _damage = gameConfigData.ListWarriorDatas[level].Damage;
 
             _transformationModifiable.Initialize(level);
+            _projectileShootModifiable.Initialize(level);
         }
+
+        public void Play()
+        {
+            _projectileShootModifiable.Play();
+        }
+
         void OnDestroy()
         {
             _scaleTween.Kill();
@@ -81,6 +88,7 @@ namespace HyperCasualRunner.PopulatedEntity
             _scaleTween = transform.HideSmoothly(_visibilityChangeDuration);
             _collider.enabled = false;
 
+            _projectileShootModifiable.Disappear();
             //if (_disappearParticleEnabled)
             //{
             //    _disappearParticle.Play();

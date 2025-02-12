@@ -24,6 +24,8 @@ public class ObstacleManager : MonoBehaviour
 
     public void LoadObstacle(ObstacleData data)
     {
+
+        if (data.ListObstacles.Count == 0) return;
         foreach (var (type, pos) in data.ListObstacles)
         {
             var obs = Spawn(type);
@@ -31,7 +33,7 @@ public class ObstacleManager : MonoBehaviour
             listObstacles.Add(obs);
         }
 
-        // Sinh các endblock
+        // Sinh các endblock 
         var deltaZ = 4;
         var positionZ = listObstacles[listObstacles.Count - 1].transform.position.z + 20; // khoảng cách từ obstacle cuối tới endblock
         var gameConfigData = GameManager.Instance.GameConfigData;

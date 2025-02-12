@@ -45,6 +45,7 @@ public class Projectile : MonoBehaviour
 
     public void Release()
     {
+        _delayedCall.Kill();
         PoolBoss.Despawn(transform);
     }
 

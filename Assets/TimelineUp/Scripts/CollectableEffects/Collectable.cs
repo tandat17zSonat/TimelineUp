@@ -71,6 +71,8 @@ namespace HyperCasualRunner
             {
                 collectableEffectBase.ApplyHitEffect(projectile);
             }
+
+            Debug.LogWarning($"Collision {this.gameObject.name}");
             projectile.Release();
         }
 

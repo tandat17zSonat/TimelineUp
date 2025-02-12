@@ -8,11 +8,11 @@ public class ObstacleData
     public ObstacleData()
     {
         ListObstacles = new();
-        ListObstacles.Add((ObstacleType.GateProjectileRate, new Vector3(2, 0, 50)));
-        ListObstacles.Add((ObstacleType.GateProjectileRange, new Vector3(-2, 0, 80)));
-        ListObstacles.Add((ObstacleType.ExpBlock, new Vector3(2, 0, 120)));
-        ListObstacles.Add((ObstacleType.WarriorCollector, new Vector3(-2, 0, 150)));
-        ListObstacles.Add((ObstacleType.GateSpawn, new Vector3(0, 0, 200)));
+        ListObstacles.Add((ObstacleType.GateProjectileRate, new Vector3(2, 0, 150)));
+        ListObstacles.Add((ObstacleType.GateProjectileRange, new Vector3(-2, 0, 180)));
+        ListObstacles.Add((ObstacleType.ExpBlock, new Vector3(2, 0, 220)));
+        ListObstacles.Add((ObstacleType.WarriorCollector, new Vector3(-2, 0, 250)));
+        ListObstacles.Add((ObstacleType.GateSpawn, new Vector3(0, 0, 300)));
     }
 
 }

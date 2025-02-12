@@ -1,4 +1,4 @@
-using DarkTonic.PoolBoss;
+﻿using DarkTonic.PoolBoss;
 using HyperCasualRunner.PopulatedEntity;
 using UnityEngine;
 
@@ -13,9 +13,19 @@ public class ProjectileShooterModifiable : BaseModifiable
 
     [SerializeField] Transform _spawnPoint;
 
+    private bool _fire = false;
+    private float _shootInterval;
+    private float _timer = 0f;
+
     public override void Initialize(int level)
     {
+        _fire = false;
+    }
 
+    public void Play()
+    {
+        _timer = Random.value; // bắn ngẫu nhiên ( khong đều)
+        _fire = true;
     }
 
     public void Shoot()
@@ -27,5 +37,25 @@ public class ProjectileShooterModifiable : BaseModifiable
         Projectile projectile = spawned.GetComponent<Projectile>();
         projectile.Initialize(_entity.Level);
         projectile.Fire();
+    }
+
+    private void Update()
+    {
+        if (_fire)
+        {
+            _timer += Time.deltaTime;
+
+            _shootInterval = 1.0f / GameplayManager.Instance.ProjectileRate;
+            if (_timer >= _shootInterval)
+            {
+                _timer -= _shootInterval;
+                Shoot();
+            }
+        }
+    }
+
+    public void Disappear()
+    {
+        _fire = false;
     }
 }

@@ -53,8 +53,11 @@ public class GateSpawnEffect : CollectableEffectBase
             {
                 var spawned = populationManager.Spawn(level);
                 populationManager.AddToCrowd(spawned);
+                spawned.Play();
             }
         }
+
+
 
         Destroy();
     }

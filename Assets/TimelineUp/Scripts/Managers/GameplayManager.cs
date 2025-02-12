@@ -14,6 +14,7 @@ public class GameplayManager : Singleton<GameplayManager>
     private RunnerMover _runnerMover;
     private PopulationManager _populationManager;
     private AnimationModifier _animationModifier;
+    private ProjectileShooterModifier _projectileShooterModifier;
 
     public PopulationManager PopulationManager { get { return _populationManager; } }
     public ObstacleManager ObstacleManager {  get { return obstacleManager; } }
@@ -38,6 +39,7 @@ public class GameplayManager : Singleton<GameplayManager>
         _runnerMover = player.GetComponent<RunnerMover>();
         _populationManager = player.GetComponent<PopulationManager>();
         _animationModifier = player.GetComponent<AnimationModifier>();
+        _projectileShooterModifier = player.GetComponent<ProjectileShooterModifier>();
 
         State = GameState.Pause;
     }
@@ -87,6 +89,8 @@ public class GameplayManager : Singleton<GameplayManager>
 
         _animationModifier.CurrentAnimationName = _animationModifier.RunAnimationName;
         _animationModifier.ApplyAll(); // start animation -> run
+
+        _projectileShooterModifier.ApplyAll();
     }
 
     public void Unload()
