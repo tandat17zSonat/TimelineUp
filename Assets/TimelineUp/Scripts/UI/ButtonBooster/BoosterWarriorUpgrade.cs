@@ -11,7 +11,9 @@ public class BoosterWarriorUpgrade : BaseButtonBooster
 
         if(playerData.BoosterLevel[id] % 3 == 0)
         {
-            playerData.NumberOfWarriors += 1;
+            playerData.LevelOfWarriors += 1;
+
+            GameplayManager.Instance.UpdateLevelInCrowd();
         }
     }
 
@@ -19,7 +21,7 @@ public class BoosterWarriorUpgrade : BaseButtonBooster
     {
         base.UpdateVisual();
 
-        var numActives = (playerData.BoosterLevel[id] - 1) % 3;
+        var numActives = playerData.BoosterLevel[id] % 3;
         for (int i = 0; i < _imageActives.Length; i++)
         {
             _imageActives[i].SetActive(i < numActives);

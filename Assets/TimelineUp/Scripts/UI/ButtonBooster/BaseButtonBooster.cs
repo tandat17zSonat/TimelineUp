@@ -25,6 +25,8 @@ public abstract class BaseButtonBooster : MonoBehaviour
         {
             playerData.Coin -= cost;
             HandleBooster();
+
+            GameManager.Instance.SavePlayerData();
         });
 
     }

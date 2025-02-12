@@ -9,5 +9,7 @@ public class BoosterAddWarrior : BaseButtonBooster
         playerData.BoosterLevel[id] += 1;
 
         playerData.NumberOfWarriors += 1;
+
+        GameplayManager.Instance.AddEntity(playerData.LevelOfWarriors);
     }
 }

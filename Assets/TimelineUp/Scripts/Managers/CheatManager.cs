@@ -4,7 +4,12 @@ public class CheatManager : MonoBehaviour
 {
     void Update()
     {
-        if( Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            // reset data
+            GameManager.Instance.ResetPlayerData();
+        }
+        if ( Input.GetKeyDown(KeyCode.C))
         {
             GameManager.Instance.PlayerData.Coin += 10;
         }

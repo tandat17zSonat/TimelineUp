@@ -70,8 +70,7 @@ public class GameplayManager : Singleton<GameplayManager>
         int levelOfWarriors = playerData.LevelOfWarriors;
         for(int _ = 0; _ < playerData.NumberOfWarriors; _++)
         {
-            var entity = _populationManager.Spawn(levelOfWarriors);
-            _populationManager.AddToCrowd(entity);
+            AddEntity(levelOfWarriors);
         }
 
         //_animationModifier.CurrentAnimationName = _animationModifier.IdleAnimationName;
@@ -108,6 +107,21 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         State = state;
         Restart();
+    }
+
+    public void AddEntity(int level)
+    {
+        var entity = _populationManager.Spawn(level);
+        _populationManager.AddToCrowd(entity);
+    }
+
+    public void UpdateLevelInCrowd()
+    {
+        var playerData = GameManager.Instance.PlayerData;
+        foreach(var entity in _populationManager.ListEntityInCrowd)
+        {
+            entity.SetInfo(playerData.LevelOfWarriors);
+        }
     }
 }
 

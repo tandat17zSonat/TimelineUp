@@ -78,21 +78,27 @@ public class GameManager : Singleton<GameManager>
     public void SavePlayerData()
     {
         string json = JsonUtility.ToJson(playerData);
-        PlayerPrefs.SetString("PlayerData", json);
+        PlayerPrefs.SetString("PLAYER_DATA", json);
         PlayerPrefs.Save();
         Debug.Log($"Save playeData");
     }
 
     public void LoadPlayerData()
     {
-        string json = PlayerPrefs.GetString("PlayerData");
-        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-        Debug.Log($"Load data: level - {data.Level}    coin - {data.Coin}");
+        string json = PlayerPrefs.GetString("PLAYER_DATA");
+        playerData = JsonUtility.FromJson<PlayerData>(json);
+        Debug.Log($"Load data: level - {playerData.Level}    coin - {playerData.Coin}");
     }
 
     private void LoadGameConfig()
     {
         gameConfigData = new GameplayData();
+    }
+
+    public void ResetPlayerData()
+    {
+        playerData = new PlayerData();
+        SavePlayerData();
     }
 }
 
