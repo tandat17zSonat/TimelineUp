@@ -1,161 +1,119 @@
 ﻿using System.Collections.Generic;
 using DarkTonic.PoolBoss;
-using HyperCasualRunner;
-using HyperCasualRunner.CollectableEffects;
+using TimelineUp.SO;
 using UnityEngine;
 
-public class ObstacleManager : MonoBehaviour
+namespace TimelineUp.Obstacle
 {
-    [SerializeField] Transform container;
-    [SerializeField] Transform gateSpawnPrefab;
-    [SerializeField] Transform expBlockPrefab;
-    [SerializeField] Transform warriorCollectorPrefab;
-    [SerializeField] Transform gateFinishPrefab;
-    [SerializeField] Transform gateProjectileRangePrefab;
-    [SerializeField] Transform gateProjectileRatePrefab;
-    [SerializeField] Transform endBlockPrefab;
-
-    private List<CollectableEffectBase> listObstacles;
-
-    public void Awake()
+    public class ObstacleManager : MonoBehaviour
     {
-        listObstacles = new List<CollectableEffectBase>();
-    }
+        [SerializeField] Transform container;
+        [SerializeField] ObstacleSO obstacleSO;
 
-    public void LoadObstacle(ObstacleData data)
-    {
+        private List<BaseObstacle> listObstacles;
 
-        if (data.ListObstacles.Count == 0) return;
-        foreach (var (type, pos) in data.ListObstacles)
+        private void Awake()
         {
-            var obs = Spawn(type);
-            obs.transform.position = pos;
-            listObstacles.Add(obs);
+            listObstacles = new List<BaseObstacle>();
         }
 
-        // Sinh các endblock 
-        var deltaZ = 4;
-        var positionZ = listObstacles[listObstacles.Count - 1].transform.position.z + 20; // khoảng cách từ obstacle cuối tới endblock
-        var gameConfigData = GameManager.Instance.GameConfigData;
-        for (int order = 0; order < gameConfigData.ListEndBlockDatas.Count; order++)
+        public void LoadObstacle(DataInMatch data)
         {
+            if (data.ListMainObstacles.Count == 0) return;
+            
+            // Sinh các obstacle chính
+            foreach (var mainObstacleData in data.ListMainObstacles)
+            {
+                var obs = Spawn(mainObstacleData.Type);
+                obs.Initialize(mainObstacleData.Locked);
+
+                int x = mainObstacleData.x, z = mainObstacleData.z;
+                obs.transform.position = new Vector3(x, 0, z);
+                listObstacles.Add(obs);
+            }
+
+            // Sinh các endblock 
+            var deltaZ = 4;
+            var positionZ = listObstacles[listObstacles.Count - 1].transform.position.z + 20; // khoảng cách từ obstacle cuối tới endblock
+            var gameConfigData = GameManager.Instance.GameConfigData;
+            for (int order = 0; order < gameConfigData.ListEndBlockDatas.Count; order++)
+            {
+                positionZ += deltaZ;
+                var positions = new List<Vector3>();
+                positions.Add(new Vector3(-2, 0, positionZ));
+                positions.Add(new Vector3(0, 0, positionZ));
+                positions.Add(new Vector3(2, 0, positionZ));
+
+                for (int i = 0; i < 3; i++)
+                {
+                    var spawned = Spawn(ObstacleType.EndBlock);
+                    spawned.transform.position = positions[i];
+                    spawned.Initialize(false);
+
+                    var endBlockEffect = spawned.GetComponent<EndBlockEffect>();
+                    endBlockEffect.SetInfo(order);
+
+                    listObstacles.Add(spawned);
+                }
+            }
+
+            // Sinh cổng về đích
             positionZ += deltaZ;
-            var positions = new List<Vector3>();
-            positions.Add(new Vector3(-2, 0, positionZ));
-            positions.Add(new Vector3(0, 0, positionZ));
-            positions.Add(new Vector3(2, 0, positionZ));
+            var gateFinish = Spawn(ObstacleType.GateFinish);
+            gateFinish.Initialize(false);
+            gateFinish.transform.position = new Vector3(0, 0, positionZ);
+            listObstacles.Add(gateFinish);
+        }
 
-            for (int i = 0; i < 3; i++)
+        public void Unload()
+        {
+            foreach (var obstacle in listObstacles)
             {
-                var spawned = PoolBoss.Spawn(endBlockPrefab, Vector3.zero, Quaternion.identity, container);
-                spawned.transform.position = positions[i];
-
-                var endBlockEffect = spawned.GetComponent<EndBlockEffect>();
-                endBlockEffect.Initialize(order);
+                PoolBoss.Despawn(obstacle.transform);
             }
+
+            listObstacles.Clear();
         }
 
-        // Sinh cổng về đích
-        positionZ += deltaZ;
-        var gateFinish = PoolBoss.Spawn(gateFinishPrefab, Vector3.zero, Quaternion.identity, container);
-        gateFinish.transform.position = new Vector3(0, 0, positionZ);
-    }
-
-    public void Unload()
-    {
-        foreach (var obstacle in listObstacles)
+        public BaseObstacle Spawn(ObstacleType type)
         {
-            PoolBoss.Despawn(obstacle.transform);
+            Transform spawned = null;
+
+            var prefab = obstacleSO.GetPrefabs(type);
+            spawned = PoolBoss.Spawn(prefab, Vector3.zero, Quaternion.identity, container);
+            return spawned.GetComponent<BaseObstacle>();
         }
 
-        listObstacles.Clear();
-    }
-
-    public CollectableEffectBase Spawn(ObstacleType type)
-    {
-        Transform spawned = null;
-
-        switch (type)
+        public GateSpawnEffect GetNextGateSpawn()
         {
-            case ObstacleType.WarriorCollector:
-                {
-                    spawned = PoolBoss.Spawn(warriorCollectorPrefab, Vector3.zero, Quaternion.identity, container);
-                    var warriorCollectorEffect = spawned.GetComponent<WarriorCollectorEffect>();
-                    warriorCollectorEffect.Initialize();
-                    break;
-                }
-            case ObstacleType.GateSpawn:
-                {
-                    spawned = PoolBoss.Spawn(gateSpawnPrefab, Vector3.zero, Quaternion.identity, container);
-                    var gateSpawn = spawned.GetComponent<GateSpawnEffect>();
-                    gateSpawn.Initialize();
-                    break;
-                }
-            case ObstacleType.ExpBlock:
-                {
-                    spawned = PoolBoss.Spawn(expBlockPrefab, Vector3.zero, Quaternion.identity, container);
-                    var expBlock = spawned.GetComponent<ExpBlockEffect>();
-                    expBlock.Initialize();
-                    break;
-                }
-            case ObstacleType.GateFinish:
-                {
-                    spawned = PoolBoss.Spawn(gateFinishPrefab, Vector3.zero, Quaternion.identity, container);
-                    break;
-                }
-            case ObstacleType.GateProjectileRange:
-                {
-                    spawned = PoolBoss.Spawn(gateProjectileRangePrefab, Vector3.zero, Quaternion.identity, container);
-                    var effect = spawned.GetComponent<GateProjectileRangeEffect>();
-                    effect.Initialize();
-                    break;
-                }
-            case ObstacleType.GateProjectileRate:
-                {
-                    spawned = PoolBoss.Spawn(gateProjectileRatePrefab, Vector3.zero, Quaternion.identity, container);
-                    var effect = spawned.GetComponent<GateProjectileRateEffect>();
-                    effect.Initialize();
-                    break;
-                }
-        }
-
-        spawned.GetComponent<Collectable>().Init();
-        return spawned.GetComponent<CollectableEffectBase>();
-    }
-
-    public GateSpawnEffect GetNextGateSpawn()
-    {
-        foreach (var obs in listObstacles)
-        {
-            if (obs.Type == ObstacleType.GateSpawn)
+            foreach (var obs in listObstacles)
             {
-                return obs as GateSpawnEffect;
+                if (obs.Type == ObstacleType.GateSpawn)
+                {
+                    return obs.GetComponent<GateSpawnEffect>();
+                }
             }
+
+            return null;
         }
 
-        return null;
+        public void Remove(BaseObstacle obs)
+        {
+            listObstacles.Remove(obs);
+            PoolBoss.Despawn(obs.transform);
+        }
     }
 
-    public void Remove(CollectableEffectBase obs)
+    [System.Serializable]
+    public enum ObstacleType
     {
-        listObstacles.Remove(obs);
-        Debug.LogWarning($"{obs.gameObject.name}");
-        PoolBoss.Despawn(obs.transform);
+        ExpBlock,
+        WarriorCollector,
+        GateSpawn,
+        GateProjectileRange,
+        GateProjectileRate,
+        EndBlock,
+        GateFinish
     }
-}
-
-
-public enum ObstacleType
-{
-    ExpBlock,
-
-    WarriorCollector,
-    GateSpawn,
-    GateProjectileRange,
-    GateProjectileRate,
-
-    EndBlock,
-
-    GateFinish,
 
 }

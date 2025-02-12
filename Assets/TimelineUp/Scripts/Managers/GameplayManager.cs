@@ -4,6 +4,7 @@ using Base.Singleton;
 using HyperCasualRunner;
 using HyperCasualRunner.Locomotion;
 using SonatFramework.UI;
+using TimelineUp.Obstacle;
 using UnityEngine;
 
 public class GameplayManager : Singleton<GameplayManager>
@@ -61,7 +62,7 @@ public class GameplayManager : Singleton<GameplayManager>
         DictWarriorSpawned = new Dictionary<int, int>();
 
         // Load các obstacle
-        ObstacleData data = new ObstacleData();
+        DataInMatch data = new DataInMatch();
         obstacleManager.LoadObstacle(data);
 
         // Khởi tạo các warrior đầu tiên

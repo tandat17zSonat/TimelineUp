@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4818299512695285531}
   - component: {fileID: 7636287072905993082}
-  - component: {fileID: 648306158156981449}
-  - component: {fileID: 1230042160157756201}
   - component: {fileID: 7991589496508751324}
   m_Layer: 0
   m_Name: Lock
@@ -45,42 +43,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2982456152033992607}
   m_CullTransparentMesh: 1
---- !u!65 &648306158156981449
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982456152033992607}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 3, z: -3}
-  m_Center: {x: 0, y: 1.5, z: 1.5}
---- !u!114 &1230042160157756201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982456152033992607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29513577d44590b48abc0512d1c61e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collectableEffects:
-  - {fileID: 7991589496508751324}
-  IsCollected: 0
 --- !u!114 &7991589496508751324
 MonoBehaviour:
   m_ObjectHideFlags: 0

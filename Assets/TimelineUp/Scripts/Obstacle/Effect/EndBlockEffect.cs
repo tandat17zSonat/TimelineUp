@@ -1,13 +1,13 @@
 using DarkTonic.PoolBoss;
 using DG.Tweening;
-using NaughtyAttributes;
+using HyperCasualRunner.PopulatedEntity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HyperCasualRunner.CollectableEffects
+namespace TimelineUp.Obstacle
 {
-    public class EndBlockEffect : CollectableEffectBase
+    public class EndBlockEffect : BaseObstacleEffect
     {
         [SerializeField] Slider sliderHp;
         [SerializeField] TMP_Text textNum;
@@ -16,16 +16,7 @@ namespace HyperCasualRunner.CollectableEffects
 
         private Sequence seqEffect;
 
-        public void Initialize(int order)
-        {
-            var gameConfigData = GameManager.Instance.GameConfigData;
-            hp = gameConfigData.GetEndBlockHp(order);
-            maxHp = hp;
-
-            UpdateUi();
-        }
-
-        public override void ApplyEffect(PopulatedEntity.PopulatedEntity entity)
+        public override void ApplyEffect(PopulatedEntity entity)
         {
             var populationManager = GameplayManager.Instance.PopulationManager;
             populationManager.RemoveEntityFromCrowd(entity);
@@ -34,9 +25,11 @@ namespace HyperCasualRunner.CollectableEffects
             {
                 GameplayManager.Instance.SetResult(GameState.Loss);
             }
+
+            Destroy();
         }
 
-        public override void ApplyHitEffect(Projectile projectile)
+        public override void ApplyEffect(Projectile projectile)
         {
             hp -= projectile.Damage;
             if(hp < 0)
@@ -61,6 +54,18 @@ namespace HyperCasualRunner.CollectableEffects
         {
             textNum.text = hp.ToString();
             sliderHp.value = hp / maxHp;
+        }
+
+        public void SetInfo(int order)
+        {
+            var gameConfigData = GameManager.Instance.GameConfigData;
+            hp = gameConfigData.GetEndBlockHp(order);
+            maxHp = hp;
+        }
+
+        public override void Reset()
+        {
+
         }
     }
 }

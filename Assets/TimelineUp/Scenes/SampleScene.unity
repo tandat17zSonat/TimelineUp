@@ -411,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[0].isExpanded
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[1].isExpanded
@@ -427,11 +427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[4].isExpanded
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[5].isExpanded
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
       propertyPath: poolItems.Array.data[6].isExpanded
@@ -626,11 +626,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4714e8a91d3394895de9619d6ff6d2, type: 3}
---- !u!4 &364609166 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-  m_PrefabInstance: {fileID: 1058309308}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &646007385 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4478539738891521132, guid: 79997aff9c7a8284fb464cd4550478cd, type: 3}
@@ -1181,63 +1176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bac9cdd4b33745468852cecdaa72dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1058309308
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1597092622}
-    m_Modifications:
-    - target: {fileID: 2695814702819301182, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_Name
-      value: Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
 --- !u!1 &1172302963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,8 +1472,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 364609166}
+  m_Children: []
   m_Father: {fileID: 758513604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1736313385
@@ -1998,13 +1935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 2099954453}
-  gateSpawnPrefab: {fileID: 2264167919004722978, guid: 82d2ffa2a4b007d4d9189a7b27750484, type: 3}
-  expBlockPrefab: {fileID: 1318551965670141577, guid: 84f619d609d4c2442a0e5357bf46af44, type: 3}
-  warriorCollectorPrefab: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
-  gateFinishPrefab: {fileID: 2264167919004722978, guid: d286a271e3df0204cb978c43ee8682a9, type: 3}
-  gateProjectileRangePrefab: {fileID: 2264167919004722978, guid: 4f4fc99f3872baf4081240a6358aad30, type: 3}
-  gateProjectileRatePrefab: {fileID: 2264167919004722978, guid: d5bc06f8e28199d4ea44d6ac98a63e72, type: 3}
-  endBlockPrefab: {fileID: 1318551965670141577, guid: fcc45b128c27e5f46b12a3d338b8f1cb, type: 3}
+  obstacleSO: {fileID: 11400000, guid: f381673b78d10ce4597e10a638131a70, type: 2}
 --- !u!4 &2099954453
 Transform:
   m_ObjectHideFlags: 0
