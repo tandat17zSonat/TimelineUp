@@ -45,13 +45,16 @@ namespace HyperCasualRunner.PopulatedEntity
 
         public void SetInfo(int level)
         {
-            _level = level;
-
             var gameConfigData = GameManager.Instance.GameConfigData;
-            _damage = gameConfigData.ListWarriorDatas[level].Damage;
+            if (level < gameConfigData.ListWarriorDatas.Count)
+            {
+                _level = level;
 
-            _transformationModifiable.Initialize(level);
-            _projectileShootModifiable.Initialize(level);
+                _damage = gameConfigData.ListWarriorDatas[level].Damage;
+
+                _transformationModifiable.Initialize(level);
+                _projectileShootModifiable.Initialize(level);
+            }
         }
 
         public void Play()

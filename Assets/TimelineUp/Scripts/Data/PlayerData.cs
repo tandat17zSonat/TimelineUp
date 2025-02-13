@@ -1,6 +1,6 @@
 ﻿public class PlayerData
 {
-    public int Level = 0;
+    public int Level = 1;
     public int TimelineId = 0;
     public int EraId = 0;
 

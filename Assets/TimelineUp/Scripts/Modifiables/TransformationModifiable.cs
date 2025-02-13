@@ -14,7 +14,7 @@ public class TransformationModifiable : BaseModifiable
 
     public List<Sprite> ListEntitySprites
     {
-        get { return GameplayManager.Instance.TimelineEraSO.entitySprites; }
+        get { return GameManager.Instance.TimelineEraSO.entitySprites; }
     }
 
     Tweener _deactivateTween;

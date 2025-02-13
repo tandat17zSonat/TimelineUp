@@ -67,9 +67,6 @@ public class GameplayManager : Singleton<GameplayManager>
         NumberInCollector = 1;
         DictWarriorSpawned = new Dictionary<int, int>();
 
-        // Load Scriptable Object tương ứng
-        TimelineEraSO = SOManager.GetSO<TimelineEraSO>(playerData.TimelineId, playerData.EraId);
-
         // Load các obstacle
         DataInMatch data = new DataInMatch();
         obstacleManager.LoadObstacle(data);

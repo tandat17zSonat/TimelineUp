@@ -10,6 +10,11 @@ public class PanelLobby : Panel
 
     [SerializeField] BaseButtonBooster[] BtnBoosters;
 
+    [SerializeField] TMP_Text _textLevel;
+    [SerializeField] TMP_Text _textTimeline;
+    [SerializeField] Button _btnEra;
+    [SerializeField] TMP_Text _textEra;
+
     public override void OnSetup()
     {
         base.OnSetup();
@@ -26,6 +31,12 @@ public class PanelLobby : Panel
             btn.Initialize();
 
         }
+
+        // ButtonEra
+        _btnEra.onClick.AddListener(() =>
+        {
+            Debug.Log($"Show era");
+        });
     }
 
     public override void Open(UIData uiData)
@@ -54,5 +65,13 @@ public class PanelLobby : Panel
         {
             btn.UpdateVisual();
         }
+
+        //-------------------
+        var playerData = GameManager.Instance.PlayerData;
+
+        _textTimeline.text = $"Timeline {playerData.TimelineId + 1}";
+        _textEra.text = GameManager.Instance.TimelineEraSO.EraName;
+
+        _textLevel.text = $"Level {playerData.Level}";
     }
 }

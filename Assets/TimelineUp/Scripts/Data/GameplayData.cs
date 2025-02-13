@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class GameplayData
 
     public List<int> ListBoosterCapacity;
 
+    public List<int> ListMaxBoosterLevel;
 
 
     public GameplayData()
@@ -66,6 +68,9 @@ public class GameplayData
         {
             ListBoosterCapacity.Add((i + 1) * 5); 
         }
+
+        // booster's max level
+        ListMaxBoosterLevel = new List<int>() { 30, 10, 5, 30 };
     }
 
     public int GetNumberWarriorInCollector()

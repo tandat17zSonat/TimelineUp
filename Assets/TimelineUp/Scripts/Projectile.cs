@@ -9,7 +9,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] GameObject[] _renderersByLevel;
 
-
     Tween _delayedCall;
 
     private int _damage;
@@ -19,7 +18,7 @@ public class Projectile : MonoBehaviour
 
     public List<Sprite> ListProjectileSprites 
     { 
-        get { return GameplayManager.Instance.TimelineEraSO.projectileSprites; }
+        get { return GameManager.Instance.TimelineEraSO.projectileSprites; }
     }
 
     public int Damage { get { return _damage; } }

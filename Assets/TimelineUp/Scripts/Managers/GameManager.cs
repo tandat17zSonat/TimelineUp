@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
     private GameplayData gameConfigData;
     public GameplayData GameConfigData { get { return gameConfigData; } }
 
+    public TimelineEraSO TimelineEraSO { get; set; }
+
     public int TimelineId { get { return playerData.TimelineId; } }
     public int EraId { get { return playerData.EraId; } }
 
@@ -36,6 +38,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator IeOnGameInitComplete()
     {
+        // Load data -------------------------------------------
         if (PlayerPrefs.HasKey("PLAYER_DATA"))
         {
             LoadPlayerData();
@@ -44,15 +47,19 @@ public class GameManager : Singleton<GameManager>
         {
             SavePlayerData();
         }
+        // Load Scriptable Object tương ứng
+        TimelineEraSO = SOManager.GetSO<TimelineEraSO>(playerData.TimelineId, playerData.EraId);
 
         yield return new WaitForEndOfFrame();
 
+        // Show ui
         PanelManager.Instance.OpenPanel<UIInGame>();
         PanelManager.Instance.OpenPanel<PanelLobby>();
 
 
         yield return new WaitForEndOfFrame();
 
+        // Load game
         SwitchScene(GameScene.ingame);
     }
 

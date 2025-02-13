@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public abstract class BaseButtonBooster : MonoBehaviour
 {
     [SerializeField] protected BoosterType type;
-    [SerializeField] Button _btn;
+    [SerializeField] protected Button _btn;
     [SerializeField] TMP_Text _textLevel;
     [SerializeField] TMP_Text _textCost;
 
@@ -41,8 +41,11 @@ public abstract class BaseButtonBooster : MonoBehaviour
 
         _textLevel.text = $"Level {level.ToString()}";
         _textCost.text = cost.ToString();
+        
 
-        _btn.interactable = cost <= playerData.Coin;
+        // Ki?m tra level t?i ?a
+        var newLevel = playerData.BoosterLevel[id] + 1;
+        _btn.interactable = (cost <= playerData.Coin) && (newLevel < gameConfigData.ListMaxBoosterLevel[id]);
     }
 }
 
