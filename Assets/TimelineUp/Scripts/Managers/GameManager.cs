@@ -20,6 +20,9 @@ public class GameManager : Singleton<GameManager>
     private GameplayData gameConfigData;
     public GameplayData GameConfigData { get { return gameConfigData; } }
 
+    public int TimelineId { get { return playerData.TimelineId; } }
+    public int EraId { get { return playerData.EraId; } }
+
     protected override void OnAwake()
     {
         playerData = new PlayerData();
@@ -46,6 +49,7 @@ public class GameManager : Singleton<GameManager>
 
         PanelManager.Instance.OpenPanel<UIInGame>();
         PanelManager.Instance.OpenPanel<PanelLobby>();
+
 
         yield return new WaitForEndOfFrame();
 

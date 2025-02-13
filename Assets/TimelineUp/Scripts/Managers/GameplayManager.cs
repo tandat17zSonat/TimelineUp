@@ -16,6 +16,8 @@ public class GameplayManager : Singleton<GameplayManager>
 
     private RunnerMover _runnerMover;
     private PopulationManager _populationManager;
+
+    private TransformationModifier _transformationModifier;
     private AnimationModifier _animationModifier;
     private ProjectileShooterModifier _projectileShooterModifier;
 
@@ -28,6 +30,7 @@ public class GameplayManager : Singleton<GameplayManager>
     public Action OnRestart;
 
     // Data trong màn chơi ----------------------------------------------
+    public TimelineEraSO TimelineEraSO { get; private set; }
     public float Speed { get; set; }
     public int NumberInCollector { get; set; }
     public float ExpCollectorInGame { get; set; }
@@ -42,6 +45,8 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         _runnerMover = player.GetComponent<RunnerMover>();
         _populationManager = player.GetComponent<PopulationManager>();
+
+        _transformationModifier = player.GetComponent<TransformationModifier>();
         _animationModifier = player.GetComponent<AnimationModifier>();
         _projectileShooterModifier = player.GetComponent<ProjectileShooterModifier>();
 
@@ -61,6 +66,9 @@ public class GameplayManager : Singleton<GameplayManager>
 
         NumberInCollector = 1;
         DictWarriorSpawned = new Dictionary<int, int>();
+
+        // Load Scriptable Object tương ứng
+        TimelineEraSO = SOManager.GetSO<TimelineEraSO>(playerData.TimelineId, playerData.EraId);
 
         // Load các obstacle
         DataInMatch data = new DataInMatch();

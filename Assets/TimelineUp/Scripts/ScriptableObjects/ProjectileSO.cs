@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "TimelineUp/CharacterSO", fileName = "CharacterSO")]
-public class CharacterSO : ScriptableObject
+[CreateAssetMenu(menuName = "TimelineUp/ProjectileSO", fileName = "ProjectileSO")]
+public class ProjectileSO : ScriptableObject
 {
     public List<Sprite> sprites;
 

@@ -1,17 +1,27 @@
-﻿using DarkTonic.PoolBoss;
+﻿using System.Collections.Generic;
+using DarkTonic.PoolBoss;
 using DG.Tweening;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] GameObject[] _renderersByLevel;
+
+
     Tween _delayedCall;
 
     private int _damage;
     private float _speed;
     private float _range;
     private GameObject _activeProjectile;
+
+    public List<Sprite> ListProjectileSprites 
+    { 
+        get { return GameplayManager.Instance.TimelineEraSO.projectileSprites; }
+    }
+
     public int Damage { get { return _damage; } }
 
     public void Initialize(int level)
@@ -51,8 +61,10 @@ public class Projectile : MonoBehaviour
 
     void SetVisual(int level)
     {
-        if (_activeProjectile != null) _activeProjectile.SetActive(false);
-        _activeProjectile = _renderersByLevel[level];
-        _activeProjectile.SetActive(true);
+        //if (_activeProjectile != null) _activeProjectile.SetActive(false);
+        //_activeProjectile = _renderersByLevel[level];
+        //_activeProjectile.SetActive(true);
+
+        _spriteRenderer.sprite = ListProjectileSprites[level];
     }
 }

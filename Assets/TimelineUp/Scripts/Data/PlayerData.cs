@@ -1,8 +1,8 @@
 ﻿public class PlayerData
 {
     public int Level = 0;
-    public int Timeline = 0;
-    public int Era = 0;
+    public int TimelineId = 0;
+    public int EraId = 0;
 
     public int Energy = 0;
     public int Coin = 50;

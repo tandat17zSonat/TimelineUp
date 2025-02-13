@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using HyperCasualRunner.Tweening;
-using NaughtyAttributes;
 using UnityEngine;
 
 public class TransformationModifiable : BaseModifiable
@@ -12,8 +12,10 @@ public class TransformationModifiable : BaseModifiable
     [Header("Model 3D")]
     [SerializeField] GameObject[] _renderersByLevel;
 
-
-    private CharacterSO _characterSO;
+    public List<Sprite> ListEntitySprites
+    {
+        get { return GameplayManager.Instance.TimelineEraSO.entitySprites; }
+    }
 
     Tweener _deactivateTween;
     Tween _activateTween;
@@ -22,14 +24,9 @@ public class TransformationModifiable : BaseModifiable
 
     public event Action<GameObject> Transformed;
 
-    private void Awake()
-    {
-        _characterSO = SOManager.GetSO<CharacterSO>();
-    }
-
     public override void Initialize(int level)
     {
-        if( _currentLevel == level ) return;
+        if (_currentLevel == level) return;
         ChangeGameObject(level);
 
         _currentLevel = level;
@@ -43,7 +40,7 @@ public class TransformationModifiable : BaseModifiable
 
     void ChangeGameObject(int level)
     {
-        if(use3D)
+        if (use3D)
         {
             if (_currentLevel != -1) _deactivateTween = _renderersByLevel[_currentLevel].transform.DeactivateSlowly(_smoothingDuration);
             _activateTween = _renderersByLevel[level].transform.ShowSmoothly(_smoothingDuration);
@@ -51,8 +48,8 @@ public class TransformationModifiable : BaseModifiable
         }
         else
         {
-            _spriteRenderer.sprite = _characterSO.GetCharacterSprite(level);
+            _spriteRenderer.sprite = ListEntitySprites[level];
         }
-        
+
     }
 }
