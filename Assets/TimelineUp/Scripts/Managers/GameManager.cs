@@ -17,13 +17,9 @@ public class GameManager : Singleton<GameManager>
     public PlayerData PlayerData { get { return playerData; } }
 
     // Các config của game ----------------------------------------------------------
-    private GameplayData gameConfigData;
-    public GameplayData GameConfigData { get { return gameConfigData; } }
-
+    private GameplayConfig gameConfigData;
+    public GameplayConfig GameConfigData { get { return gameConfigData; } }
     public TimelineEraSO TimelineEraSO { get; set; }
-
-    public int TimelineId { get { return playerData.TimelineId; } }
-    public int EraId { get { return playerData.EraId; } }
 
     protected override void OnAwake()
     {
@@ -103,7 +99,8 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadGameConfig()
     {
-        gameConfigData = new GameplayData();
+        TextAsset jsonFile = Resources.Load<TextAsset>("config");
+        gameConfigData = JsonUtility.FromJson<GameplayConfig>(jsonFile.text);
     }
 
     public void ResetPlayerData()

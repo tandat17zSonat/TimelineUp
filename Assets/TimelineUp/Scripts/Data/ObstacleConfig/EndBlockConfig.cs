@@ -1,5 +1,6 @@
 
-public class EndBlockData
+[System.Serializable]
+public class EndBlockConfig
 {
     public int Order;
     public int Hp;

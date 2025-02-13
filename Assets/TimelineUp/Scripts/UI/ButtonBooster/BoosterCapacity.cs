@@ -3,12 +3,13 @@
     public override void HandleBooster()
     {
         var gameConfigData = GameManager.Instance.GameConfigData;
-        playerData.ExpCollector += gameConfigData.ListBoosterCapacity[level];
+        var boosterCapacityConfig = gameConfigData.GetBoosterConfig(BoosterType.Capacity) as BoosterCapacityConfig;
+        playerData.ExpCollector += boosterCapacityConfig.Exps[level];
 
         var exp = playerData.ExpCollector;
         var collectorLevel = GameplayManager.Instance.NumberInCollector;
 
-        if (collectorLevel < gameConfigData.ListWarriorCollectorDatas.NumberMaxWarrior)
+        if (collectorLevel < gameConfigData.WarriorCollectorConfig.GetMaxWarriorNumber())
         {
             var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
             if (exp > expToUpgrade)

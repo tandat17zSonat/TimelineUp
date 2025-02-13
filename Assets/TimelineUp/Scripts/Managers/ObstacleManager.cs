@@ -36,7 +36,7 @@ namespace TimelineUp.Obstacle
             var deltaZ = 4;
             var positionZ = listObstacles[listObstacles.Count - 1].transform.position.z + 20; // khoảng cách từ obstacle cuối tới endblock
             var gameConfigData = GameManager.Instance.GameConfigData;
-            for (int order = 0; order < gameConfigData.ListEndBlockDatas.Count; order++)
+            for (int order = 0; order < gameConfigData.ListEndBlockConfigs.Count; order++)
             {
                 positionZ += deltaZ;
                 var positions = new List<Vector3>();

@@ -1,6 +1,6 @@
-public class WarriorData
+[System.Serializable]
+public class WarriorConfig
 {
-    public int Type;
     public int Level;
     public int Damage;
 }

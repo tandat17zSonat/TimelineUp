@@ -61,7 +61,7 @@ public class UIInGame : Panel
 
         var gameConfigData = GameManager.Instance.GameConfigData;
 
-        if (collectorLevel == gameConfigData.ListWarriorCollectorDatas.NumberMaxWarrior)
+        if (collectorLevel == gameConfigData.WarriorCollectorConfig.GetMaxWarriorNumber())
         {
             SetUIExpBar(collectorLevel, 0);
         }

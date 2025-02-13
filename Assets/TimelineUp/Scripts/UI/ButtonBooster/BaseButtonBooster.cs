@@ -37,7 +37,9 @@ public abstract class BaseButtonBooster : MonoBehaviour
         var gameConfigData = GameManager.Instance.GameConfigData;
 
         level = playerData.BoosterLevel[id];
-        cost = gameConfigData.ListBoosterDatas[id][level];
+
+        var boosterConfig = gameConfigData.GetBoosterConfig(type);
+        cost = boosterConfig.Costs[level];
 
         _textLevel.text = $"Level {level.ToString()}";
         _textCost.text = cost.ToString();
@@ -45,7 +47,7 @@ public abstract class BaseButtonBooster : MonoBehaviour
 
         // Ki?m tra level t?i ?a
         var newLevel = playerData.BoosterLevel[id] + 1;
-        _btn.interactable = (cost <= playerData.Coin) && (newLevel < gameConfigData.ListMaxBoosterLevel[id]);
+        _btn.interactable = (cost <= playerData.Coin) && (newLevel < boosterConfig.GetMaxLevel());
     }
 }
 

@@ -18,8 +18,8 @@
     public int NumberOfWarriors = 1;
     public int LevelOfWarriors = 0;
 
-    public int Speed = 7;
+    public int Speed = 10;
 
     public float ProjectileRate = 1f;
-    public float ProjectileRange = 30f;
+    public float ProjectileRange = 60f;
 }

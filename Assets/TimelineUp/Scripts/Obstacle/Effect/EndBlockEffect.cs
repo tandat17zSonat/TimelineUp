@@ -61,6 +61,7 @@ namespace TimelineUp.Obstacle
             var gameConfigData = GameManager.Instance.GameConfigData;
             hp = gameConfigData.GetEndBlockHp(order);
             maxHp = hp;
+            UpdateUi();
         }
 
         public override void Reset()
