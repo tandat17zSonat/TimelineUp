@@ -111,7 +111,14 @@ public class GameplayManager : Singleton<GameplayManager>
     public void SetResult(GameState state)
     {
         State = state;
-        Restart();
+        if( state == GameState.Win)
+        {
+            PanelManager.Instance.OpenPanel<PopupWin>();
+        }
+        else
+        {
+            PanelManager.Instance.OpenPanel<PopupLoss>();
+        }
     }
 
     public void AddEntity(int level)

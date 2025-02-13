@@ -8,9 +8,6 @@ namespace TimelineUp.Obstacle
         public override void ApplyEffect(PopulatedEntity entity)
         {
             GameplayManager.Instance.SetResult(GameState.Win);
-            PoolBoss.Despawn(transform);
-
-            Destroy();
         }
 
         public override void ApplyEffect(Projectile projectile)
