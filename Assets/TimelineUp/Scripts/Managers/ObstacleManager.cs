@@ -12,6 +12,8 @@ namespace TimelineUp.Obstacle
 
         private List<BaseObstacle> listObstacles;
 
+        private float _changeCameraPointZ;
+
         private void Awake()
         {
             listObstacles = new List<BaseObstacle>();
@@ -33,8 +35,9 @@ namespace TimelineUp.Obstacle
             }
 
             // Sinh các endblock 
-            var deltaZ = 4;
-            var positionZ = listObstacles[listObstacles.Count - 1].transform.position.z + 20; // khoảng cách từ obstacle cuối tới endblock
+            var deltaZ = 5;
+            _changeCameraPointZ = listObstacles[listObstacles.Count - 1].transform.position.z;
+            var positionZ = _changeCameraPointZ + 20; // khoảng cách từ obstacle cuối tới endblock
             var gameConfigData = GameManager.Instance.GameConfigData;
             for (int order = 0; order < gameConfigData.ListEndBlockConfigs.Count; order++)
             {
@@ -101,6 +104,11 @@ namespace TimelineUp.Obstacle
         {
             listObstacles.Remove(obs);
             PoolBoss.Despawn(obs.transform);
+        }
+
+        public float GetChangeCameraPoint()
+        {
+            return _changeCameraPointZ;
         }
     }
 

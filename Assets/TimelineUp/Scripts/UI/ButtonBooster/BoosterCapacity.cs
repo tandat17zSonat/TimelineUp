@@ -19,10 +19,10 @@
             }
         }
 
-        playerData.NumberOfWarriors = collectorLevel;
+        playerData.BoosterLevel[(int) type] = collectorLevel;
         playerData.ExpCollector = exp;
 
-        GameplayManager.Instance.NumberInCollector = collectorLevel; // tăng level collector
+        playerData.BoosterLevel[(int)type] = collectorLevel; // tăng level collector
         GameplayManager.Instance.ExpCollectorInGame = exp; // Cập nhật lại exp hiện tại
 
         playerData.BoosterLevel[id] += 1;

@@ -1,6 +1,7 @@
 ﻿using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace HyperCasualRunner.Locomotion
 {
@@ -16,6 +17,9 @@ namespace HyperCasualRunner.Locomotion
         [Header("Movement Constrain")]
         [SerializeField] bool _shouldConstrainMovement;
         [SerializeField, ShowIf(nameof(_shouldConstrainMovement))] MovementConstrainerBase _movementConstrainer;
+
+        [Header("Camera")]
+        [SerializeField] GameObject Camera0;
 
         bool _canGoForward = true; // 1 yes, 0 no
 
@@ -100,7 +104,17 @@ namespace HyperCasualRunner.Locomotion
                 var finalPosition = _movementConstrainer.GetConstrainedPosition(pos);
                 transform.position = finalPosition;
             }
-            
+
+            // Gần tới đích thì thay đổi góc camera
+            var obstacleManager = GameplayManager.Instance.ObstacleManager;
+            if ( transform.position.z > obstacleManager.GetChangeCameraPoint())
+            {
+                Camera0.SetActive(false);
+            }
+            else
+            {
+                Camera0.SetActive(true);
+            }
         }
 
         Vector3 ConvertScreenToGround()

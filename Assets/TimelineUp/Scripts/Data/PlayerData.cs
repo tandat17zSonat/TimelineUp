@@ -23,7 +23,7 @@
         public int Speed = 10;
 
         public float ProjectileRate = 1f;
-        public float ProjectileRange = 60f;
+        public float ProjectileRange = 20f;
     }
 }
 

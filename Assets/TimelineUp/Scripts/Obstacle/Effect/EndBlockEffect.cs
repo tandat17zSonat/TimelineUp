@@ -30,7 +30,7 @@ namespace TimelineUp.Obstacle
         public override void ApplyEffect(Projectile projectile)
         {
             hp -= projectile.Damage;
-            if(hp < 0)
+            if(hp <= 0)
             {
                 var playerData = GameManager.Instance.PlayerData;
                 var gameplayConfig = GameManager.Instance.GameConfigData;

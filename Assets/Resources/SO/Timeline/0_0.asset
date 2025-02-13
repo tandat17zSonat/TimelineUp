@@ -21,8 +21,21 @@ MonoBehaviour:
   - {fileID: -269798540, guid: 8e30c09cd8756444183610df65f52963, type: 3}
   - {fileID: 799087109, guid: 8e30c09cd8756444183610df65f52963, type: 3}
   - {fileID: 64160761, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: 378215865, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: -269798540, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: 799087109, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: 64160761, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: 378215865, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: -269798540, guid: 8e30c09cd8756444183610df65f52963, type: 3}
+  - {fileID: 799087109, guid: 8e30c09cd8756444183610df65f52963, type: 3}
   projectileSprites:
   - {fileID: 141379541, guid: efc62e541dcd93d489f3a95070052331, type: 3}
   - {fileID: -366232205, guid: efc62e541dcd93d489f3a95070052331, type: 3}
   - {fileID: 2006299550, guid: efc62e541dcd93d489f3a95070052331, type: 3}
   - {fileID: -1398744918, guid: efc62e541dcd93d489f3a95070052331, type: 3}
+  - {fileID: 141379541, guid: efc62e541dcd93d489f3a95070052331, type: 3}
+  - {fileID: -366232205, guid: efc62e541dcd93d489f3a95070052331, type: 3}
+  - {fileID: 2006299550, guid: efc62e541dcd93d489f3a95070052331, type: 3}
+  - {fileID: -1398744918, guid: efc62e541dcd93d489f3a95070052331, type: 3}
+  - {fileID: 141379541, guid: efc62e541dcd93d489f3a95070052331, type: 3}
+  - {fileID: -366232205, guid: efc62e541dcd93d489f3a95070052331, type: 3}

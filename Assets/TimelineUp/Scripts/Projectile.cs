@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks.Triggers;
 using DarkTonic.PoolBoss;
 using DG.Tweening;
+using TimelineUp.Obstacle;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -8,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] Rigidbody _rigidbody;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] GameObject[] _renderersByLevel;
+    [SerializeField] Transform _textHpPrefab;
 
     Tween _delayedCall;
 
@@ -36,11 +39,13 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.TryGetComponent(out PopulationEffect populationEffect))
-        //{
-        //    populationEffect.TakeHit(projectileData.Damage);
-        //    Release();
-        //}
+        if (other.TryGetComponent(out BaseObstacle obstacle))
+        {
+            // máu bắn ra
+            var textHp = PoolBoss.Spawn(_textHpPrefab, other.ClosestPoint(transform.position), Quaternion.identity, null);
+            textHp.GetComponent<TextHp>().Hit(_damage);
+            Release();
+        }
     }
 
     public void Fire()

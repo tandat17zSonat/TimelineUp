@@ -204,6 +204,7 @@ MonoBehaviour:
   - {fileID: 2697005280735744010}
   - {fileID: 288031294768416479}
   - {fileID: 5878585274078453786}
+  _textHpPrefab: {fileID: 7104847026055343921, guid: 46656289135522f4abe2d298363b118c, type: 3}
 --- !u!1001 &203831501686558096
 PrefabInstance:
   m_ObjectHideFlags: 0

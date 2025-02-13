@@ -40,7 +40,7 @@ namespace TimelineUp.Obstacle
 
         public override void Reset()
         {
-            _hp = 200;
+            _hp = 3;
 
             _fireRate = 1;
             _fireSpeed = -10;
