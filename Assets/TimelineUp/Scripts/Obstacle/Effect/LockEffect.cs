@@ -56,7 +56,7 @@ namespace TimelineUp.Obstacle
         public override void Reset()
         {
             _collisionCount = 0;
-            hp = 10;
+            hp = 2;
         }
     }
 }

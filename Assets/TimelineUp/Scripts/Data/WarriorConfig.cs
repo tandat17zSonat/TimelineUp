@@ -1,6 +1,10 @@
-[System.Serializable]
-public class WarriorConfig
+namespace TimelineUp.Data
 {
-    public int Level;
-    public int Damage;
+    [System.Serializable]
+    public class WarriorConfig
+    {
+        public int Level;
+        public int Damage;
+    }
 }
+

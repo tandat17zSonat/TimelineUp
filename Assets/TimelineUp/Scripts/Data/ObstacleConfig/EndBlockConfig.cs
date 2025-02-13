@@ -1,8 +1,11 @@
 
-[System.Serializable]
-public class EndBlockConfig
+namespace TimelineUp.Data
 {
-    public int Order;
-    public int Hp;
-    public int Coin;
+    [System.Serializable]
+    public class EndBlockConfig
+    {
+        public int Order;
+        public int Hp;
+        public int Coin;
+    }
 }

@@ -17,8 +17,10 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            GameplayManager.Instance.ProjectileRate += (float)amount / 100;
-            
+            if (amount > 0)
+            {
+                GameplayManager.Instance.ProjectileRate += (float)amount / 2;
+            }
             Destroy();
         }
 
@@ -38,7 +40,7 @@ namespace TimelineUp.Obstacle
         [Button("Setup", EButtonEnableMode.Editor)]
         public override void Reset()
         {
-            amount = -100;
+            amount = -1;
             UpdateVisual();
         }
     }

@@ -1,6 +1,4 @@
-using DarkTonic.PoolBoss;
 using HyperCasualRunner.PopulatedEntity;
-using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
@@ -17,7 +15,10 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            GameplayManager.Instance.ProjectileRange += (float)amount / 10;
+            if( amount > 0)
+            {
+                GameplayManager.Instance.ProjectileRange += (float)amount;
+            }
             
             Destroy();
         }
@@ -37,7 +38,7 @@ namespace TimelineUp.Obstacle
 
         public override void Reset()
         {
-            amount = -100;
+            amount = -2;
             UpdateVisual();
         }
     }

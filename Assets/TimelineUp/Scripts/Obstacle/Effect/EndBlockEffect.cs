@@ -1,4 +1,3 @@
-using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner.PopulatedEntity;
 using TMPro;
@@ -13,6 +12,7 @@ namespace TimelineUp.Obstacle
         [SerializeField] TMP_Text textNum;
         private int hp;
         private float maxHp;
+        private int coin;
 
         private Sequence seqEffect;
 
@@ -25,8 +25,6 @@ namespace TimelineUp.Obstacle
             {
                 GameplayManager.Instance.SetResult(GameState.Loss);
             }
-
-            Destroy();
         }
 
         public override void ApplyEffect(Projectile projectile)
@@ -34,7 +32,10 @@ namespace TimelineUp.Obstacle
             hp -= projectile.Damage;
             if(hp < 0)
             {
-                PoolBoss.Despawn(this.transform);
+                var playerData = GameManager.Instance.PlayerData;
+                var gameplayConfig = GameManager.Instance.GameConfigData;
+                playerData.Coin += coin;
+                Destroy();
                 return;
             }
             EnableEffect();
@@ -59,8 +60,12 @@ namespace TimelineUp.Obstacle
         public void SetInfo(int order)
         {
             var gameConfigData = GameManager.Instance.GameConfigData;
-            hp = gameConfigData.GetEndBlockHp(order);
+            var endBlockConfig = gameConfigData.ListEndBlockConfigs[order];
+            hp = endBlockConfig.Hp;
             maxHp = hp;
+
+            coin = endBlockConfig.Coin;
+
             UpdateUi();
         }
 
