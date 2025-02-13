@@ -9,6 +9,7 @@ namespace TimelineUp.Obstacle
         public DataInMatch()
         {
             ListMainObstacles = new();
+            ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.Enermy, 2, 30, false));
             ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateProjectileRate, 2, 50, false));
             ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.GateProjectileRange, -2, 80, true));
             ListMainObstacles.Add(new MainObstacleDataInMatch(ObstacleType.ExpBlock, 2, 120, false));

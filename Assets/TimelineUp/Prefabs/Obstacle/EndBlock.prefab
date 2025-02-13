@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24855abb0fb92e54bb5f40a4d269d421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleType: 5
+  obstacleType: 6
   _mainEffects:
   - {fileID: 8220619913623233873}
   _lockEffect: {fileID: 5504330579233904297}

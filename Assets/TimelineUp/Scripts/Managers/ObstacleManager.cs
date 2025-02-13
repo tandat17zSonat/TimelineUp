@@ -112,6 +112,8 @@ namespace TimelineUp.Obstacle
         GateSpawn,
         GateProjectileRange,
         GateProjectileRate,
+        Enermy,
+
         EndBlock,
         GateFinish
     }

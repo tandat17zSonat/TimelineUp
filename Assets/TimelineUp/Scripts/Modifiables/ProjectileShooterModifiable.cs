@@ -30,10 +30,10 @@ public class ProjectileShooterModifiable : BaseModifiable
 
     public void Shoot()
     {
-        var spawned = PoolBoss.Spawn(_projectilePrefab, Vector3.zero, Quaternion.identity, null);
+        var spawned = PoolBoss.Spawn(_projectilePrefab, _spawnPoint.position, Quaternion.identity, null);
         //spawned.transform.SetPositionAndRotation(_spawnPoint.position, transform.rotation); 
 
-        spawned.transform.position = _spawnPoint.position;
+        //spawned.transform.position = _spawnPoint.position;
         Projectile projectile = spawned.GetComponent<Projectile>();
         projectile.Initialize(_entity.Level);
         projectile.Fire();
