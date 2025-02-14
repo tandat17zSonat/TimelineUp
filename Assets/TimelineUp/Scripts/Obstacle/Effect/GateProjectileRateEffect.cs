@@ -1,3 +1,4 @@
+using System;
 using DarkTonic.PoolBoss;
 using HyperCasualRunner.PopulatedEntity;
 using NaughtyAttributes;
@@ -42,6 +43,11 @@ namespace TimelineUp.Obstacle
         {
             amount = -1;
             UpdateVisual();
+        }
+
+        internal void SetAmount(int amount)
+        {
+            this.amount = amount;
         }
     }
 

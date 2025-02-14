@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 70229798489680751}
   - component: {fileID: 7505525815304557602}
   - component: {fileID: 5268933457660824697}
+  - component: {fileID: 7099423874587774032}
   m_Layer: 0
   m_Name: ExpBlock
   m_TagString: Untagged
@@ -89,6 +90,7 @@ MonoBehaviour:
   _mainEffects:
   - {fileID: 5268933457660824697}
   _lockEffect: {fileID: 2463797250410057086}
+  _wayPointMover: {fileID: 7099423874587774032}
 --- !u!114 &5268933457660824697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +103,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151a21ebafee3be42ba3bca2d1afeb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7099423874587774032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684627300561971044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a54e567bc988ce4a9b03583c58f3bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _length: 4
+  _time: 4
 --- !u!1 &5793250264306394052
 GameObject:
   m_ObjectHideFlags: 0

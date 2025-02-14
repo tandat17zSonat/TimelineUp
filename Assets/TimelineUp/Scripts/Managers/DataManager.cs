@@ -1,16 +1,20 @@
 using TimelineUp.Data;
+using TimelineUp.Obstacle;
 using UnityEngine;
 
 public static class DataManager
 {
-    public const int MAX_TIMELINE = 2;
-    public const int MAX_ERA = 5;
+    public const int MAX_TIMELINE_NUMBER = 2;
+    public const int MAX_ERA_NUMBER = 5;
 
     public static PlayerData PlayerData;
 
     public static GameplayConfig GameplayConfig;
     public static TimelineEraSO TimelineEraSO;
-    
+
+    public const int MAX_MAP_NUMBER = 5;
+    public static MapData MapData;
+
     // -----------------------------
     public static void LoadPlayerData()
     {
@@ -46,7 +50,7 @@ public static class DataManager
 
     private static void LoadConfig(int timelineId, int eraId)
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Config_{timelineId}_{eraId}");
+        TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Timeline/Config_{timelineId}_{eraId}");
         GameplayConfig = JsonUtility.FromJson<GameplayConfig>(jsonFile.text);
     }
 
@@ -75,6 +79,15 @@ public static class DataManager
         {
             Debug.LogWarning($"TimelineUp limit level");
         }
-        
+    }
+
+    //----------------------------------------
+    public static MapData LoadMapData()
+    {
+        int id = Random.Range(0, MAX_MAP_NUMBER);
+
+        TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Map/{id}");
+        MapData = JsonUtility.FromJson<MapData>(jsonFile.text);
+        return MapData;
     }
 }

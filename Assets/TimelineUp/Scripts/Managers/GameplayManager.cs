@@ -69,7 +69,7 @@ public class GameplayManager : Singleton<GameplayManager>
         DictWarriorSpawned = new Dictionary<int, int>();
 
         // Load các obstacle
-        DataInMatch data = new DataInMatch();
+        MapData data = DataManager.LoadMapData();
         obstacleManager.LoadObstacle(data);
 
         // Khởi tạo các warrior đầu tiên

@@ -19,7 +19,7 @@ namespace TimelineUp.Obstacle
             listObstacles = new List<BaseObstacle>();
         }
 
-        public void LoadObstacle(DataInMatch data)
+        public void LoadObstacle(MapData data)
         {
             if (data.ListMainObstacles.Count == 0) return;
             
@@ -27,11 +27,26 @@ namespace TimelineUp.Obstacle
             foreach (var mainObstacleData in data.ListMainObstacles)
             {
                 var obs = Spawn(mainObstacleData.Type);
-                obs.Initialize(mainObstacleData.Locked);
-
+                
                 int x = mainObstacleData.x, z = mainObstacleData.z;
                 obs.transform.position = new Vector3(x, 0, z);
-                obs.Run();
+
+                obs.Initialize();
+                
+                var properties = mainObstacleData.Properties;
+                // check lock
+                if( mainObstacleData.Locked == true)
+                {
+                    obs.SetLock(mainObstacleData.GetLockNumber());
+                }
+
+                // check move
+                if( mainObstacleData.Move ==  true)
+                {
+                    obs.SetRun();
+                }
+
+                obs.SetProperties(properties);
                 listObstacles.Add(obs);
             }
 
@@ -52,7 +67,7 @@ namespace TimelineUp.Obstacle
                 {
                     var spawned = Spawn(ObstacleType.EndBlock);
                     spawned.transform.position = positions[i];
-                    spawned.Initialize(false);
+                    spawned.Initialize();
 
                     var endBlockEffect = spawned.GetComponent<EndBlockEffect>();
                     endBlockEffect.SetInfo(order);
@@ -64,7 +79,7 @@ namespace TimelineUp.Obstacle
             // Sinh cổng về đích
             positionZ += deltaZ;
             var gateFinish = Spawn(ObstacleType.GateFinish);
-            gateFinish.Initialize(false);
+            gateFinish.Initialize();
             gateFinish.transform.position = new Vector3(0, 0, positionZ);
             listObstacles.Add(gateFinish);
         }

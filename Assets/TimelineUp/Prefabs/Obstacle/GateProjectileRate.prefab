@@ -771,10 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a54e567bc988ce4a9b03583c58f3bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _object: {fileID: 2264167919004722978}
-  _points:
-  - {fileID: 7004598276006435803}
-  - {fileID: 4458610673381736412}
+  _length: 4
   _time: 4
 --- !u!1 &8045530867765558264
 GameObject:

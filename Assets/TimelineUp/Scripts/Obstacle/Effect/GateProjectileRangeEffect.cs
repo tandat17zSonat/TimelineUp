@@ -41,6 +41,11 @@ namespace TimelineUp.Obstacle
             amount = -2;
             UpdateVisual();
         }
+
+        public void SetAmount(int amount)
+        {
+            this.amount = amount;
+        }
     }
 
 }

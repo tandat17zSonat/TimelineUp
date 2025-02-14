@@ -28,7 +28,7 @@
         public void NextEra()
         {
             EraId = EraId + 1;
-            if (EraId >= DataManager.MAX_ERA)
+            if (EraId >= DataManager.MAX_ERA_NUMBER)
             {
                 TimelineId += 1;
                 EraId = 0;
@@ -44,7 +44,7 @@
 
         public bool CheckNextEra()
         {
-            if (TimelineId == DataManager.MAX_TIMELINE - 1 && EraId == DataManager.MAX_ERA - 1)
+            if (TimelineId == DataManager.MAX_TIMELINE_NUMBER - 1 && EraId == DataManager.MAX_ERA_NUMBER - 1)
             {
                 return false;
             }

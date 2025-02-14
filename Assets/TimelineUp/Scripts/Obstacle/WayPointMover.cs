@@ -11,7 +11,7 @@ public class WayPointMover : MonoBehaviour
 
     Coroutine _coroutineRun;
 
-    public void SetRun()
+    public void Initialize()
     {
         if (_coroutineRun != null) StopCoroutine(_coroutineRun);
         _coroutineRun = StartCoroutine(Run());

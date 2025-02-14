@@ -1,4 +1,6 @@
-﻿using HyperCasualRunner.PopulatedEntity;
+﻿using System;
+using System.Collections.Generic;
+using HyperCasualRunner.PopulatedEntity;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -17,15 +19,17 @@ namespace TimelineUp.Obstacle
 
         public ObstacleType Type { get { return obstacleType; } }
 
-        public void Initialize(bool isLocked, bool isRun = false)
+        private void Awake()
         {
-            _lockEffect.Locked = isLocked;
-            
+            _lockEffect.Locked = false;
+        }
+
+        public void Initialize()
+        {
             foreach (var effect in _mainEffects)
             {
                 effect.Initialize();
             }
-            _lockEffect.Initialize();
         }
 
         void OnTriggerEnter(Collider other)
@@ -76,9 +80,28 @@ namespace TimelineUp.Obstacle
             projectile.Release();
         }
 
-        public void Run()
+        public void SetLock(int num)
         {
-            if (_wayPointMover) _wayPointMover.SetRun();
+            _lockEffect.Locked = true;
+            _lockEffect.Initialize();
+            _lockEffect.SetHp(num);
+        }
+
+        public void SetRun()
+        {
+            _wayPointMover.Initialize();
+        }
+
+        public virtual void SetProperties(List<int> properties)
+        {
+            if( Type == ObstacleType.GateProjectileRange)
+            {
+                GetComponent<GateProjectileRangeEffect>().SetAmount(properties[0]);
+            }
+            else if( Type == ObstacleType.GateProjectileRate)
+            {
+                GetComponent<GateProjectileRateEffect>().SetAmount(properties[0]);
+            }
         }
     }
 

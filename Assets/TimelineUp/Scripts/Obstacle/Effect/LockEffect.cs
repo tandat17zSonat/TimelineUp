@@ -58,5 +58,10 @@ namespace TimelineUp.Obstacle
             _collisionCount = 0;
             hp = 2;
         }
+
+        public void SetHp(int num)
+        {
+            hp = num;
+        }
     }
 }
