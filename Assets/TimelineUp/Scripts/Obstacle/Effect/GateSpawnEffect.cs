@@ -96,7 +96,6 @@ namespace TimelineUp.Obstacle
 
         public override void Destroy()
         {
-            Debug.LogWarning("Destroy???");
             var populationManager = GameplayManager.Instance.PopulationManager;
             foreach (var entity in listEntityInGate)
             {

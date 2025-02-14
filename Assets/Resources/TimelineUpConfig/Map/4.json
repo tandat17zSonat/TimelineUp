@@ -9,6 +9,14 @@
             "Properties": []
         },
         {
+            "Type": 1,
+            "x": 0,
+            "z": 150,
+            "Locked": true,
+            "Move": false,
+            "Properties": [2]
+        },
+        {
             "Type": 4,
             "x": 0,
             "z": 50,
@@ -31,16 +39,8 @@
         },
         {
             "Type": 0,
-            "x": 2,
+            "x": 0,
             "z": 120,
-            "Locked": false,
-            "Move": true,
-            "Properties": []
-        },
-        {
-            "Type": 1,
-            "x": -2,
-            "z": 150,
             "Locked": false,
             "Move": true,
             "Properties": []
@@ -48,7 +48,7 @@
         {
             "Type": 2,
             "x": 0,
-            "z": 200,
+            "z": 150,
             "Locked": false,
             "Move": false,
             "Properties": []
