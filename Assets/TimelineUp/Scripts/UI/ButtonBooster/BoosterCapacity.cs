@@ -19,13 +19,11 @@
             }
         }
 
-        playerData.BoosterLevel[(int) type] = collectorLevel;
+        
         playerData.ExpCollector = exp;
-
-        playerData.BoosterLevel[(int)type] = collectorLevel; // tăng level collector
+        GameplayManager.Instance.NumberInCollector = collectorLevel;
         GameplayManager.Instance.ExpCollectorInGame = exp; // Cập nhật lại exp hiện tại
 
         playerData.BoosterLevel[id] += 1;
     }
-
 }

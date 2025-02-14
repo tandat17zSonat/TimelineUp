@@ -111,10 +111,6 @@ namespace HyperCasualRunner.Locomotion
             {
                 Camera0.SetActive(false);
             }
-            else
-            {
-                Camera0.SetActive(true);
-            }
         }
 
         Vector3 ConvertScreenToGround()
@@ -137,6 +133,11 @@ namespace HyperCasualRunner.Locomotion
         public void SetPushback()
         {
             _isPushBack = true;
+        }
+
+        public void Reset()
+        {
+            Camera0.SetActive(true);
         }
     }
 }

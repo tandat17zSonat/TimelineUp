@@ -4,6 +4,7 @@ using Base.Singleton;
 using HyperCasualRunner;
 using HyperCasualRunner.Locomotion;
 using SonatFramework.UI;
+using TimelineUp.Data;
 using TimelineUp.Obstacle;
 using UnityEngine;
 
@@ -113,6 +114,7 @@ public class GameplayManager : Singleton<GameplayManager>
         State = state;
         if( state == GameState.Win)
         {
+            GameManager.Instance.PlayerData.Coin += 100;
             PanelManager.Instance.OpenPanel<PopupWin>();
         }
         else

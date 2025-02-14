@@ -96,6 +96,7 @@ namespace HyperCasualRunner
         public void Unload()
         {
             transform.position = _beginPosition;
+            _runnerMover.Reset();
         }
     }
 }

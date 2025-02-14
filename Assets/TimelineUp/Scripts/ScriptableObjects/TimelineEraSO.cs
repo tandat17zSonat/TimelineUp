@@ -12,6 +12,4 @@ public class TimelineEraSO : ScriptableObject
 
     public List<Sprite> entitySprites;
     public List<Sprite> projectileSprites;
-    
-
 }
