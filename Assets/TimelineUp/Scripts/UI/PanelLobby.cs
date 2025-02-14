@@ -67,10 +67,10 @@ public class PanelLobby : Panel
         }
 
         //-------------------
-        var playerData = GameManager.Instance.PlayerData;
+        var playerData = DataManager.PlayerData;
 
         _textTimeline.text = $"Timeline {playerData.TimelineId + 1}";
-        _textEra.text = GameManager.Instance.TimelineEraSO.EraName;
+        _textEra.text = DataManager.TimelineEraSO.EraName;
 
         _textLevel.text = $"Level {playerData.Level}";
     }

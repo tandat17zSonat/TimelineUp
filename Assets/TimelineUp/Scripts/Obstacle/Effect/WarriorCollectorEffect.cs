@@ -25,7 +25,7 @@ namespace TimelineUp.Obstacle
             level = 0;
             currentDamage = 0;
 
-            var gameConfigData = GameManager.Instance.GameConfigData;
+            var gameConfigData = DataManager.GameplayConfig;
             damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(level + 1);
 
             UpdateUI();
@@ -63,7 +63,7 @@ namespace TimelineUp.Obstacle
             {
                 level += 1;
 
-                var gameConfigData = GameManager.Instance.GameConfigData;
+                var gameConfigData = DataManager.GameplayConfig;
                 if (level >= gameConfigData.ListWarriorDatas.Count)
                 {
                     level = gameConfigData.ListWarriorDatas.Count - 1;
@@ -79,7 +79,7 @@ namespace TimelineUp.Obstacle
 
         private void UpdateInfo()
         {
-            var gameConfigData = GameManager.Instance.GameConfigData;
+            var gameConfigData = DataManager.GameplayConfig;
             damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(level + 1);
         }
 

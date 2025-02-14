@@ -20,7 +20,7 @@ namespace TimelineUp.Obstacle
             var exp = GameplayManager.Instance.ExpCollectorInGame;
             exp += projectile.Damage;
 
-            var gameConfigData = GameManager.Instance.GameConfigData;
+            var gameConfigData = DataManager.GameplayConfig;
             if (collectorLevel < gameConfigData.WarriorCollectorConfig.GetMaxWarriorNumber())
             {
                 var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);

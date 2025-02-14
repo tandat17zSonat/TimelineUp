@@ -38,7 +38,7 @@ namespace TimelineUp.Obstacle
             var deltaZ = 5;
             _changeCameraPointZ = listObstacles[listObstacles.Count - 1].transform.position.z;
             var positionZ = _changeCameraPointZ + 20; // khoảng cách từ obstacle cuối tới endblock
-            var gameConfigData = GameManager.Instance.GameConfigData;
+            var gameConfigData = DataManager.GameplayConfig;
             for (int order = 0; order < gameConfigData.ListEndBlockConfigs.Count; order++)
             {
                 positionZ += deltaZ;

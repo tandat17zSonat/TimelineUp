@@ -45,7 +45,7 @@ namespace HyperCasualRunner.PopulatedEntity
 
         public void SetInfo(int level)
         {
-            var gameConfigData = GameManager.Instance.GameConfigData;
+            var gameConfigData = DataManager.GameplayConfig;
             if (level < gameConfigData.ListWarriorDatas.Count)
             {
                 _level = level;

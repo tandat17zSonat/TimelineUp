@@ -7,15 +7,15 @@ public class CheatManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             // reset data
-            GameManager.Instance.ResetPlayerData();
+            DataManager.ResetPlayerData();
         }
         if ( Input.GetKeyDown(KeyCode.C))
         {
-            GameManager.Instance.PlayerData.Coin += 10;
+            DataManager.PlayerData.Coin += 10;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.PlayerData.Energy += 10;
+            DataManager.PlayerData.Energy += 10;
         }
     }
 }

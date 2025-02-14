@@ -2,7 +2,7 @@
 {
     public override void HandleBooster()
     {
-        var gameConfigData = GameManager.Instance.GameConfigData;
+        var gameConfigData = DataManager.GameplayConfig;
         var boosterCapacityConfig = gameConfigData.GetBoosterConfig(BoosterType.Capacity) as BoosterCapacityConfig;
         playerData.ExpCollector += boosterCapacityConfig.Exps[level];
 

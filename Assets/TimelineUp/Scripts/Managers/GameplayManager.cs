@@ -59,7 +59,7 @@ public class GameplayManager : Singleton<GameplayManager>
         State = GameState.Pause;
 
         // Load playerData
-        var playerData = GameManager.Instance.PlayerData;
+        var playerData = DataManager.PlayerData;
         Speed = playerData.Speed;
         ExpCollectorInGame = playerData.ExpCollector;
         ProjectileRate = playerData.ProjectileRate;
@@ -114,7 +114,7 @@ public class GameplayManager : Singleton<GameplayManager>
         State = state;
         if( state == GameState.Win)
         {
-            GameManager.Instance.PlayerData.Coin += 100;
+            DataManager.PlayerData.Coin += 100;
             PanelManager.Instance.OpenPanel<PopupWin>();
         }
         else
@@ -131,7 +131,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     public void UpdateLevelInCrowd()
     {
-        var playerData = GameManager.Instance.PlayerData;
+        var playerData = DataManager.PlayerData;
         foreach(var entity in _populationManager.ListEntityInCrowd)
         {
             entity.SetInfo(playerData.LevelOfWarriors);

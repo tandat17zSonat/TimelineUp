@@ -32,8 +32,8 @@ namespace TimelineUp.Obstacle
             hp -= projectile.Damage;
             if(hp <= 0)
             {
-                var playerData = GameManager.Instance.PlayerData;
-                var gameplayConfig = GameManager.Instance.GameConfigData;
+                var playerData = DataManager.PlayerData;
+                var gameplayConfig = DataManager.GameplayConfig;
                 playerData.Coin += coin;
                 Destroy();
                 return;
@@ -59,7 +59,7 @@ namespace TimelineUp.Obstacle
 
         public void SetInfo(int order)
         {
-            var gameConfigData = GameManager.Instance.GameConfigData;
+            var gameConfigData = DataManager.GameplayConfig;
             var endBlockConfig = gameConfigData.ListEndBlockConfigs[order];
             hp = endBlockConfig.Hp;
             maxHp = hp;

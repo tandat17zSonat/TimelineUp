@@ -21,14 +21,14 @@ public class Projectile : MonoBehaviour
 
     public List<Sprite> ListProjectileSprites 
     { 
-        get { return GameManager.Instance.TimelineEraSO.projectileSprites; }
+        get { return DataManager.TimelineEraSO.projectileSprites; }
     }
 
     public int Damage { get { return _damage; } }
 
     public void Initialize(int level)
     {
-        var gameConfigData = GameManager.Instance.GameConfigData;
+        var gameConfigData = DataManager.GameplayConfig;
 
         _damage = gameConfigData.ListWarriorDatas[level].Damage;
         _speed = GameplayManager.Instance.ProjectileSpeed;

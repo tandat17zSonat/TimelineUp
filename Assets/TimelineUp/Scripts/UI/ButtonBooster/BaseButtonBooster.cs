@@ -20,14 +20,14 @@ public abstract class BaseButtonBooster : MonoBehaviour
     {
 
         this.id = ((int)type);
-        playerData = GameManager.Instance.PlayerData;
+        playerData = DataManager.PlayerData;
 
         _btn.onClick.AddListener(() =>
         {
             playerData.Coin -= cost;
             HandleBooster();
 
-            GameManager.Instance.SavePlayerData();
+            DataManager.SavePlayerData();
         });
 
     }
@@ -35,7 +35,7 @@ public abstract class BaseButtonBooster : MonoBehaviour
 
     public virtual void UpdateVisual()
     {
-        var gameConfigData = GameManager.Instance.GameConfigData;
+        var gameConfigData = DataManager.GameplayConfig;
 
         level = playerData.BoosterLevel[id];
 

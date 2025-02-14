@@ -59,7 +59,7 @@ public class UIInGame : Panel
         var collectorLevel = GameplayManager.Instance.NumberInCollector;
         var exp = GameplayManager.Instance.ExpCollectorInGame;
 
-        var gameConfigData = GameManager.Instance.GameConfigData;
+        var gameConfigData = DataManager.GameplayConfig;
 
         if (collectorLevel == gameConfigData.WarriorCollectorConfig.GetMaxWarriorNumber())
         {
@@ -76,8 +76,8 @@ public class UIInGame : Panel
 
     private void UpdateResource()
     {
-        textEnergy.text = GameManager.Instance.PlayerData.Energy.ToString();
-        textCoin.text = GameManager.Instance.PlayerData.Coin.ToString();
-        textDiamond.text = GameManager.Instance.PlayerData.Diamond.ToString();
+        textEnergy.text = DataManager.PlayerData.Energy.ToString();
+        textCoin.text = DataManager.PlayerData.Coin.ToString();
+        textDiamond.text = DataManager.PlayerData.Diamond.ToString();
     }
 }

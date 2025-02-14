@@ -2,7 +2,6 @@
 using SonatFramework.UI;
 using System;
 using System.Collections;
-using TimelineUp.Data;
 using UnityEngine;
 
 
@@ -13,19 +12,9 @@ public class GameManager : Singleton<GameManager>
 
     public static Action<GameScene> OnSwitchScene;
 
-    // Data của user trong game -----------------------------------------------------
-    private PlayerData playerData;
-    public PlayerData PlayerData { get { return playerData; } }
-
-    // Các config của game ----------------------------------------------------------
-    private GameplayConfig gameConfigData;
-    public GameplayConfig GameConfigData { get { return gameConfigData; } }
-    public TimelineEraSO TimelineEraSO { get; set; }
-
     protected override void OnAwake()
     {
-        playerData = new PlayerData();
-        LoadGameConfig();
+        //throw new NotImplementedException();
     }
 
     private void Start()
@@ -36,20 +25,12 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator IeOnGameInitComplete()
     {
         // Load data -------------------------------------------
-        if (PlayerPrefs.HasKey("PLAYER_DATA"))
-        {
-            LoadPlayerData();
-        }
-        else
-        {
-            SavePlayerData();
-        }
-        // Load Scriptable Object tương ứng
-        TimelineEraSO = SOManager.GetSO<TimelineEraSO>(playerData.TimelineId, playerData.EraId);
+        DataManager.LoadPlayerData();
+        DataManager.LoadGameData();
 
         yield return new WaitForEndOfFrame();
 
-        // Show ui
+        // Show ui----------------------------------------
         PanelManager.Instance.OpenPanel<UIInGame>();
         PanelManager.Instance.OpenPanel<PanelLobby>();
 
@@ -81,33 +62,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         OnSwitchScene?.Invoke(scene);
-    }
-
-    public void SavePlayerData()
-    {
-        string json = JsonUtility.ToJson(playerData);
-        PlayerPrefs.SetString("PLAYER_DATA", json);
-        PlayerPrefs.Save();
-        Debug.Log($"Save playeData");
-    }
-
-    public void LoadPlayerData()
-    {
-        string json = PlayerPrefs.GetString("PLAYER_DATA");
-        playerData = JsonUtility.FromJson<PlayerData>(json);
-        Debug.Log($"Load data: level - {playerData.Level}    coin - {playerData.Coin}");
-    }
-
-    private void LoadGameConfig()
-    {
-        TextAsset jsonFile = Resources.Load<TextAsset>("config");
-        gameConfigData = JsonUtility.FromJson<GameplayConfig>(jsonFile.text);
-    }
-
-    public void ResetPlayerData()
-    {
-        playerData = new PlayerData();
-        SavePlayerData();
     }
 }
 
