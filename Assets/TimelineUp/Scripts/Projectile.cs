@@ -42,7 +42,9 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent(out BaseObstacle obstacle))
         {
             // máu bắn ra
-            var textHp = PoolBoss.Spawn(_textHpPrefab, other.ClosestPoint(transform.position), Quaternion.identity, null);
+            var pos = other.ClosestPoint(transform.position);
+            var textHp = PoolBoss.Spawn(_textHpPrefab, other.ClosestPointOnBounds(transform.position), Quaternion.identity, null);
+            //Debug.Log($"{pos.x} {pos.y}");
             textHp.GetComponent<TextHp>().Hit(_damage);
             Release();
         }

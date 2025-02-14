@@ -24,7 +24,7 @@ public class ProjectileShooterModifiable : BaseModifiable
 
     public void Play()
     {
-        _timer = Random.value; // bắn ngẫu nhiên ( khong đều)
+        _timer = Random.value * 2f; // bắn ngẫu nhiên ( khong đều)
         _fire = true;
     }
 
