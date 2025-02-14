@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 0_3
   m_EditorClassIdentifier: 
   TimelineId: 0
-  EraId: 0
+  EraId: 3
   TimelineName: Timeline_x
-  EraName: Pirates Era
+  EraName: 03 Era
   entitySprites:
   - {fileID: 378215865, guid: 8e30c09cd8756444183610df65f52963, type: 3}
   - {fileID: -269798540, guid: 8e30c09cd8756444183610df65f52963, type: 3}

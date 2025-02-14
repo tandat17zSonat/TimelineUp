@@ -13,14 +13,15 @@ namespace TimelineUp.Obstacle
         [InfoBox("This component centralizes collectableEffects by binding all the effects on the same gameObject")]
         [SerializeField] BaseObstacleEffect[] _mainEffects;
         [SerializeField] LockEffect _lockEffect;
+        [SerializeField] WayPointMover _wayPointMover;
 
         public ObstacleType Type { get { return obstacleType; } }
 
-        public void Initialize(bool isLocked)
+        public void Initialize(bool isLocked, bool isRun = false)
         {
             _lockEffect.Locked = isLocked;
-
-            foreach(var effect in _mainEffects)
+            
+            foreach (var effect in _mainEffects)
             {
                 effect.Initialize();
             }
@@ -73,6 +74,11 @@ namespace TimelineUp.Obstacle
                 _lockEffect.ApplyEffect(projectile);
             }
             projectile.Release();
+        }
+
+        public void Run()
+        {
+            if (_wayPointMover) _wayPointMover.SetRun();
         }
     }
 

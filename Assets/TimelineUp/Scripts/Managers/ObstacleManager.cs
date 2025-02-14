@@ -31,6 +31,7 @@ namespace TimelineUp.Obstacle
 
                 int x = mainObstacleData.x, z = mainObstacleData.z;
                 obs.transform.position = new Vector3(x, 0, z);
+                obs.Run();
                 listObstacles.Add(obs);
             }
 

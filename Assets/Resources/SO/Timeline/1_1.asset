@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82338c747648a1047aba1eca10cd2d2b, type: 3}
   m_Name: 1_1
   m_EditorClassIdentifier: 
-  TimelineId: 0
-  EraId: 0
+  TimelineId: 1
+  EraId: 1
   TimelineName: Timeline_x
-  EraName: Pirates Era
+  EraName: 11 Era
   entitySprites:
   - {fileID: 378215865, guid: 8e30c09cd8756444183610df65f52963, type: 3}
   - {fileID: -269798540, guid: 8e30c09cd8756444183610df65f52963, type: 3}
