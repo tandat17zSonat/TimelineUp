@@ -5,8 +5,11 @@ namespace TimelineUp.Obstacle
 {
     public abstract class BaseObstacleEffect : MonoBehaviour
     {
+        protected bool IsCollider;
+
         public void Initialize()
         {
+            IsCollider = false;
             Reset();
         }
 

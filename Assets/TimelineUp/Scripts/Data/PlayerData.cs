@@ -24,6 +24,32 @@
 
         public float ProjectileRate = 1f;
         public float ProjectileRange = 20f;
+
+        public void NextEra()
+        {
+            EraId = EraId + 1;
+            if (EraId >= DataManager.MAX_ERA)
+            {
+                TimelineId += 1;
+                EraId = 0;
+            }
+
+            // Reset các biến khác
+            Coin = 0;
+            BoosterLevel = new int[] { 1, 1, 1, 1 };
+            ExpCollector = 0;
+            NumberOfWarriors = 1;
+            LevelOfWarriors = 0;
+        }
+
+        public bool CheckNextEra()
+        {
+            if (TimelineId == DataManager.MAX_TIMELINE - 1 && EraId == DataManager.MAX_ERA - 1)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
 

@@ -77,7 +77,7 @@ namespace TimelineUp.Obstacle
         public void Add(PopulatedEntity entity)
         {
             listEntityInGate.Add(entity);
-
+            entity.DisableCollider();
             int max = Mathf.Max(listNumWarrior.ToArray());
             for (int i = 0; i < stands.Length; i++)
             {
@@ -96,6 +96,7 @@ namespace TimelineUp.Obstacle
 
         public override void Destroy()
         {
+            Debug.LogWarning("Destroy???");
             var populationManager = GameplayManager.Instance.PopulationManager;
             foreach (var entity in listEntityInGate)
             {

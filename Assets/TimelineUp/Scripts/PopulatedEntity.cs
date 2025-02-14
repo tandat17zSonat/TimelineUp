@@ -135,5 +135,10 @@ namespace HyperCasualRunner.PopulatedEntity
             _visuals.rotation = Quaternion.identity;
         }
 
+        public void DisableCollider()
+        {
+            _collider.enabled = false;
+        }
+
     }
 }

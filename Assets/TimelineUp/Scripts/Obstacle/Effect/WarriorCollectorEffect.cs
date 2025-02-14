@@ -33,26 +33,30 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            // Thêm nhân vật ở gate spawn
-            var populationManager = GameplayManager.Instance.PopulationManager;
-            var obstacleManager = GameplayManager.Instance.ObstacleManager;
-            var gateSpawn = obstacleManager.GetNextGateSpawn();
-
-            for (int i = 0; i < numWarrior; i++)
+            if (!IsCollider)
             {
-                var spawned = populationManager.Spawn(level, false);
-                gateSpawn.Add(spawned);
-            }
+                IsCollider = true;
+                // Thêm nhân vật ở gate spawn
+                var populationManager = GameplayManager.Instance.PopulationManager;
+                var obstacleManager = GameplayManager.Instance.ObstacleManager;
+                var gateSpawn = obstacleManager.GetNextGateSpawn();
 
-            // --------------------
-            var dict = GameplayManager.Instance.DictWarriorSpawned;
-            if (!dict.ContainsKey(level))
-            {
-                dict[level] = 0;
-            }
-            dict[level] += numWarrior;
+                for (int i = 0; i < numWarrior; i++)
+                {
+                    var spawned = populationManager.Spawn(level, false);
+                    gateSpawn.Add(spawned);
+                }
 
-            Destroy();
+                // --------------------
+                var dict = GameplayManager.Instance.DictWarriorSpawned;
+                if (!dict.ContainsKey(level))
+                {
+                    dict[level] = 0;
+                }
+                dict[level] += numWarrior;
+
+                Destroy();
+            }
         }
 
         public override void ApplyEffect(Projectile projectile)

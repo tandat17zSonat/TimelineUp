@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BoosterWarriorUpgrade : BaseButtonBooster
 {
@@ -14,7 +12,11 @@ public class BoosterWarriorUpgrade : BaseButtonBooster
         {
             playerData.LevelOfWarriors += 1;
 
-            GameplayManager.Instance.UpdateLevelInCrowd();
+            var _populationManager = GameplayManager.Instance.PopulationManager;
+            foreach (var entity in _populationManager.ListEntityInCrowd)
+            {
+                entity.SetInfo(playerData.LevelOfWarriors);
+            }
 
         }
     }

@@ -11,7 +11,7 @@ namespace TimelineUp.Data
 
         public int GetMaxWarriorNumber()
         {
-            return ExpToUpgradeNumberWarrior.Count;
+            return ExpToUpgradeNumberWarrior.Count -1;
         }
 
         //public WarriorCollectorConfig()

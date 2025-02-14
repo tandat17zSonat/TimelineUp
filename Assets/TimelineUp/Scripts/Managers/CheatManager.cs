@@ -11,11 +11,11 @@ public class CheatManager : MonoBehaviour
         }
         if ( Input.GetKeyDown(KeyCode.C))
         {
-            DataManager.PlayerData.Coin += 10;
+            DataManager.PlayerData.Coin += 100;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            DataManager.PlayerData.Energy += 10;
+            DataManager.PlayerData.Energy += 100;
         }
     }
 }

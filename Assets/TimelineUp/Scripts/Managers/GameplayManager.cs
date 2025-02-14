@@ -114,7 +114,12 @@ public class GameplayManager : Singleton<GameplayManager>
         State = state;
         if( state == GameState.Win)
         {
+            // Lên hạng - complete
+            DataManager.NextEra();
+
             DataManager.PlayerData.Coin += 100;
+            DataManager.SavePlayerData();
+
             PanelManager.Instance.OpenPanel<PopupWin>();
         }
         else
@@ -127,15 +132,6 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         var entity = _populationManager.Spawn(level);
         _populationManager.AddToCrowd(entity);
-    }
-
-    public void UpdateLevelInCrowd()
-    {
-        var playerData = DataManager.PlayerData;
-        foreach(var entity in _populationManager.ListEntityInCrowd)
-        {
-            entity.SetInfo(playerData.LevelOfWarriors);
-        }
     }
 }
 

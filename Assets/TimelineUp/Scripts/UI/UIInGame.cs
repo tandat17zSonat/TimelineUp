@@ -61,16 +61,17 @@ public class UIInGame : Panel
 
         var gameConfigData = DataManager.GameplayConfig;
 
-        if (collectorLevel == gameConfigData.WarriorCollectorConfig.GetMaxWarriorNumber())
-        {
-            SetUIExpBar(collectorLevel, 0);
-        }
-        else
+        if (collectorLevel < gameConfigData.WarriorCollectorConfig.GetMaxWarriorNumber())
         {
             var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
 
             exp = Mathf.Min(exp, expToUpgrade);
             SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
+
+        }
+        else
+        {
+            SetUIExpBar(collectorLevel, 0);
         }
     }
 

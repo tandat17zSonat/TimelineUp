@@ -19,7 +19,7 @@ namespace TimelineUp.Obstacle
         {
             if (amount > 0)
             {
-                GameplayManager.Instance.ProjectileRate += (float)amount / 5;
+                GameplayManager.Instance.ProjectileRate += (float)amount / 50;
             }
             Destroy();
         }
