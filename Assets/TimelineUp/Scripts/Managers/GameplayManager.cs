@@ -41,6 +41,7 @@ public class GameplayManager : Singleton<GameplayManager>
     public float ProjectileRate { get; set; }
     public float ProjectileRange { get; set; }
 
+    private int _oldCoin;
 
     protected override void OnAwake()
     {
@@ -100,6 +101,8 @@ public class GameplayManager : Singleton<GameplayManager>
         _animationModifier.ApplyAll(); // start animation -> run
 
         _projectileShooterModifier.ApplyAll();
+
+        _oldCoin = DataManager.PlayerData.Coin;
     }
 
     public void Unload()
@@ -117,14 +120,20 @@ public class GameplayManager : Singleton<GameplayManager>
             // Lên hạng - complete
             DataManager.NextEra();
 
-            DataManager.PlayerData.Coin += 100;
-            DataManager.SavePlayerData();
+            int receivedCoin = DataManager.PlayerData.Coin - _oldCoin;
+            var uiData = new UIData();
+            uiData.Add("COMPLETE_COIN", receivedCoin);
 
-            PanelManager.Instance.OpenPanel<PopupWin>();
+            PanelManager.Instance.OpenPanel<PopupComplete>(uiData);
         }
         else
         {
-            PanelManager.Instance.OpenPanel<PopupLoss>();
+
+            int receivedCoin = DataManager.PlayerData.Coin - _oldCoin;
+            var uiData = new UIData();
+            uiData.Add("COMPLETE_COIN", receivedCoin);
+
+            PanelManager.Instance.OpenPanel<PopupComplete>(uiData);
         }
     }
 

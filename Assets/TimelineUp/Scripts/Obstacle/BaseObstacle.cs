@@ -21,7 +21,7 @@ namespace TimelineUp.Obstacle
 
         private void Awake()
         {
-            _lockEffect.Locked = false;
+            if (_lockEffect) _lockEffect.Locked = false;
         }
 
         public void Initialize()
@@ -51,40 +51,44 @@ namespace TimelineUp.Obstacle
 
         void ApplyCollectEffects(PopulatedEntity entity)
         {
-            if (_lockEffect.Locked == false)
+            if (_lockEffect != null && _lockEffect.Locked == true)
+            {
+                _lockEffect.ApplyEffect(entity);
+            }
+            else
             {
                 foreach (BaseObstacleEffect collectableEffectBase in _mainEffects)
                 {
                     collectableEffectBase.ApplyEffect(entity);
                 }
             }
-            else
-            {
-                _lockEffect.ApplyEffect(entity);
-            }
         }
 
         void ApplyCollectEffects(Projectile projectile)
         {
-            if (_lockEffect.Locked == false)
+            if (_lockEffect != null && _lockEffect.Locked == true)
+            {
+                _lockEffect.ApplyEffect(projectile);
+            }
+            else
             {
                 foreach (BaseObstacleEffect collectableEffectBase in _mainEffects)
                 {
                     collectableEffectBase.ApplyEffect(projectile);
                 }
             }
-            else
-            {
-                _lockEffect.ApplyEffect(projectile);
-            }
+
             projectile.Release();
         }
 
         public void SetLock(int num)
         {
-            _lockEffect.Locked = true;
-            _lockEffect.Initialize();
-            _lockEffect.SetHp(num);
+            if (_lockEffect)
+            {
+                _lockEffect.Locked = true;
+                _lockEffect.Initialize();
+                _lockEffect.SetHp(num);
+            }
         }
 
         public void SetRun()
@@ -94,11 +98,11 @@ namespace TimelineUp.Obstacle
 
         public virtual void SetProperties(List<int> properties)
         {
-            if( Type == ObstacleType.GateProjectileRange)
+            if (Type == ObstacleType.GateProjectileRange)
             {
                 GetComponent<GateProjectileRangeEffect>().SetAmount(properties[0]);
             }
-            else if( Type == ObstacleType.GateProjectileRate)
+            else if (Type == ObstacleType.GateProjectileRate)
             {
                 GetComponent<GateProjectileRateEffect>().SetAmount(properties[0]);
             }

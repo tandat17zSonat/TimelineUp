@@ -7,10 +7,8 @@ namespace TimelineUp.Obstacle
 {
     public class GateSpawnEffect : BaseObstacleEffect
     {
-        [SerializeField] TMP_Text textNumberWarrior;
         [SerializeField] Transform[] stands;
 
-        private int numberWarrior;
         private Dictionary<int, int> dictWarriorSpawned = new();
 
         private List<PopulatedEntity> listEntityInGate;
@@ -40,6 +38,7 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
+            Debug.Log("Destroy GateSpawn");
             // Có người đi qua bình thường
             var populationManager = GameplayManager.Instance.PopulationManager;
             dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
@@ -54,24 +53,13 @@ namespace TimelineUp.Obstacle
                     spawned.Play();
                 }
             }
-
+            Debug.Log("Destroy GateSpawn");
             Destroy();
         }
 
         public override void ApplyEffect(Projectile projectile)
         {
-
-        }
-
-        private void Update()
-        {
-            dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
-            numberWarrior = 0;
-            foreach (var item in dictWarriorSpawned.Values)
-            {
-                numberWarrior += item;
-            }
-            textNumberWarrior.text = numberWarrior.ToString();
+            Debug.Log("Projectile collision gatespawn");
         }
 
         public void Add(PopulatedEntity entity)
@@ -96,6 +84,7 @@ namespace TimelineUp.Obstacle
 
         public override void Destroy()
         {
+            Debug.Log("Destroy GateSpawn");
             var populationManager = GameplayManager.Instance.PopulationManager;
             foreach (var entity in listEntityInGate)
             {
