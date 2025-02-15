@@ -52,4 +52,9 @@ public class TransformationModifiable : BaseModifiable
         }
 
     }
+
+    public void SetSpriteOrder(int order)
+    {
+        _spriteRenderer.sortingOrder = order;
+    }
 }

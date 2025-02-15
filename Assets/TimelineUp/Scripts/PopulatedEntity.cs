@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using HyperCasualRunner.Tweening;
 using NaughtyAttributes;
@@ -72,7 +73,8 @@ namespace HyperCasualRunner.PopulatedEntity
         {
             _scaleTween.Kill();
             _scaleTween = transform.ShowSmoothly(_visibilityChangeDuration);
-            _collider.enabled = true;
+            SetSpriteOrder(0);
+            //_collider.enabled = true;
 
             //if (_appearParticleEnabled)
             //{
@@ -135,10 +137,18 @@ namespace HyperCasualRunner.PopulatedEntity
             _visuals.rotation = Quaternion.identity;
         }
 
+        public void EnableCollider()
+        {
+            _collider.enabled = true;
+        }
         public void DisableCollider()
         {
             _collider.enabled = false;
         }
 
+        internal void SetSpriteOrder(int v)
+        {
+            _transformationModifiable.SetSpriteOrder(v);
+        }
     }
 }

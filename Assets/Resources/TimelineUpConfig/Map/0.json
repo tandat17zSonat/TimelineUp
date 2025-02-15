@@ -9,9 +9,89 @@
             "Properties": []
         },
         {
+            "Type": 1,
+            "x": -2,
+            "z": 50,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 70,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 90,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 100,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 120,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 140,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 160,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 180,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 200,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Type": 1,
+            "x": 2,
+            "z": 220,
+            "Locked": true,
+            "Move": false,
+            "Properties": [1]
+        },
+        {
             "Type": 2,
             "x": 0,
-            "z": 50,
+            "z": 250,
             "Locked": false,
             "Move": false,
             "Properties": []

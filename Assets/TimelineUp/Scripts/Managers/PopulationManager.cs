@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner.PopulatedEntity;
@@ -44,12 +45,13 @@ public class PopulationManager : MonoBehaviour
         _listEntityOutsideCrowd = new List<PopulatedEntity>();
     }
 
-    public PopulatedEntity Spawn(int level, bool inCrowd = true)
+    public PopulatedEntity Spawn(int level, bool inCrowd = true, Transform parent = null)
     {
-        var parent = inCrowd ? container : null;
+        if (parent == null)
+        {
+            parent = inCrowd ? container : null;
+        }
         var spawned = PoolBoss.Spawn(entityPrefab, Vector3.zero, Quaternion.identity, parent);
-
-        spawned.GetComponent<CapsuleCollider>().enabled = inCrowd ? true : false;
 
         float rndX = UnityEngine.Random.Range(-0.5f, 0.5f);
         float rndZ = UnityEngine.Random.Range(-0.5f, 0.5f);
@@ -59,6 +61,14 @@ public class PopulationManager : MonoBehaviour
         entity.Initialize(this);
         entity.SetInfo(level);
         entity.Appear();
+        if (inCrowd == false)
+        {
+            entity.DisableCollider();
+        }
+        else
+        {
+            entity.EnableCollider();
+        }
         return entity;
     }
 

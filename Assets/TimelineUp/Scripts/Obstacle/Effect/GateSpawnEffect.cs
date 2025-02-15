@@ -7,6 +7,8 @@ namespace TimelineUp.Obstacle
 {
     public class GateSpawnEffect : BaseObstacleEffect
     {
+        [SerializeField] float offsetY;
+        [SerializeField] float deltaY;
         [SerializeField] Transform[] stands;
 
         private Dictionary<int, int> dictWarriorSpawned = new();
@@ -62,23 +64,32 @@ namespace TimelineUp.Obstacle
             Debug.Log("Projectile collision gatespawn");
         }
 
-        public void Add(PopulatedEntity entity)
+        public void Add(int levelEntity)
         {
-            listEntityInGate.Add(entity);
-            entity.DisableCollider();
+            var populationManager = GameplayManager.Instance.PopulationManager;
             int max = Mathf.Max(listNumWarrior.ToArray());
             for (int i = 0; i < stands.Length; i++)
             {
                 if (listNumWarrior[i] < max)
                 {
-                    entity.transform.position = stands[i].position;
                     listNumWarrior[i] += 1;
+
+                    var entity = populationManager.Spawn(levelEntity, false, stands[i]);
+                    var pos = Vector3.up * (offsetY + (listNumWarrior[i] - 1) * deltaY);
+                    entity.transform.localPosition = pos;
+                    entity.SetSpriteOrder(listNumWarrior[i]);
+
+                    listEntityInGate.Add(entity);
                     return;
                 }
             }
 
-            entity.transform.position = stands[0].position;
             listNumWarrior[0] += 1;
+            var entity0 = populationManager.Spawn(levelEntity, false, stands[0]);
+            var pos0 = Vector3.up * (offsetY + (listNumWarrior[0] - 1) * deltaY);
+            entity0.transform.localPosition = pos0;
+            entity0.SetSpriteOrder(listNumWarrior[0]);
+            listEntityInGate.Add(entity0);
             return;
         }
 

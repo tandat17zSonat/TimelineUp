@@ -45,8 +45,8 @@ namespace TimelineUp.Obstacle
 
                 for (int i = 0; i < level; i++)
                 {
-                    var spawned = populationManager.Spawn(levelWarrior, false);
-                    gateSpawn.Add(spawned);
+                    //var spawned = populationManager.Spawn(levelWarrior, false);
+                    gateSpawn.Add(levelWarrior); ;
                 }
 
                 // --------------------
