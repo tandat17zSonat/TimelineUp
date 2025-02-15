@@ -2,19 +2,19 @@
     "ListMainObstacles": [
         {
             "Type": 4,
-            "x": 2,
+            "x": 1.5,
             "z": 30,
             "Locked": false,
             "Move": false,
             "Properties": [50]
         },
         {
-            "Type": 4,
+            "Type": 0,
             "x": -1.5,
             "z": 50,
             "Locked": false,
-            "Move": false,
-            "Properties": [10]
+            "Move": true,
+            "Properties": [0]
         },
         {
             "Type": 1,
@@ -82,7 +82,7 @@
         },
         {
             "Type": 1,
-            "x": 2,
+            "x": 1.5,
             "z": 220,
             "Locked": true,
             "Move": false,

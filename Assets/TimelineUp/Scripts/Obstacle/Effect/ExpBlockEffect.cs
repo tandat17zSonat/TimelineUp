@@ -11,7 +11,8 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            PoolBoss.Despawn(transform);
+            Debug.Log($"ExpBlock collision entity");
+            Destroy();
         }
 
         public override void ApplyEffect(Projectile projectile)
