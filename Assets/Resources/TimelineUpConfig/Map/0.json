@@ -1,20 +1,20 @@
 {
     "ListMainObstacles": [
         {
-            "Type": 1,
+            "Type": 4,
             "x": 2,
             "z": 30,
             "Locked": false,
             "Move": false,
-            "Properties": []
+            "Properties": [50]
         },
         {
-            "Type": 1,
-            "x": -2,
+            "Type": 4,
+            "x": -1.5,
             "z": 50,
             "Locked": false,
             "Move": false,
-            "Properties": []
+            "Properties": [10]
         },
         {
             "Type": 1,
@@ -25,20 +25,20 @@
             "Properties": []
         },
         {
-            "Type": 1,
+            "Type": 4,
             "x": 0,
             "z": 90,
             "Locked": false,
             "Move": true,
-            "Properties": []
+            "Properties": [-2]
         },
         {
-            "Type": 1,
+            "Type": 4,
             "x": 0,
             "z": 100,
             "Locked": false,
             "Move": true,
-            "Properties": []
+            "Properties": [-5]
         },
         {
             "Type": 1,
@@ -57,12 +57,12 @@
             "Properties": []
         },
         {
-            "Type": 1,
+            "Type": 3,
             "x": 0,
             "z": 160,
             "Locked": false,
             "Move": true,
-            "Properties": []
+            "Properties": [-3]
         },
         {
             "Type": 1,

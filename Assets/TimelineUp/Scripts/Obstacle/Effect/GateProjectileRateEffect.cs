@@ -10,11 +10,11 @@ namespace TimelineUp.Obstacle
     public class GateProjectileRateEffect : BaseObstacleEffect
     {
         [SerializeField] int amount;
-        [SerializeField] MeshRenderer meshRender;
+        //[SerializeField] MeshRenderer meshRender;
         [SerializeField] TMP_Text textAmount;
-
-        [SerializeField] Material materialPositive;
-        [SerializeField] Material materialNegative;
+        [SerializeField] GameObject _layerRed;
+        //[SerializeField] Material materialPositive;
+        //[SerializeField] Material materialNegative;
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
@@ -34,7 +34,7 @@ namespace TimelineUp.Obstacle
 
         private void UpdateVisual()
         {
-            meshRender.material = amount >= 0 ? materialPositive : materialNegative;
+            _layerRed.SetActive(amount <= 0);
             textAmount.text = amount >= 0 ? $"+ {Mathf.Abs(amount)}" : $"- {Mathf.Abs(amount)}";
         }
 
@@ -45,9 +45,10 @@ namespace TimelineUp.Obstacle
             UpdateVisual();
         }
 
-        internal void SetAmount(int amount)
+        public void SetAmount(int amount)
         {
             this.amount = amount;
+            UpdateVisual();
         }
     }
 
