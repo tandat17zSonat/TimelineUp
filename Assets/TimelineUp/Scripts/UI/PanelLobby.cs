@@ -1,5 +1,6 @@
 using DG.Tweening;
 using SonatFramework.UI;
+using TimelineUp.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,18 +16,16 @@ public class PanelLobby : Panel
     [SerializeField] Button _btnEra;
     [SerializeField] TMP_Text _textEra;
 
+    private PlayerData _playerData;
+
     public override void OnSetup()
     {
         base.OnSetup();
+        _playerData = DataManager.PlayerData;
 
-        btnTapToPlay.onClick.AddListener(() =>
-        {
-            Debug.Log($"Click tap to play");
-            GameplayManager.Instance.StartGame();
-            btnTapToPlay.gameObject.SetActive(false);
-        });
+        AddPlayButtonHandlers();
 
-        foreach(var btn in BtnBoosters)
+        foreach (var btn in BtnBoosters)
         {
             btn.Initialize();
 
@@ -61,7 +60,7 @@ public class PanelLobby : Panel
 
     private void Update()
     {
-        foreach(var btn in BtnBoosters)
+        foreach (var btn in BtnBoosters)
         {
             btn.UpdateVisual();
         }
@@ -73,5 +72,22 @@ public class PanelLobby : Panel
         _textEra.text = DataManager.TimelineEraSO.EraName;
 
         _textLevel.text = $"Level {playerData.Level}";
+    }
+
+    private void AddPlayButtonHandlers()
+    {
+        btnTapToPlay.onClick.AddListener(() =>
+        {
+            if (_playerData.Energy > 0)
+            {
+                _playerData.Energy -= 1;
+                DataManager.SavePlayerData();
+                GameplayManager.Instance.StartGame();
+            }
+            else
+            {
+                PanelManager.Instance.OpenPanel<PopupEnergyPurchase>();
+            }
+        });
     }
 }
