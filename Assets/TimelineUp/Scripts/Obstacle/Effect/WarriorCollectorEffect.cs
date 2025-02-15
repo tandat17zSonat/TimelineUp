@@ -8,8 +8,8 @@ namespace TimelineUp.Obstacle
 {
     public class WarriorCollectorEffect : BaseObstacleEffect
     {
-        private int numWarrior;
-        private int level;
+        private int level; // Level của collector này = số warrior 
+        private int levelWarrior; // Level của warrior đang huấn luyện
         private int damageToUpgrade;
         private int currentDamage;
 
@@ -17,17 +17,19 @@ namespace TimelineUp.Obstacle
         [SerializeField] TMP_Text textLevel;
         [SerializeField] TMP_Text textNum;
 
+        [SerializeField] GameObject[] _levelObjects;
         private Sequence seqEffect;
 
         public override void Reset()
         {
-            numWarrior = 1;
-            level = 0;
+            level = 1;
+            levelWarrior = 0;
             currentDamage = 0;
 
             var gameConfigData = DataManager.GameplayConfig;
-            damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(level + 1);
+            damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(levelWarrior + 1);
 
+            UpdateVisual();
             UpdateUI();
         }
 
@@ -41,19 +43,19 @@ namespace TimelineUp.Obstacle
                 var obstacleManager = GameplayManager.Instance.ObstacleManager;
                 var gateSpawn = obstacleManager.GetNextGateSpawn();
 
-                for (int i = 0; i < numWarrior; i++)
+                for (int i = 0; i < level; i++)
                 {
-                    var spawned = populationManager.Spawn(level, false);
+                    var spawned = populationManager.Spawn(levelWarrior, false);
                     gateSpawn.Add(spawned);
                 }
 
                 // --------------------
                 var dict = GameplayManager.Instance.DictWarriorSpawned;
-                if (!dict.ContainsKey(level))
+                if (!dict.ContainsKey(levelWarrior))
                 {
-                    dict[level] = 0;
+                    dict[levelWarrior] = 0;
                 }
-                dict[level] += numWarrior;
+                dict[levelWarrior] += level;
 
                 Destroy();
             }
@@ -65,12 +67,12 @@ namespace TimelineUp.Obstacle
 
             if (currentDamage > damageToUpgrade)
             {
-                level += 1;
+                levelWarrior += 1;
 
                 var gameConfigData = DataManager.GameplayConfig;
-                if (level >= gameConfigData.ListWarriorDatas.Count)
+                if (levelWarrior >= gameConfigData.ListWarriorDatas.Count)
                 {
-                    level = gameConfigData.ListWarriorDatas.Count - 1;
+                    levelWarrior = gameConfigData.ListWarriorDatas.Count - 1;
                 }
                 currentDamage = 0;
                 UpdateInfo();
@@ -84,20 +86,34 @@ namespace TimelineUp.Obstacle
         private void UpdateInfo()
         {
             var gameConfigData = DataManager.GameplayConfig;
-            damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(level + 1);
+            damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(levelWarrior + 1);
         }
 
         private void Update()
         {
-            numWarrior = GameplayManager.Instance.NumberInCollector;
+            level = GameplayManager.Instance.NumberInCollector;
+            UpdateVisual();
             UpdateUI();
         }
 
         public void UpdateUI()
         {
             sliderToUpgrade.value = (float)currentDamage / damageToUpgrade;
-            textLevel.text = level.ToString();
-            textNum.text = numWarrior.ToString();
+            textLevel.text = levelWarrior.ToString();
+            textNum.text = level.ToString();
+        }
+
+        private void UpdateVisual()
+        {
+            // Đỡ vào vòng for lãng phí
+            if (level == 0) return;
+            if (_levelObjects[level - 1].activeSelf == true) return;
+
+            foreach (var obj in _levelObjects)
+            {
+                obj.SetActive(false);
+            }
+            _levelObjects[level - 1].SetActive(true);
         }
 
         private void EnableEffect()
