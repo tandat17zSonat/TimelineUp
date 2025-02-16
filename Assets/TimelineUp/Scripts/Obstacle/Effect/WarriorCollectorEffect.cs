@@ -14,8 +14,8 @@ namespace TimelineUp.Obstacle
         private int currentDamage;
 
         [SerializeField] Slider sliderToUpgrade;
-        [SerializeField] TMP_Text textLevel;
-        [SerializeField] TMP_Text textNum;
+        //[SerializeField] TMP_Text textLevel;
+        //[SerializeField] TMP_Text textNum;
 
         [SerializeField] GameObject[] _levelObjects;
         private Sequence seqEffect;
@@ -99,8 +99,8 @@ namespace TimelineUp.Obstacle
         public void UpdateUI()
         {
             sliderToUpgrade.value = (float)currentDamage / damageToUpgrade;
-            textLevel.text = levelWarrior.ToString();
-            textNum.text = level.ToString();
+            //textLevel.text = levelWarrior.ToString();
+            //textNum.text = level.ToString();
         }
 
         private void UpdateVisual()

@@ -2,6 +2,7 @@
 using DG.Tweening;
 using HyperCasualRunner.PopulatedEntity;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TimelineUp.Obstacle
 {
@@ -13,7 +14,11 @@ namespace TimelineUp.Obstacle
 
         [SerializeField] Transform _spawnPoint;
 
-        private int _hp;
+        [Header("")]
+        [SerializeField] Slider _sliderHp;
+
+        private int _hp = 0;
+        private int _maxHp = 1;
 
         private bool _fire = false;
         private float _timer;
@@ -31,7 +36,7 @@ namespace TimelineUp.Obstacle
         public override void ApplyEffect(Projectile projectile)
         {
             _hp -= projectile.Damage;
-            if( _hp < 0)
+            if (_hp < 0)
             {
                 _fire = false;
                 Destroy();
@@ -41,6 +46,7 @@ namespace TimelineUp.Obstacle
         public override void Reset()
         {
             _hp = 3;
+            _maxHp = _hp;
 
             _fireRate = 1;
             _fireSpeed = -10;
@@ -51,6 +57,7 @@ namespace TimelineUp.Obstacle
 
         private void Update()
         {
+            _sliderHp.value = _hp / _maxHp;
             if (_fire)
             {
                 _timer += Time.deltaTime;

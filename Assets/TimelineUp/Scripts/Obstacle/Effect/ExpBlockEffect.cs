@@ -2,6 +2,7 @@
 using DG.Tweening;
 using HyperCasualRunner.PopulatedEntity;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TimelineUp.Obstacle
 {
