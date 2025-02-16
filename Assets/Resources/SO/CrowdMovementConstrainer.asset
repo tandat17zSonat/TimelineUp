@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de54e3d1a3e284c98549e8a6b71031, type: 3}
   m_Name: CrowdMovementConstrainer
   m_EditorClassIdentifier: 
-  _xLimit: 4
+  _xLimit: 3

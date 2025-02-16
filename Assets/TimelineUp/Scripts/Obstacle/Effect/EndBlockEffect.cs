@@ -8,7 +8,7 @@ namespace TimelineUp.Obstacle
 {
     public class EndBlockEffect : BaseObstacleEffect
     {
-        [SerializeField] Slider sliderHp;
+        //[SerializeField] Slider sliderHp;
         [SerializeField] TMP_Text textNum;
         private int hp;
         private float maxHp;
@@ -54,7 +54,7 @@ namespace TimelineUp.Obstacle
         void UpdateUi()
         {
             textNum.text = hp.ToString();
-            sliderHp.value = hp / maxHp;
+            //sliderHp.value = hp / maxHp;
         }
 
         public void SetInfo(int order)

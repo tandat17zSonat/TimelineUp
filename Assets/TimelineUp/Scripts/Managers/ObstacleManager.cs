@@ -22,26 +22,26 @@ namespace TimelineUp.Obstacle
         public void LoadObstacle(MapData data)
         {
             if (data.ListMainObstacles.Count == 0) return;
-            
+
             // Sinh các obstacle chính
             foreach (var mainObstacleData in data.ListMainObstacles)
             {
                 var obs = Spawn(mainObstacleData.Type);
-                
+
                 int x = mainObstacleData.x, z = mainObstacleData.z;
                 obs.transform.position = new Vector3(x, 0, z);
 
                 obs.Initialize();
-                
+
                 var properties = mainObstacleData.Properties;
                 // check lock
-                if( mainObstacleData.Locked == true)
+                if (mainObstacleData.Locked == true)
                 {
                     obs.SetLock(mainObstacleData.GetLockNumber());
                 }
 
                 // check move
-                if( mainObstacleData.Move ==  true)
+                if (mainObstacleData.Move == true)
                 {
                     obs.SetRun();
                 }
@@ -77,7 +77,7 @@ namespace TimelineUp.Obstacle
             }
 
             // Sinh cổng về đích
-            positionZ += deltaZ;
+            positionZ += deltaZ * 4;
             var gateFinish = Spawn(ObstacleType.GateFinish);
             gateFinish.Initialize();
             gateFinish.transform.position = new Vector3(0, 0, positionZ);
