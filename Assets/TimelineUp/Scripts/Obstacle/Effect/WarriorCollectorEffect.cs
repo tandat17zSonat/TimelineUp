@@ -98,7 +98,11 @@ namespace TimelineUp.Obstacle
 
         public void UpdateUI()
         {
-            sliderToUpgrade.value = (float)currentDamage / damageToUpgrade;
+            if (damageToUpgrade != 0 && damageToUpgrade != null)
+            {
+                sliderToUpgrade.value = (float)currentDamage / damageToUpgrade;
+
+            }
             //textLevel.text = levelWarrior.ToString();
             //textNum.text = level.ToString();
         }

@@ -30,7 +30,8 @@ public class ProjectileShooterModifiable : BaseModifiable
 
     public void Shoot()
     {
-        var spawned = PoolBoss.Spawn(_projectilePrefab, _spawnPoint.position, Quaternion.identity, null);
+        var randomSpawnPoint = _spawnPoint.position + Vector3.right * (Random.value - 0.5f);
+        var spawned = PoolBoss.Spawn(_projectilePrefab, randomSpawnPoint, Quaternion.identity, null);
         //spawned.transform.SetPositionAndRotation(_spawnPoint.position, transform.rotation); 
 
         //spawned.transform.position = _spawnPoint.position;
@@ -54,7 +55,7 @@ public class ProjectileShooterModifiable : BaseModifiable
         }
     }
 
-    public void Disappear()
+    public void Disable()
     {
         _fire = false;
     }

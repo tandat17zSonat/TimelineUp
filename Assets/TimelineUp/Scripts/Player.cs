@@ -21,7 +21,7 @@ namespace HyperCasualRunner
 
         ITickable[] _tickables;
 
-        private Vector3 _beginPosition; 
+        private Vector3 _beginPosition;
 
         void Awake()
         {
@@ -97,6 +97,14 @@ namespace HyperCasualRunner
         {
             transform.position = _beginPosition;
             _runnerMover.Reset();
+        }
+
+        public void Stop()
+        {
+            foreach (var entity in _populationManagerBase.ListEntityInCrowd)
+            {
+                entity.Stop();
+            }
         }
     }
 }

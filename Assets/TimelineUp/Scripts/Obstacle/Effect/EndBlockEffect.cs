@@ -21,7 +21,7 @@ namespace TimelineUp.Obstacle
             var populationManager = GameplayManager.Instance.PopulationManager;
             populationManager.RemoveEntityFromCrowd(entity);
 
-            if( populationManager.ListEntityInCrowd.Count == 0 )
+            if (populationManager.ListEntityInCrowd.Count == 0)
             {
                 GameplayManager.Instance.SetResult(GameState.Loss);
             }
@@ -30,7 +30,7 @@ namespace TimelineUp.Obstacle
         public override void ApplyEffect(Projectile projectile)
         {
             hp -= projectile.Damage;
-            if(hp <= 0)
+            if (hp <= 0)
             {
                 var playerData = DataManager.PlayerData;
                 var gameplayConfig = DataManager.GameplayConfig;
@@ -44,7 +44,7 @@ namespace TimelineUp.Obstacle
 
         private void EnableEffect()
         {
-            if(seqEffect != null) seqEffect.Kill();
+            if (seqEffect != null) seqEffect.Kill();
 
             seqEffect = DOTween.Sequence();
             seqEffect.Append(transform.DOScale(Vector3.one * 1.1f, 0.1f));
@@ -53,7 +53,7 @@ namespace TimelineUp.Obstacle
 
         void UpdateUi()
         {
-            textNum.text = hp.ToString();
+            textNum.text = Utils.FormatNumber(hp);
             //sliderHp.value = hp / maxHp;
         }
 

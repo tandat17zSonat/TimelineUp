@@ -28,7 +28,7 @@ namespace TimelineUp.Obstacle
             {
                 var obs = Spawn(mainObstacleData.Type);
 
-                int x = mainObstacleData.x, z = mainObstacleData.z;
+                float x = mainObstacleData.x, z = mainObstacleData.z;
                 obs.transform.position = new Vector3(x, 0, z);
 
                 obs.Initialize();

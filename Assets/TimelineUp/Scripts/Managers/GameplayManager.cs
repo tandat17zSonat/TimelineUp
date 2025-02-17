@@ -22,9 +22,9 @@ public class GameplayManager : Singleton<GameplayManager>
     private AnimationModifier _animationModifier;
     private ProjectileShooterModifier _projectileShooterModifier;
 
-    public RunnerMover RunnerMover {  get { return _runnerMover; } }
+    public RunnerMover RunnerMover { get { return _runnerMover; } }
     public PopulationManager PopulationManager { get { return _populationManager; } }
-    public ObstacleManager ObstacleManager {  get { return obstacleManager; } }
+    public ObstacleManager ObstacleManager { get { return obstacleManager; } }
 
     public GameState State { get; private set; }
 
@@ -75,7 +75,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
         // Khởi tạo các warrior đầu tiên
         int levelOfWarriors = playerData.LevelOfWarriors;
-        for(int _ = 0; _ < playerData.NumberOfWarriors; _++)
+        for (int _ = 0; _ < playerData.NumberOfWarriors; _++)
         {
             AddEntity(levelOfWarriors);
         }
@@ -115,16 +115,16 @@ public class GameplayManager : Singleton<GameplayManager>
     public void SetResult(GameState state)
     {
         State = state;
-        if( state == GameState.Win)
+        player.Stop();
+        if (state == GameState.Win)
         {
-            // Lên hạng - complete
-            DataManager.NextEra();
-
             int receivedCoin = DataManager.PlayerData.Coin - _oldCoin;
             var uiData = new UIData();
             uiData.Add("COMPLETE_COIN", receivedCoin);
-
+            uiData.Add("IS_WIN", true);
             PanelManager.Instance.OpenPanel<PopupComplete>(uiData);
+
+            DataManager.NextEra();
         }
         else
         {
@@ -132,7 +132,7 @@ public class GameplayManager : Singleton<GameplayManager>
             int receivedCoin = DataManager.PlayerData.Coin - _oldCoin;
             var uiData = new UIData();
             uiData.Add("COMPLETE_COIN", receivedCoin);
-
+            uiData.Add("IS_WIN", false);
             PanelManager.Instance.OpenPanel<PopupComplete>(uiData);
         }
     }

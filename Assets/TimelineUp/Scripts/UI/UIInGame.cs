@@ -15,9 +15,17 @@ public class UIInGame : Panel
     [SerializeField] TMP_Text textDiamond;
     [SerializeField] TMP_Text textEnergy;
 
+    [Header("Cheat")]
+    [SerializeField] Button btnCheat;
+
     public override void OnSetup()
     {
         base.OnSetup();
+
+        btnCheat.onClick.AddListener(() =>
+        {
+            CheatManager.Instance.CheatResource();
+        });
     }
 
     public override void Open(UIData uiData)
@@ -77,8 +85,8 @@ public class UIInGame : Panel
 
     private void UpdateResource()
     {
-        textEnergy.text = DataManager.PlayerData.Energy.ToString();
-        textCoin.text = DataManager.PlayerData.Coin.ToString();
-        textDiamond.text = DataManager.PlayerData.Diamond.ToString();
+        textEnergy.text = Utils.FormatNumber(DataManager.PlayerData.Energy);
+        textCoin.text = Utils.FormatNumber(DataManager.PlayerData.Coin);
+        textDiamond.text = Utils.FormatNumber(DataManager.PlayerData.Diamond);
     }
 }

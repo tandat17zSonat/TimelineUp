@@ -44,7 +44,7 @@ public abstract class BaseButtonBooster : MonoBehaviour
 
         _textLevel.text = $"Level {level.ToString()}";
         _textCost.text = cost.ToString();
-        
+
 
         // Ki?m tra level t?i ?a
         var newLevel = playerData.BoosterLevel[id] + 1;

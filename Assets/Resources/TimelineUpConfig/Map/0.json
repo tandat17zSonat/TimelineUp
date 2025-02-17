@@ -10,7 +10,7 @@
         },
         {
             "Type": 0,
-            "x": -1.5,
+            "x": 0,
             "z": 50,
             "Locked": false,
             "Move": true,
@@ -18,10 +18,10 @@
         },
         {
             "Type": 1,
-            "x": 0,
+            "x": -1.5,
             "z": 70,
             "Locked": false,
-            "Move": true,
+            "Move": false,
             "Properties": []
         },
         {
@@ -30,7 +30,7 @@
             "z": 90,
             "Locked": false,
             "Move": true,
-            "Properties": [-2]
+            "Properties": [50]
         },
         {
             "Type": 4,
@@ -42,18 +42,18 @@
         },
         {
             "Type": 1,
-            "x": 0,
+            "x": 1.5,
             "z": 120,
-            "Locked": false,
-            "Move": true,
-            "Properties": []
+            "Locked": true,
+            "Move": false,
+            "Properties": [3]
         },
         {
             "Type": 1,
-            "x": 0,
+            "x": 1.5,
             "z": 140,
             "Locked": false,
-            "Move": true,
+            "Move": false,
             "Properties": []
         },
         {

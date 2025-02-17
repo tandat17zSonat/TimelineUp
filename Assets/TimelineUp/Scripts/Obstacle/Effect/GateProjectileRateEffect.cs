@@ -20,7 +20,7 @@ namespace TimelineUp.Obstacle
         {
             if (amount > 0)
             {
-                GameplayManager.Instance.ProjectileRate += (float)amount / 50;
+                GameplayManager.Instance.ProjectileRate += (float)amount / 100;
             }
             Destroy();
         }
@@ -35,7 +35,7 @@ namespace TimelineUp.Obstacle
         private void UpdateVisual()
         {
             _layerRed.SetActive(amount <= 0);
-            textAmount.text = amount >= 0 ? $"+ {Mathf.Abs(amount)}" : $"- {Mathf.Abs(amount)}";
+            textAmount.text = Utils.FormatNumber(amount);
         }
 
         [Button("Setup", EButtonEnableMode.Editor)]

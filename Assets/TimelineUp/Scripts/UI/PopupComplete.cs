@@ -1,4 +1,4 @@
-using SonatFramework.UI;
+﻿using SonatFramework.UI;
 using TimelineUp.Data;
 using TMPro;
 using UnityEngine;
@@ -13,6 +13,7 @@ public class PopupComplete : Panel
     private PlayerData _playerData;
     private int _coin;
     private int _coinReward;
+    private bool _isWin;
 
     public override void OnSetup()
     {
@@ -21,8 +22,12 @@ public class PopupComplete : Panel
         _playerData = DataManager.PlayerData;
         _btnReceive.onClick.AddListener(() =>
         {
-            _playerData.Coin += _coinReward;
-            DataManager.SavePlayerData();
+            if (_isWin == false) // Nếu win sang level khác thì đã reset data rồi
+            {
+                _playerData.Coin += _coinReward;
+                DataManager.SavePlayerData();
+            }
+
             GameplayManager.Instance.Restart();
             Close();
         });
@@ -35,6 +40,8 @@ public class PopupComplete : Panel
         _coin = (int)uiData.Get("COMPLETE_COIN");
         _coinReward = _coin;
         _textCoin.text = _coin.ToString();
+
+        _isWin = (bool)uiData.Get("IS_WIN");
     }
 
     public override void OnOpenCompleted()

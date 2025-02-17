@@ -16,13 +16,13 @@ namespace TimelineUp.Obstacle
     public class ObstacleDataInMap
     {
         public ObstacleType Type;
-        public int x;
-        public int z;
+        public float x;
+        public float z;
         public bool Locked;
         public bool Move;
         public List<int> Properties;
 
-        public ObstacleDataInMap(ObstacleType obstacleType, int x, int z, bool locked, bool move, List<int> properties)
+        public ObstacleDataInMap(ObstacleType obstacleType, float x, float z, bool locked, bool move, List<int> properties)
         {
             Type = obstacleType;
             this.x = x;

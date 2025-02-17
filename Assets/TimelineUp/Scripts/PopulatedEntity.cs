@@ -63,6 +63,11 @@ namespace HyperCasualRunner.PopulatedEntity
             _projectileShootModifiable.Play();
         }
 
+        public void Stop()
+        {
+            _projectileShootModifiable.Disable();
+        }
+
         void OnDestroy()
         {
             _scaleTween.Kill();
@@ -93,7 +98,7 @@ namespace HyperCasualRunner.PopulatedEntity
             _scaleTween = transform.HideSmoothly(_visibilityChangeDuration);
             _collider.enabled = false;
 
-            _projectileShootModifiable.Disappear();
+            _projectileShootModifiable.Disable();
             //if (_disappearParticleEnabled)
             //{
             //    _disappearParticle.Play();

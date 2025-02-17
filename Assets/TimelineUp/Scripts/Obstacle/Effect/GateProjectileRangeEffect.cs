@@ -18,7 +18,7 @@ namespace TimelineUp.Obstacle
         {
             if (amount > 0)
             {
-                GameplayManager.Instance.ProjectileRange += (float)amount / 50;
+                GameplayManager.Instance.ProjectileRange += (float)amount / 100;
             }
 
             Destroy();
@@ -36,7 +36,7 @@ namespace TimelineUp.Obstacle
         {
             //meshRender.material = amount >= 0 ? materialPositive : materialNegative;
             _layerRed.SetActive(amount <= 0);
-            textAmount.text = amount >= 0 ? $"+ {Mathf.Abs(amount)}" : $"- {Mathf.Abs(amount)}";
+            textAmount.text = Utils.FormatNumber(amount);
         }
 
         public override void Reset()
