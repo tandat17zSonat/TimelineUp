@@ -365,7 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 7.5, z: -9}
-  m_XDamping: 0.3
+  m_XDamping: 0.6
   m_YDamping: 0.3
   m_ZDamping: 0.3
   m_AngularDampingMode: 0
@@ -776,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 563185001}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 6, z: -8}
+  m_LocalPosition: {x: 0, y: 5.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -1642,8 +1642,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 6, z: -8}
-  m_XDamping: 0.3
+  m_FollowOffset: {x: 0, y: 5.5, z: -10}
+  m_XDamping: 1
   m_YDamping: 0.3
   m_ZDamping: 0.3
   m_AngularDampingMode: 0
@@ -3357,6 +3357,10 @@ PrefabInstance:
     - target: {fileID: 2695814702819301182, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
       propertyPath: m_Name
       value: Warrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695814702819301182, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2695814702819301316, guid: 4a2f685944fa893449e1d50d105e0064, type: 3}
       propertyPath: m_LocalPosition.x
