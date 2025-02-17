@@ -76,7 +76,7 @@ namespace TimelineUp.Obstacle
             var spawned = PoolBoss.Spawn(_projectilePrefab, _spawnPoint.position, Quaternion.identity, null);
             //spawned.transform.position = _spawnPoint.position;
             ProjectileEnermy projectile = spawned.GetComponent<ProjectileEnermy>();
-            projectile.Initialize(1, _fireSpeed, _fireRange);
+            projectile.Initialize(1, _fireSpeed, _fireRange, GetComponent<BaseObstacle>());
             projectile.Fire();
         }
     }

@@ -2,6 +2,7 @@
 using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner.PopulatedEntity;
+using TimelineUp.Obstacle;
 using UnityEngine;
 
 public class ProjectileEnermy : MonoBehaviour
@@ -14,15 +15,17 @@ public class ProjectileEnermy : MonoBehaviour
     private int _damage;
     private float _speed;
     private float _range;
+    private BaseObstacle _parent;
 
     public int Damage { get { return _damage; } }
 
-    public void Initialize(int damage, float speed, float range)
+    public void Initialize(int damage, float speed, float range, BaseObstacle parent)
     {
         _damage = damage;
         _speed = speed;
         _range = range;
 
+        _parent = parent;
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,9 +41,16 @@ public class ProjectileEnermy : MonoBehaviour
             }
             Release();
         }
-        else if(other.TryGetComponent(out Projectile projectileEntity))
+        else if (other.TryGetComponent(out Projectile projectileEntity))
         {
             Release();
+        }
+        else if (other.TryGetComponent(out BaseObstacle obstacle))
+        {
+            if (obstacle != _parent)
+            {
+                Release();
+            }
         }
     }
 
