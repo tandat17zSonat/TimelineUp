@@ -66,7 +66,7 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(Projectile projectile)
         {
-            Debug.Log("Projectile collision gatespawn");
+            //Debug.Log("Projectile collision gatespawn");
         }
 
         public void Add(int levelEntity)

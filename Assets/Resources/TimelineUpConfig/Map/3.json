@@ -61,5 +61,14 @@
             "Move": false,
             "Properties": []
         }
+        ,
+        {
+            "Type": 1,
+            "x": 0,
+            "z": 225,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        }
     ]
 }

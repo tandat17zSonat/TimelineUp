@@ -9,6 +9,7 @@ public class PopupComplete : Panel
     [Header("")]
     [SerializeField] Button _btnReceive;
     [SerializeField] TMP_Text _textCoin;
+    [SerializeField] TMP_Text _textCoinInButton;
 
     private PlayerData _playerData;
     private int _coin;
@@ -40,6 +41,7 @@ public class PopupComplete : Panel
         _coin = (int)uiData.Get("COMPLETE_COIN");
         _coinReward = _coin;
         _textCoin.text = _coin.ToString();
+        _textCoinInButton.text = $"+{_coin.ToString()}";
 
         _isWin = (bool)uiData.Get("IS_WIN");
     }

@@ -35,7 +35,7 @@
         {
             "Type": 2,
             "x": 0,
-            "z": 75,
+            "z": 80,
             "Locked": false,
             "Move": false,
             "Properties": []
@@ -43,7 +43,7 @@
         {
             "Type": 1,
             "x": 0,
-            "z": 95,
+            "z": 100,
             "Locked": true,
             "Move": true,
             "Properties": [10]
@@ -51,7 +51,7 @@
         {
             "Type": 2,
             "x": 0,
-            "z": 110,
+            "z": 120,
             "Locked": false,
             "Move": false,
             "Properties": []
@@ -59,15 +59,15 @@
         {
             "Type": 5,
             "x": -1.5,
-            "z": 130,
+            "z": 140,
             "Locked": false,
             "Move": false,
             "Properties": []
         },
         {
             "Type": 5,
-            "x": -0.75,
-            "z": 130,
+            "x": 0,
+            "z": 140,
             "Locked": false,
             "Move": false,
             "Properties": []
@@ -75,7 +75,7 @@
         {
             "Type": 3,
             "x": 0,
-            "z": 150,
+            "z": 155,
             "Locked": false,
             "Move": true,
             "Properties": [-5]

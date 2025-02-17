@@ -48,7 +48,7 @@ public class TransformationModifiable : BaseModifiable
         }
         else
         {
-            Debug.Log($"{level}");
+            //Debug.Log($"{level}");
             _spriteRenderer.sprite = ListEntitySprites[level];
         }
 

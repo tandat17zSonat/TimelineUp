@@ -43,19 +43,34 @@ namespace TimelineUp.Obstacle
                 var obstacleManager = GameplayManager.Instance.ObstacleManager;
                 var gateSpawn = obstacleManager.GetNextGateSpawn();
 
-                for (int i = 0; i < level; i++)
+                if (gateSpawn != null)
                 {
-                    //var spawned = populationManager.Spawn(levelWarrior, false);
-                    gateSpawn.Add(levelWarrior); ;
-                }
+                    for (int i = 0; i < level; i++)
+                    {
+                        //var spawned = populationManager.Spawn(levelWarrior, false);
+                        gateSpawn.Add(levelWarrior); ;
+                    }
 
-                // --------------------
-                var dict = GameplayManager.Instance.DictWarriorSpawned;
-                if (!dict.ContainsKey(levelWarrior))
-                {
-                    dict[levelWarrior] = 0;
+                    // --------------------
+                    var dict = GameplayManager.Instance.DictWarriorSpawned;
+                    if (!dict.ContainsKey(levelWarrior))
+                    {
+                        dict[levelWarrior] = 0;
+                    }
+                    dict[levelWarrior] += level;
                 }
-                dict[levelWarrior] += level;
+                else
+                {
+                    // Nếu không có gate spawn ở cuối thì cộng trực tiếp
+                    var dict = GameplayManager.Instance.DictWarriorSpawned;
+                    for (int i = 0; i < level; i++)
+                    {
+                        var spawned = populationManager.Spawn(levelWarrior);
+                        populationManager.AddToCrowd(spawned);
+                        spawned.Play();
+
+                    }
+                }
 
                 Destroy();
             }

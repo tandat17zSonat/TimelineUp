@@ -27,7 +27,6 @@ namespace TimelineUp.Obstacle
         public override void ApplyEffect(Projectile projectile)
         {
             amount += projectile.Damage;
-            Debug.Log($"{amount}");
             UpdateVisual();
         }
 

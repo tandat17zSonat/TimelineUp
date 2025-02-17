@@ -12,7 +12,6 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            Debug.Log($"ExpBlock collision entity");
             Destroy();
         }
 
