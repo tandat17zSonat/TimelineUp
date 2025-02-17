@@ -151,7 +151,7 @@ namespace HyperCasualRunner.PopulatedEntity
             _collider.enabled = false;
         }
 
-        internal void SetSpriteOrder(int v)
+        public void SetSpriteOrder(int v)
         {
             _transformationModifiable.SetSpriteOrder(v);
         }

@@ -12,21 +12,21 @@ public static class DataManager
     public static GameplayConfig GameplayConfig;
     public static TimelineEraSO TimelineEraSO;
 
-    public const int MAX_MAP_NUMBER = 5;
+    public const int MAX_MAP_NUMBER = 3;
     public static MapData MapData;
 
     // -----------------------------
     public static void LoadPlayerData()
     {
-        //if (PlayerPrefs.HasKey("PLAYER_DATA"))
-        //{
-        //    string json = PlayerPrefs.GetString("PLAYER_DATA");
-        //    PlayerData = JsonUtility.FromJson<PlayerData>(json);
-        //}
-        //else
-        //{
-        PlayerData = new PlayerData();
-        //}
+        if (PlayerPrefs.HasKey("PLAYER_DATA"))
+        {
+            string json = PlayerPrefs.GetString("PLAYER_DATA");
+            PlayerData = JsonUtility.FromJson<PlayerData>(json);
+        }
+        else
+        {
+            PlayerData = new PlayerData();
+        }
     }
 
     public static void SavePlayerData()
@@ -86,7 +86,6 @@ public static class DataManager
     public static MapData LoadMapData()
     {
         int id = Random.Range(0, MAX_MAP_NUMBER);
-        id = 0;
         TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Map/{id}");
         MapData = JsonUtility.FromJson<MapData>(jsonFile.text);
         return MapData;
