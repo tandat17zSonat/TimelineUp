@@ -9,7 +9,6 @@ namespace TimelineUp.Obstacle
         [SerializeField] int amount = -5;
         //[SerializeField] MeshRenderer meshRender;
         [SerializeField] TMP_Text textAmount;
-        [SerializeField] GameObject _layerRed;
 
         //[SerializeField] Material materialPositive;
         //[SerializeField] Material materialNegative;
@@ -34,7 +33,14 @@ namespace TimelineUp.Obstacle
         private void UpdateVisual()
         {
             //meshRender.material = amount >= 0 ? materialPositive : materialNegative;
-            _layerRed.SetActive(amount <= 0);
+            if (amount >= 0)
+            {
+                textAmount.color = Color.white;
+            }
+            else
+            {
+                textAmount.color = Color.red;
+            }
             textAmount.text = Utils.FormatNumber(amount);
         }
 
