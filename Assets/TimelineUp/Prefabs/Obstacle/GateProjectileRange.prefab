@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _length: 3
-  _time: 3
+  _time: 2
 --- !u!1 &8937566236427639484
 GameObject:
   m_ObjectHideFlags: 0

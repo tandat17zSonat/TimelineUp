@@ -2642,9 +2642,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099954453}
     m_Modifications:
+    - target: {fileID: 1335902014856571732, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335902014856571732, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2695814702819301182, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
       propertyPath: m_Name
       value: Enermy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695814702819301182, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2695814702819301316, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2685,6 +2697,18 @@ PrefabInstance:
     - target: {fileID: 2695814702819301316, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169206898354338136, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169206898354338136, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169206898354338136, guid: 4a7416a03592be04986d9ba1014fa7fe, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

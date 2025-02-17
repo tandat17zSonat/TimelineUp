@@ -34,6 +34,11 @@ namespace TimelineUp.Obstacle
                 listNumWarrior[i] = 0;
             }
 
+            var populationManager = GameplayManager.Instance.PopulationManager;
+            foreach (var entity in listEntityInGate)
+            {
+                populationManager.Remove(entity);
+            }
             listEntityInGate.Clear();
             dictWarriorSpawned.Clear();
         }

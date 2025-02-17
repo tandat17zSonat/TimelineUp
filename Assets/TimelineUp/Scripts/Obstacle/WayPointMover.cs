@@ -25,7 +25,9 @@ public class WayPointMover : MonoBehaviour
         seq.Kill();
 
         seq = DOTween.Sequence();
-        var oldPos = transform.position + Vector3.right * _length / 2;
+        var pos = transform.position;
+        pos.x = 0;
+        var oldPos = pos + Vector3.right * _length / 2;
         transform.position = oldPos;
         seq.Append(transform.DOMove(oldPos - Vector3.right * _length, _time).SetEase(Ease.Linear));
         seq.Append(transform.DOMove(oldPos, _time).SetEase(Ease.Linear));

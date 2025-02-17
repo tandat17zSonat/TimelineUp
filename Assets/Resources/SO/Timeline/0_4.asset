@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: 0_4
   m_EditorClassIdentifier: 
   TimelineId: 0
-  EraId: 0
-  TimelineName: Timeline_x
-  EraName: Pirates Era
+  EraId: 4
+  TimelineName: Timeline_0
+  EraName: Era4
   entitySprites:
   - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
-  - {fileID: 21300000, guid: df4b3de68fc6101418769421f213ee50, type: 3}
+  - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
+  - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
+  - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
   - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
   - {fileID: 21300000, guid: df4b3de68fc6101418769421f213ee50, type: 3}
-  - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
   - {fileID: 21300000, guid: df4b3de68fc6101418769421f213ee50, type: 3}
-  - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
   - {fileID: 21300000, guid: df4b3de68fc6101418769421f213ee50, type: 3}
-  - {fileID: 21300000, guid: 2b3fc0807a267744eb74deddf939078f, type: 3}
+  - {fileID: 21300000, guid: df4b3de68fc6101418769421f213ee50, type: 3}
   - {fileID: 21300000, guid: df4b3de68fc6101418769421f213ee50, type: 3}
   projectileSprites:
   - {fileID: 21300000, guid: d88a929dc85970845b3c0e457b73eea9, type: 3}

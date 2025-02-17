@@ -11,14 +11,14 @@ public class TextHp : MonoBehaviour
     public void Hit(int damage)
     {
         hpText.text = (-damage).ToString();
-        Vector3 randomDir = Random.insideUnitSphere * 2f; // Hướng ngẫu nhiên xung quanh
-        randomDir.y = Mathf.Abs(randomDir.y) + 2f; // Đảm bảo bay lên trên
+        Vector3 randomDir = Random.insideUnitSphere * 0.2f; // Hướng ngẫu nhiên xung quanh
+        randomDir.y = Mathf.Abs(randomDir.y) + 0.2f; // Đảm bảo bay lên trên
 
         transform.DOMove(transform.position + randomDir, timeExist)
             .SetEase(Ease.OutQuad)
             .OnComplete(() => Release());
 
-        hpText.color = Color.red; // Màu máu
+        hpText.color = Color.white; // Màu máu
         hpText.DOFade(0, timeExist); // Làm mờ dần
     }
 
@@ -29,6 +29,6 @@ public class TextHp : MonoBehaviour
 
     private void Reset()
     {
-        
+
     }
 }

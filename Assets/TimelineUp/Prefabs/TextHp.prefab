@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8904bee7978a25f4bbcfae5b7c30d694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeExist: 1.2
+  timeExist: 0.5
   hpText: {fileID: 7177903478321480854}
 --- !u!1 &8426639647711533515
 GameObject:
@@ -118,7 +118,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7967289864619954814, guid: b402d7d1df098264fa75cee096ad237d, type: 2}
+  - {fileID: 7967289864619954814, guid: 9f933d3a128af1a4db46ee42b8c92cf0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,8 +136,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1001298773
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7177903478321480854
@@ -162,8 +162,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: -4
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b402d7d1df098264fa75cee096ad237d, type: 2}
-  m_sharedMaterial: {fileID: 7967289864619954814, guid: b402d7d1df098264fa75cee096ad237d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9f933d3a128af1a4db46ee42b8c92cf0, type: 2}
+  m_sharedMaterial: {fileID: 7967289864619954814, guid: 9f933d3a128af1a4db46ee42b8c92cf0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
