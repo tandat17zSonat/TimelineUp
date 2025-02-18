@@ -76,7 +76,7 @@ public class PopulationManager : MonoBehaviour
     {
         _listEntityInCrowd.Add(entity);
 
-        StartOrganizing();
+        //StartOrganizing();
         PopulationChanged?.Invoke();
     }
 

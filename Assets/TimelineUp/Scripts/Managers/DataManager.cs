@@ -12,7 +12,7 @@ public static class DataManager
     public static GameplayConfig GameplayConfig;
     public static TimelineEraSO TimelineEraSO;
 
-    public const int MAX_MAP_NUMBER = 5;
+    public const int MAX_MAP_NUMBER = 6;
     public static MapData MapData;
 
     // -----------------------------
@@ -86,7 +86,7 @@ public static class DataManager
     public static MapData LoadMapData()
     {
         int id = Random.Range(0, MAX_MAP_NUMBER);
-        //id = 3;
+        id = 5;
         Debug.LogWarning($"Load map {id}");
         TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Map/{id}");
         MapData = JsonUtility.FromJson<MapData>(jsonFile.text);

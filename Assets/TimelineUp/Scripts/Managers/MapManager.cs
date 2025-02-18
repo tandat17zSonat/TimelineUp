@@ -33,7 +33,7 @@ public class MapManager : MonoBehaviour
 
     private void Clear()
     {
-        foreach (var mapObj in _maps)
+        foreach (Transform mapObj in parent)
         {
             Destroy(mapObj.gameObject);
         }
