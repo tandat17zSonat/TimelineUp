@@ -48,7 +48,7 @@ public abstract class BaseButtonBooster : MonoBehaviour
 
         if (nextLevel <= boosterConfig.GetMaxLevel())
         {
-            _textCost.text = cost.ToString();
+            _textCost.text = Utils.FormatNumber(cost);
         }
         else
         {

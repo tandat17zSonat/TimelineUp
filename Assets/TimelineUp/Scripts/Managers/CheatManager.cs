@@ -26,7 +26,7 @@ public class CheatManager : Singleton<CheatManager>
 
     public void CheatResource()
     {
-        DataManager.PlayerData.Coin += 100;
+        DataManager.PlayerData.Coin += 1000;
         DataManager.PlayerData.Energy += 1;
     }
 }
