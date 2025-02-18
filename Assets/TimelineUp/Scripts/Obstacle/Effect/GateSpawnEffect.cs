@@ -60,6 +60,7 @@ namespace TimelineUp.Obstacle
                     spawned.Play();
                 }
             }
+            dictWarriorSpawned.Clear();
             Destroy();
         }
 
@@ -68,7 +69,7 @@ namespace TimelineUp.Obstacle
             //Debug.Log("Projectile collision gatespawn");
         }
 
-        public void Add(PopulatedEntity entity)
+        public void Add(PopulatedEntity entity, int level)
         {
             listEntityInGate.Add(entity);
             return;

@@ -27,6 +27,8 @@ namespace TimelineUp.Obstacle
         private float _fireSpeed;
         private float _fireRange;
 
+        private Sequence seqEffect;
+
         public override void ApplyEffect(PopulatedEntity entity)
         {
             _fire = false;
@@ -35,6 +37,8 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(Projectile projectile)
         {
+            EnableEffect();
+
             _hp -= projectile.Damage;
             if (_hp < 0)
             {
@@ -53,6 +57,8 @@ namespace TimelineUp.Obstacle
             _fireRange = 20;
 
             _fire = true;
+
+            seqEffect.Kill();
         }
 
         private void Update()
@@ -78,6 +84,15 @@ namespace TimelineUp.Obstacle
             ProjectileEnermy projectile = spawned.GetComponent<ProjectileEnermy>();
             projectile.Initialize(1, _fireSpeed, _fireRange, GetComponent<BaseObstacle>());
             projectile.Fire();
+        }
+
+        private void EnableEffect()
+        {
+            if (seqEffect != null) seqEffect.Kill();
+
+            seqEffect = DOTween.Sequence();
+            seqEffect.Append(transform.DOScale(Vector3.one * 1.1f, 0.1f));
+            seqEffect.Append(transform.DOScale(Vector3.one, 0.1f));
         }
     }
 

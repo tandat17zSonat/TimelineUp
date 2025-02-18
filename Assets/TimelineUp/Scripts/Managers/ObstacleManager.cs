@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DarkTonic.PoolBoss;
-using Sonat_Screw_Jam;
+using DG.Tweening;
+using HyperCasualRunner.Tweening;
 using TimelineUp.SO;
 using UnityEngine;
 
@@ -122,7 +124,20 @@ namespace TimelineUp.Obstacle
         public void Remove(BaseObstacle obs)
         {
             listObstacles.Remove(obs);
+
+            obs.Reset();
+            obs.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InOutBack);
+            StartCoroutine(EDespawn(obs));
+        }
+
+        private IEnumerator EDespawn(BaseObstacle obs)
+        {
+            yield return new WaitForSeconds(0.25f);
+
+            obs.transform.DOKill();
+            obs.transform.localScale = Vector3.one;
             PoolBoss.Despawn(obs.transform);
+
         }
 
         public float GetChangeCameraPoint()

@@ -111,6 +111,11 @@ namespace TimelineUp.Obstacle
         public void Reset()
         {
             if (_wayPointMover) _wayPointMover.Reset();
+
+            foreach(var effect in _mainEffects)
+            {
+                effect.Reset();
+            }
         }
     }
 

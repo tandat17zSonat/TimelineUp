@@ -31,6 +31,8 @@ namespace TimelineUp.Obstacle
 
             UpdateVisual();
             UpdateUI();
+
+            seqEffect.Kill();
         }
 
         public override void ApplyEffect(PopulatedEntity entity)
@@ -65,7 +67,7 @@ namespace TimelineUp.Obstacle
                         var characterRunToGate = spawned.GetComponent<CharacterRunToGate>();
                         characterRunToGate.SetInfo(start + offset, end + offset, freeSlotInGateSpawn, () =>
                         {
-                            gateSpawn.Add(spawned);
+                            gateSpawn.Add(spawned, levelWarrior);
                         });
                         characterRunToGate.Run();
                         //gateSpawn.Add(levelWarrior);

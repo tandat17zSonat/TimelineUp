@@ -38,7 +38,7 @@ namespace TimelineUp.Obstacle
 
         public override void Reset()
         {
-
+            seqEffect.Kill();
         }
 
         private void EnableEffect()

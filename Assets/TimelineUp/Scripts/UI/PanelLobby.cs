@@ -89,5 +89,12 @@ public class PanelLobby : Panel
                 PanelManager.Instance.OpenPanel<PopupEnergyPurchase>();
             }
         });
+
+        // effect
+        var seq = DOTween.Sequence();
+        seq.Append(btnTapToPlay.transform.DOScale(Vector3.one * 0.9f, 0.2f));
+        seq.Append(btnTapToPlay.transform.DOScale(Vector3.one * 1.2f, 0.3f));
+        seq.Append(btnTapToPlay.transform.DOScale(Vector3.one, 0.25f));
+        seq.SetLoops(-1);
     }
 }
