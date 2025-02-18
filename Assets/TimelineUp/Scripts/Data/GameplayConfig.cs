@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using static Cinemachine.DocumentationSortingAttribute;
 
 namespace TimelineUp.Data
 {
@@ -17,7 +18,7 @@ namespace TimelineUp.Data
 
         public int GetExpToUpgradeWarriorNumber(int currentLevel)
         {
-            return WarriorCollectorConfig.ExpToUpgradeNumberWarrior[currentLevel];
+            return WarriorCollectorConfig.ExpToUpgradeNumberWarrior[currentLevel - 1];
         }
 
         public int GetDamageToUpgradeCollector(int level)

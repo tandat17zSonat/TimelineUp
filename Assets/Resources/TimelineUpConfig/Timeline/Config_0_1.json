@@ -4,64 +4,64 @@
     "ListWarriorDatas": [
         {
             "Level": 0,
-            "Damage": 1
-        },
-        {
-            "Level": 1,
             "Damage": 2
         },
         {
-            "Level": 2,
-            "Damage": 3
-        },
-        {
-            "Level": 3,
+            "Level": 1,
             "Damage": 4
         },
         {
-            "Level": 4,
-            "Damage": 5
-        },
-        {
-            "Level": 5,
+            "Level": 2,
             "Damage": 6
         },
         {
-            "Level": 6,
-            "Damage": 7
-        },
-        {
-            "Level": 7,
+            "Level": 3,
             "Damage": 8
         },
         {
+            "Level": 4,
+            "Damage": 10
+        },
+        {
+            "Level": 5,
+            "Damage": 12
+        },
+        {
+            "Level": 6,
+            "Damage": 14
+        },
+        {
+            "Level": 7,
+            "Damage": 16
+        },
+        {
             "Level": 8,
-            "Damage": 9
+            "Damage": 18
         },
         {
             "Level": 9,
-            "Damage": 10
+            "Damage": 20
         }
     ],
     "WarriorCollectorConfig": {
         "DamageToUpgradeLevel": [
-            0,
-            10,
-            20,
-            30,
-            40,
+            25,
             50,
-            60,
-            70,
-            80,
-            90
+            75,
+            100,
+            125,
+            150,
+            175,
+            200,
+            200,
+            225
         ],
         "ExpToUpgradeNumberWarrior": [
             0,
-            36,
-            72,
-            108,
-            144
+            96,
+            350,
+            500,
+            660
         ]
     },
     "ListEndBlockConfigs": [
@@ -143,38 +143,38 @@
             155
         ],
         "Exps": [
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15
         ]
     },
     "ListBoosterConfigs": [

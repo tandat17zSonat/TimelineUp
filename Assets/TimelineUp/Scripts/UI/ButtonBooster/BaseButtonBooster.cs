@@ -7,7 +7,7 @@ public abstract class BaseButtonBooster : MonoBehaviour
 {
     [SerializeField] protected BoosterType type;
     [SerializeField] protected Button _btn;
-    [SerializeField] TMP_Text _textLevel;
+    [SerializeField] protected TMP_Text _textLevel;
     [SerializeField] TMP_Text _textCost;
 
     protected int id;
@@ -42,13 +42,19 @@ public abstract class BaseButtonBooster : MonoBehaviour
         var boosterConfig = gameConfigData.GetBoosterConfig(type);
         cost = boosterConfig.Costs[level];
 
-        _textLevel.text = $"Level {level.ToString()}";
-        _textCost.text = cost.ToString();
-
-
         // Ki?m tra level t?i ?a
-        var newLevel = playerData.BoosterLevel[id] + 1;
-        _btn.interactable = (cost <= playerData.Coin) && (newLevel < boosterConfig.GetMaxLevel());
+        var nextLevel = level + 1;
+        _textLevel.text = $"Level {level.ToString()}";
+
+        if (nextLevel <= boosterConfig.GetMaxLevel())
+        {
+            _textCost.text = cost.ToString();
+        }
+        else
+        {
+            _textCost.text = $"MAX";
+        }
+        _btn.interactable = (cost <= playerData.Coin) && (nextLevel <= boosterConfig.GetMaxLevel());
     }
 }
 

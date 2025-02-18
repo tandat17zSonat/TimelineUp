@@ -7,7 +7,7 @@ public class BaseBoosterConfig
 
     public int GetMaxLevel()
     {
-        return Costs.Count;
+        return Costs.Count - 1;
     }
 
     //public BaseBoosterConfig(BoosterType type)

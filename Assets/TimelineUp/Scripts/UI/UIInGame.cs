@@ -1,3 +1,4 @@
+using System;
 using SonatFramework.UI;
 using TMPro;
 using UnityEngine;
@@ -53,6 +54,7 @@ public class UIInGame : Panel
         textNum.text = currentLevel.ToString();
         textNextNum.text = (currentLevel + 1).ToString();
 
+        //Debug.Log(percent.ToString());
         sliderExp.value = percent;
     }
 
@@ -74,7 +76,10 @@ public class UIInGame : Panel
             var expToUpgrade = gameConfigData.GetExpToUpgradeWarriorNumber(collectorLevel + 1);
 
             exp = Mathf.Min(exp, expToUpgrade);
-            SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
+            if (expToUpgrade > 0)
+            {
+                SetUIExpBar(collectorLevel, (float)exp / expToUpgrade);
+            }
 
         }
         else

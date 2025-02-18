@@ -14,7 +14,7 @@ namespace TimelineUp.Obstacle
         private int currentDamage;
 
         [SerializeField] Slider sliderToUpgrade;
-        //[SerializeField] TMP_Text textLevel;
+        [SerializeField] TMP_Text textLevel;
         //[SerializeField] TMP_Text textNum;
 
         [SerializeField] GameObject[] _levelObjects;
@@ -26,8 +26,7 @@ namespace TimelineUp.Obstacle
             levelWarrior = 0;
             currentDamage = 0;
 
-            var gameConfigData = DataManager.GameplayConfig;
-            damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(levelWarrior + 1);
+            UpdateInfo();
 
             UpdateVisual();
             UpdateUI();
@@ -80,7 +79,7 @@ namespace TimelineUp.Obstacle
         {
             currentDamage += projectile.Damage;
 
-            if (currentDamage > damageToUpgrade)
+            if (currentDamage > damageToUpgrade && damageToUpgrade != 0)
             {
                 levelWarrior += 1;
 
@@ -101,7 +100,14 @@ namespace TimelineUp.Obstacle
         private void UpdateInfo()
         {
             var gameConfigData = DataManager.GameplayConfig;
-            damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(levelWarrior + 1);
+            if (levelWarrior < gameConfigData.WarriorCollectorConfig.GetMaxWarriorLevel())
+            {
+                damageToUpgrade = gameConfigData.GetDamageToUpgradeCollector(levelWarrior + 1);
+            }
+            else
+            {
+                damageToUpgrade = 0;
+            }
         }
 
         private void Update()
@@ -118,7 +124,7 @@ namespace TimelineUp.Obstacle
                 sliderToUpgrade.value = (float)currentDamage / damageToUpgrade;
 
             }
-            //textLevel.text = levelWarrior.ToString();
+            textLevel.text = $"Level {levelWarrior + 1}";
             //textNum.text = level.ToString();
         }
 

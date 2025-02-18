@@ -1690,15 +1690,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1753151548554003054, guid: 5ca94aac861983141832b187e3e68233, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1753151548554003054, guid: 5ca94aac861983141832b187e3e68233, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1753151548554003054, guid: 5ca94aac861983141832b187e3e68233, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4372979888837904549, guid: 5ca94aac861983141832b187e3e68233, type: 3}
       propertyPath: m_Name
@@ -2177,7 +2177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.35
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2185,7 +2185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.6
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: 330084716906515300, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2222,10 +2222,6 @@ PrefabInstance:
     - target: {fileID: 4106588788907609323, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5475705621390454622, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7190457232057034429, guid: 243b7ca1e24b2484192c86e9d406d035, type: 3}
       propertyPath: m_Name

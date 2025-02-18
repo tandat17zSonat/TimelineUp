@@ -66,7 +66,7 @@ public class GameplayManager : Singleton<GameplayManager>
         ProjectileRate = playerData.ProjectileRate;
         ProjectileRange = playerData.ProjectileRange;
 
-        NumberInCollector = 1;
+        NumberInCollector = playerData.NumberInCollector;
         DictWarriorSpawned = new Dictionary<int, int>();
 
         // Load map
@@ -139,7 +139,6 @@ public class GameplayManager : Singleton<GameplayManager>
         }
         else
         {
-
             int receivedCoin = DataManager.PlayerData.Coin - _oldCoin;
             var uiData = new UIData();
             uiData.Add("COMPLETE_COIN", receivedCoin);

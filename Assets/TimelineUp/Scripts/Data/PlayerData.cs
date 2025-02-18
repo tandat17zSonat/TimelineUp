@@ -13,17 +13,17 @@
         // Level Booster
         public int[] BoosterLevel = { 1, 1, 1, 1 };
 
-
+        public int NumberInCollector = 1;
         public int ExpCollector = 0;
 
         // property
         public int NumberOfWarriors = 1;
         public int LevelOfWarriors = 0;
 
-        public float Speed = 5f;
+        public float Speed = 4f;
 
-        public float ProjectileRate = 1f;
-        public float ProjectileRange = 15f;
+        public float ProjectileRate = 2f;
+        public float ProjectileRange = 12f;
 
         public void NextEra()
         {
@@ -37,6 +37,8 @@
             // Reset các biến khác
             Coin = 0;
             BoosterLevel = new int[] { 1, 1, 1, 1 };
+
+            NumberInCollector = 1;
             ExpCollector = 0;
             NumberOfWarriors = 1;
             LevelOfWarriors = 0;

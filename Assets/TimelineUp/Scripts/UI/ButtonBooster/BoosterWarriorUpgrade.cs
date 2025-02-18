@@ -1,3 +1,4 @@
+using TimelineUp.Data;
 using UnityEngine;
 
 public class BoosterWarriorUpgrade : BaseButtonBooster
@@ -24,6 +25,8 @@ public class BoosterWarriorUpgrade : BaseButtonBooster
     public override void UpdateVisual()
     {
         base.UpdateVisual();
+
+        _textLevel.text = $"Level {playerData.LevelOfWarriors + 1}";
 
         var numActives = playerData.BoosterLevel[id] % 3;
         for (int i = 0; i < _imageActives.Length; i++)

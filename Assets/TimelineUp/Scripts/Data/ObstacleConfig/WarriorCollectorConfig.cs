@@ -7,13 +7,17 @@ namespace TimelineUp.Data
     {
         // level và số warrior nhận được
         public List<int> DamageToUpgradeLevel; // Để nâng cấp level: Damage cần nhận để qua level này
-        public List<int> ExpToUpgradeNumberWarrior; // Để nâng cấp số người
+        public List<int> ExpToUpgradeNumberWarrior; // i = số người, Để nâng cấp số người
 
         public int GetMaxWarriorNumber()
         {
-            return ExpToUpgradeNumberWarrior.Count -1;
+            return ExpToUpgradeNumberWarrior.Count;
         }
 
+        public int GetMaxWarriorLevel()
+        {
+            return DamageToUpgradeLevel.Count - 1;
+        }
         //public WarriorCollectorConfig()
         //{
         //    DamageToUpgradeLevel = new List<int>();
