@@ -86,7 +86,7 @@ public static class DataManager
     public static MapData LoadMapData()
     {
         int id = Random.Range(0, MAX_MAP_NUMBER);
-        id = 4;
+        //id = 3;
         Debug.LogWarning($"Load map {id}");
         TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Map/{id}");
         MapData = JsonUtility.FromJson<MapData>(jsonFile.text);

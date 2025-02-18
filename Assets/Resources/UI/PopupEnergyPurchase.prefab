@@ -1773,13 +1773,13 @@ MonoBehaviour:
   btnPurchases:
   - Button: {fileID: 4021994879199039254}
     NumberOfEnergy: 2
-  - Button: {fileID: 0}
+  - Button: {fileID: 6045085487145975230}
     NumberOfEnergy: 1
-  - Button: {fileID: 0}
+  - Button: {fileID: 4369241343566550960}
     NumberOfEnergy: 1
-  - Button: {fileID: 0}
+  - Button: {fileID: 9059271503476036576}
     NumberOfEnergy: 1
-  - Button: {fileID: 0}
+  - Button: {fileID: 3146805377701042198}
     NumberOfEnergy: 3
   btnClose: {fileID: 733955928139155226}
 --- !u!222 &4291122607989723719

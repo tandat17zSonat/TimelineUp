@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DarkTonic.PoolBoss;
+using Sonat_Screw_Jam;
 using TimelineUp.SO;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ namespace TimelineUp.Obstacle
 
                 float x = mainObstacleData.x, z = mainObstacleData.z;
                 obs.transform.position = new Vector3(x, 0, z);
-
+                //Debug.Log($"{obs.name} {obs.transform.position}");
                 obs.Initialize();
 
                 var properties = mainObstacleData.Properties;
@@ -88,6 +89,7 @@ namespace TimelineUp.Obstacle
         {
             foreach (var obstacle in listObstacles)
             {
+                obstacle.Reset();
                 PoolBoss.Despawn(obstacle.transform);
             }
 
@@ -100,6 +102,7 @@ namespace TimelineUp.Obstacle
 
             var prefab = obstacleSO.GetPrefabs(type);
             spawned = PoolBoss.Spawn(prefab, Vector3.zero, Quaternion.identity, container);
+            spawned.GetComponent<BaseObstacle>().Reset();
             return spawned.GetComponent<BaseObstacle>();
         }
 

@@ -45,7 +45,6 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
-            Debug.Log("Destroy GateSpawn");
             // Có người đi qua bình thường
             var populationManager = GameplayManager.Instance.PopulationManager;
             dictWarriorSpawned = GameplayManager.Instance.DictWarriorSpawned;
@@ -60,7 +59,6 @@ namespace TimelineUp.Obstacle
                     spawned.Play();
                 }
             }
-            Debug.Log("Destroy GateSpawn");
             Destroy();
         }
 
@@ -100,7 +98,6 @@ namespace TimelineUp.Obstacle
 
         public override void Destroy()
         {
-            Debug.Log("Destroy GateSpawn");
             var populationManager = GameplayManager.Instance.PopulationManager;
             foreach (var entity in listEntityInGate)
             {

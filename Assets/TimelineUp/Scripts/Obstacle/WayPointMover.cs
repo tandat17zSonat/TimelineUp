@@ -17,8 +17,16 @@ public class WayPointMover : MonoBehaviour
         _coroutineRun = StartCoroutine(Run());
     }
 
+    public void Reset()
+    {
+        //Debug.Log($"{name} reset");
+        if (_coroutineRun != null) StopCoroutine(_coroutineRun);
+        seq.Kill();
+    }
+
     IEnumerator Run()
     {
+        //Debug.Log($"run {name} {transform.position}");
         float rand = Random.Range(0, 2);
         yield return new WaitForSeconds(rand);
 

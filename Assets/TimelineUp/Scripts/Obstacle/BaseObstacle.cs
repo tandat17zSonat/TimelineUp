@@ -107,6 +107,11 @@ namespace TimelineUp.Obstacle
                 GetComponent<GateProjectileRateEffect>().SetAmount(properties[0]);
             }
         }
+
+        public void Reset()
+        {
+            if (_wayPointMover) _wayPointMover.Reset();
+        }
     }
 
 }
