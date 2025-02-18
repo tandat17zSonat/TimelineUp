@@ -53,7 +53,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2695814702819301316
 Transform:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 2695814702819301176}
   _collider: {fileID: 6049780858715478614}
   _visuals: {fileID: 8132961943104553377}
-  _visibilityChangeDuration: 0.5
+  _visibilityChangeDuration: 0.75
 --- !u!114 &3042963022136354660
 MonoBehaviour:
   m_ObjectHideFlags: 0

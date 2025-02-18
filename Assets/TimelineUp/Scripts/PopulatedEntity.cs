@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
+using DarkTonic.PoolBoss;
 using DG.Tweening;
 using HyperCasualRunner.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace HyperCasualRunner.PopulatedEntity
 {
@@ -99,6 +102,8 @@ namespace HyperCasualRunner.PopulatedEntity
             _collider.enabled = false;
 
             _projectileShootModifiable.Disable();
+
+            StartCoroutine(Release());
             //if (_disappearParticleEnabled)
             //{
             //    _disappearParticle.Play();
@@ -154,6 +159,12 @@ namespace HyperCasualRunner.PopulatedEntity
         public void SetSpriteOrder(int v)
         {
             _transformationModifiable.SetSpriteOrder(v);
+        }
+
+        IEnumerator Release()
+        {
+            yield return new WaitForSeconds(_visibilityChangeDuration);
+            PoolBoss.Despawn(transform);
         }
     }
 }

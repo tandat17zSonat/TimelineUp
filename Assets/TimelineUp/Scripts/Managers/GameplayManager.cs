@@ -4,7 +4,6 @@ using Base.Singleton;
 using HyperCasualRunner;
 using HyperCasualRunner.Locomotion;
 using SonatFramework.UI;
-using TimelineUp.Data;
 using TimelineUp.Obstacle;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ public class GameplayManager : Singleton<GameplayManager>
 {
     [SerializeField] Player player;
     [SerializeField] ObstacleManager obstacleManager;
+    [SerializeField] MapManager mapManager;
 
     public Player Player { get { return player; } }
 
@@ -69,6 +69,14 @@ public class GameplayManager : Singleton<GameplayManager>
         NumberInCollector = 1;
         DictWarriorSpawned = new Dictionary<int, int>();
 
+        // Load map
+        TimelineEraSO = SOManager.GetSO<TimelineEraSO>(playerData.TimelineId, playerData.EraId);
+        if (mapManager.MapPrefab != TimelineEraSO.mapPrefab)
+        {
+            mapManager.SetPrefab(TimelineEraSO.mapPrefab, TimelineEraSO.mapWidth);
+            mapManager.BuildMap();
+        }
+
         // Load các obstacle
         MapData data = DataManager.LoadMapData();
         obstacleManager.LoadObstacle(data);
@@ -88,6 +96,7 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         PanelManager.Instance.OpenPanel<PanelLobby>();
         Unload();
+
         LoadGame();
         OnRestart?.Invoke();
     }

@@ -88,13 +88,11 @@ public class PopulationManager : MonoBehaviour
     public void Remove(PopulatedEntity entity)
     {
         entity.Disappear();
-        PoolBoss.Despawn(entity.transform);
     }
     public void RemoveEntityFromCrowd(PopulatedEntity entity)
     {
         _listEntityInCrowd.Remove(entity);
         entity.Disappear();
-        PoolBoss.Despawn(entity.transform);
     }
 
 

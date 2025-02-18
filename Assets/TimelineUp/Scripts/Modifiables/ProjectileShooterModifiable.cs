@@ -30,7 +30,7 @@ public class ProjectileShooterModifiable : BaseModifiable
 
     public void Shoot()
     {
-        var randomSpawnPoint = _spawnPoint.position + Vector3.right * (Random.value - 0.5f);
+        var randomSpawnPoint = _spawnPoint.position + Vector3.right * (2 * Random.value - 1f) * 0.25f;
         var spawned = PoolBoss.Spawn(_projectilePrefab, randomSpawnPoint, Quaternion.identity, null);
         //spawned.transform.SetPositionAndRotation(_spawnPoint.position, transform.rotation); 
 

@@ -40,3 +40,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba8c0b6212ac461479769b2db1820bab, type: 3}
   - {fileID: 21300000, guid: 1137288bdf58f214288be83a24cca2ab, type: 3}
   - {fileID: 21300000, guid: 8869e81a5c3b8694d8a56a8402068b3e, type: 3}
+  mapPrefab: {fileID: 2851995836581651234, guid: cacde2a53ee8fc643bebe8b63a34f0a2, type: 3}
+  mapWidth: 21
