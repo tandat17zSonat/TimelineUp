@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using HyperCasualRunner.PopulatedEntity;
 using TMPro;
 using UnityEngine;
@@ -44,10 +45,30 @@ namespace TimelineUp.Obstacle
 
                 if (gateSpawn != null)
                 {
+                    // Hiệu ứng nhân vật chạy
+                    var start = transform.position;
+                    start.x = -4;
+
+                    var end = gateSpawn.transform.position;
+                    end.x = -4;
+
+                    var listPosInCollector = GetPositionInCollector();
+
                     for (int i = 0; i < level; i++)
                     {
-                        //var spawned = populationManager.Spawn(levelWarrior, false);
-                        gateSpawn.Add(levelWarrior); ;
+                        var spawned = populationManager.Spawn(levelWarrior, false);
+                        spawned.transform.position = listPosInCollector[i];
+
+                        var offset = listPosInCollector[i] - transform.position;
+                        var freeSlotInGateSpawn = gateSpawn.GetFreeSlot();
+
+                        var characterRunToGate = spawned.GetComponent<CharacterRunToGate>();
+                        characterRunToGate.SetInfo(start + offset, end + offset, freeSlotInGateSpawn, () =>
+                        {
+                            gateSpawn.Add(spawned);
+                        });
+                        characterRunToGate.Run();
+                        //gateSpawn.Add(levelWarrior);
                     }
 
                     // --------------------
@@ -148,6 +169,16 @@ namespace TimelineUp.Obstacle
             seqEffect = DOTween.Sequence();
             seqEffect.Append(transform.DOScale(Vector3.one * 1.1f, 0.1f));
             seqEffect.Append(transform.DOScale(Vector3.one, 0.1f));
+        }
+
+        private List<Vector3> GetPositionInCollector()
+        {
+            var list = new List<Vector3>();
+            foreach (Transform child in _levelObjects[level - 1].transform)
+            {
+                list.Add(child.position);
+            }
+            return list;
         }
     }
 

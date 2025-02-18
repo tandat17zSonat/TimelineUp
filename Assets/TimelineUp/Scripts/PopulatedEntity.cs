@@ -102,8 +102,14 @@ namespace HyperCasualRunner.PopulatedEntity
             _collider.enabled = false;
 
             _projectileShootModifiable.Disable();
-
-            StartCoroutine(Release());
+            if (gameObject.activeSelf)
+            {
+                StartCoroutine(Release());
+            }
+            else
+            {
+                PoolBoss.Despawn(transform);
+            }
             //if (_disappearParticleEnabled)
             //{
             //    _disappearParticle.Play();

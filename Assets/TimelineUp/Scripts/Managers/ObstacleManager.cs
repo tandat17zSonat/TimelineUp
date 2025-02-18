@@ -78,7 +78,7 @@ namespace TimelineUp.Obstacle
             }
 
             // Sinh cổng về đích
-            positionZ += deltaZ * 4;
+            positionZ += deltaZ * 2;
             var gateFinish = Spawn(ObstacleType.GateFinish);
             gateFinish.Initialize();
             gateFinish.transform.position = new Vector3(0, 0, positionZ);

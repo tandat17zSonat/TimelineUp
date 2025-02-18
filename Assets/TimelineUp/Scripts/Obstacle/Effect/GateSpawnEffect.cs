@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HyperCasualRunner.PopulatedEntity;
 using TMPro;
 using UnityEngine;
@@ -67,7 +68,25 @@ namespace TimelineUp.Obstacle
             //Debug.Log("Projectile collision gatespawn");
         }
 
-        public void Add(int levelEntity)
+        public void Add(PopulatedEntity entity)
+        {
+            listEntityInGate.Add(entity);
+            return;
+        }
+
+        public override void Destroy()
+        {
+            var populationManager = GameplayManager.Instance.PopulationManager;
+            foreach (var entity in listEntityInGate)
+            {
+                entity.gameObject.SetActive(false);
+                populationManager.Remove(entity);
+            }
+            listEntityInGate.Clear();
+            base.Destroy();
+        }
+
+        public Vector3 GetFreeSlot()
         {
             var populationManager = GameplayManager.Instance.PopulationManager;
             int max = Mathf.Max(listNumWarrior.ToArray());
@@ -77,34 +96,12 @@ namespace TimelineUp.Obstacle
                 {
                     listNumWarrior[i] += 1;
 
-                    var entity = populationManager.Spawn(levelEntity, false, stands[i]);
-                    var pos = Vector3.up * (offsetY + (listNumWarrior[i] - 1) * deltaY);
-                    entity.transform.localPosition = pos;
-                    entity.SetSpriteOrder(listNumWarrior[i]);
-
-                    listEntityInGate.Add(entity);
-                    return;
+                    return stands[i].position + Vector3.up * (offsetY + (listNumWarrior[i] - 1) * deltaY);
                 }
             }
 
             listNumWarrior[0] += 1;
-            var entity0 = populationManager.Spawn(levelEntity, false, stands[0]);
-            var pos0 = Vector3.up * (offsetY + (listNumWarrior[0] - 1) * deltaY);
-            entity0.transform.localPosition = pos0;
-            entity0.SetSpriteOrder(listNumWarrior[0]);
-            listEntityInGate.Add(entity0);
-            return;
-        }
-
-        public override void Destroy()
-        {
-            var populationManager = GameplayManager.Instance.PopulationManager;
-            foreach (var entity in listEntityInGate)
-            {
-                populationManager.Remove(entity);
-            }
-            listEntityInGate.Clear();
-            base.Destroy();
+            return stands[0].position + Vector3.up * (offsetY + (listNumWarrior[0] - 1) * deltaY);
         }
     }
 
