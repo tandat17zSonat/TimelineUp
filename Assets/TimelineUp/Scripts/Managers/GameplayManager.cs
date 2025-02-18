@@ -97,6 +97,8 @@ public class GameplayManager : Singleton<GameplayManager>
         PanelManager.Instance.ClosePanel<PanelLobby>();
         State = GameState.Playing;
 
+        _runnerMover.ForwardMoveSpeed = GameplayManager.Instance.Speed;
+
         _animationModifier.CurrentAnimationName = _animationModifier.RunAnimationName;
         _animationModifier.ApplyAll(); // start animation -> run
 

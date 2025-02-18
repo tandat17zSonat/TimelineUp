@@ -25,7 +25,7 @@ namespace HyperCasualRunner.Locomotion
 
         // Liên quan tới đẩy lùi
         bool _isPushBack = false;
-        float _timePushBack = 0.5f;
+        float _timePushBack = 0.3f;
 
         Vector3 _oldPosition;
         float _oldTouchPositionX;
@@ -45,7 +45,6 @@ namespace HyperCasualRunner.Locomotion
 
         public void TryStartMovement()
         {
-            ForwardMoveSpeed = GameplayManager.Instance.Speed;
             _canGoForward = true;
 
             // Lưu lại những giá trị lần chạm đầu
@@ -75,13 +74,13 @@ namespace HyperCasualRunner.Locomotion
             {
                 // Bị tác động bởi đẩy lùi
                 var pos = transform.position;
-                pos.z = pos.z - Time.deltaTime * _forwardMoveSpeed * 3;
+                pos.z = pos.z - Time.deltaTime * _forwardMoveSpeed * 4;
                 transform.position = pos;
                 _timePushBack -= Time.deltaTime;
                 if (_timePushBack < 0)
                 {
                     _isPushBack = false;
-                    _timePushBack = 0.5f;
+                    _timePushBack = 0.3f;
                 }
             }
             else
