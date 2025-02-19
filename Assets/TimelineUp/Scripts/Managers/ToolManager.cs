@@ -1,11 +1,7 @@
-﻿using System;
-using System.IO;
-using Base.Singleton;
+﻿using Base.Singleton;
 using SonatFramework.UI;
 using TimelineUp.Obstacle;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class ToolManager : Singleton<ToolManager>
 {
@@ -29,9 +25,10 @@ public class ToolManager : Singleton<ToolManager>
         Clear();
     }
 
-    private void Clear()
+    public void Clear()
     {
         DataManager.CreateMapData();
+        obstacleManager.Unload();
     }
 
     private void Update()
@@ -100,7 +97,7 @@ public class ToolManager : Singleton<ToolManager>
 
         _obstacle = obstacleManager.Spawn(type);
         _obstacle.transform.position = Vector3.zero;
-
+        obstacleManager.AddList(_obstacle);
         var id = DataManager.MapData.Create(type, 0, 0);
         _obstacle.Id = id;
     }
@@ -143,18 +140,59 @@ public class ToolManager : Singleton<ToolManager>
 
     public void LoadMapData(string text, int level)
     {
-        throw new NotImplementedException();
+        string path = Application.dataPath + $"/Level/{level}.json";
+        if (text != null && text != "") path = text + $"{level}.json";
+
+        var uiTools = PanelManager.Instance.GetPanel<UITools>();
+        uiTools.SetLog($"Load map: {path}");
+        var mapData = DataManager.LoadMapData(path);
+
+        Clear();
+        foreach (var item in mapData.ListMainObstacles)
+        {
+            Create(item.Type);
+            SetPosition(item.x, item.z);
+            if (item.Locked == true)
+            {
+                SetLock(item.Properties[item.Properties.Count - 1]);
+            }
+            SetMove(item.Move ? 1 : 0);
+
+            if (item.Properties.Count > 0) SetProperty(item.Properties[0]);
+        }
     }
 
     public void Delete()
     {
+        var uiTools = PanelManager.Instance.GetPanel<UITools>();
+        uiTools.SetLog($"Delete {_obstacle.Type}");
+
         DataManager.DeleteMapData(_obstacle);
         obstacleManager.Remove(_obstacle);
         _obstacle = null;
+
     }
 
-    public void SetMove()
+    public void SetMove(int move = -1)
     {
+        // load
+        if (move != -1)
+        {
+            if (move == 0)
+            {
+                _obstacle.ResetRun();
+            }
+            else
+            {
+                _obstacle.SetRun();
+            }
+            DataManager.UpdateMapData(_obstacle);
+            return;
+        }
+
+        var uiTools = PanelManager.Instance.GetPanel<UITools>();
+        if (uiTools) uiTools.SetLog($"{_obstacle.Type} setMove Ok");
+        // settings in tools
         if (_obstacle.CheckMove() == false)
         {
             _obstacle.SetRun();

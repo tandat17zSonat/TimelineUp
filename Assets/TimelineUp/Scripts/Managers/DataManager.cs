@@ -114,6 +114,13 @@ public static class DataManager
         File.WriteAllText(path + $"/{level}.json", json);
     }
 
+    public static MapData LoadMapData(string path)
+    {
+        string jsonFile = File.ReadAllText(path);
+        MapData = JsonUtility.FromJson<MapData>(jsonFile);
+        return MapData;
+    }
+
     public static void UpdateMapData(BaseObstacle obstacle)
     {
         foreach (var obs in MapData.ListMainObstacles)

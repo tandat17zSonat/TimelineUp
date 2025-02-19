@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HyperCasualRunner.PopulatedEntity;
 using NaughtyAttributes;
+using SonatFramework.UI;
 using UnityEngine;
 
 namespace TimelineUp.Obstacle
@@ -43,10 +44,16 @@ namespace TimelineUp.Obstacle
             if (Type == ObstacleType.GateProjectileRange)
             {
                 GetComponent<GateProjectileRangeEffect>().SetAmount(numProperty);
+
+                var uiTools = PanelManager.Instance.GetPanel<UITools>();
+                if (uiTools) uiTools.SetLog($"{Type} setProperty Ok");
             }
             else if (Type == ObstacleType.GateProjectileRate)
             {
                 GetComponent<GateProjectileRateEffect>().SetAmount(numProperty);
+
+                var uiTools = PanelManager.Instance.GetPanel<UITools>();
+                if (uiTools) uiTools.SetLog($"{Type} setProperty Ok");
             }
         }
 
@@ -153,6 +160,8 @@ namespace TimelineUp.Obstacle
                     _lockEffect.SetAmount(num);
                 }
 
+                var uiTools = PanelManager.Instance.GetPanel<UITools>();
+                if (uiTools) uiTools.SetLog($"{Type} setLock Ok");
             }
         }
 

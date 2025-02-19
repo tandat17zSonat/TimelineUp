@@ -1,0 +1,35 @@
+{
+    "ListMainObstacles": [
+        {
+            "Id": 2,
+            "Type": 0,
+            "x": -1.5,
+            "z": 20.0,
+            "Locked": true,
+            "Move": false,
+            "Properties": [
+                5
+            ]
+        },
+        {
+            "Id": 1,
+            "Type": 4,
+            "x": 1.5,
+            "z": 30.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": [
+                -1
+            ]
+        },
+        {
+            "Id": 0,
+            "Type": 2,
+            "x": 0.0,
+            "z": 50.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        }
+    ]
+}

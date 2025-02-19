@@ -43,6 +43,7 @@ public class UITools : Panel
 
     [SerializeField] Button btnSave;
     [SerializeField] Button btnLoad;
+    [SerializeField] Button btnClear;
 
     [Header("Log")]
     [SerializeField] TMP_Text textLog;
@@ -55,24 +56,6 @@ public class UITools : Panel
         HandleButtonsMoveCamera();
         HandleSettings();
         HandleFile();
-    }
-
-    private void HandleFile()
-    {
-        btnSave.onClick.AddListener(() =>
-        {
-            int level = 0;
-            int.TryParse(inputId.text, out level);
-            ToolManager.Instance.SaveMapData(inputPath.text, level);
-        });
-
-        btnLoad.onClick.AddListener(() =>
-        {
-            int level = 0;
-            int.TryParse(inputId.text, out level);
-            ToolManager.Instance.LoadMapData(inputPath.text, level);
-        });
-
     }
 
     public override void Open(UIData uiData)
@@ -103,6 +86,7 @@ public class UITools : Panel
             btnObs.Button.onClick.AddListener(() =>
             {
                 ToolManager.Instance.Create(type);
+                SetLog($"Spawn {type}");
             });
         }
 
@@ -176,12 +160,6 @@ public class UITools : Panel
         });
     }
 
-    public void SetLog(string v)
-    {
-        Debug.Log(v);
-        textLog.text = v;
-    }
-
     private void HandleButtonsMoveCamera()
     {
         btnUp.onClick.AddListener(() =>
@@ -193,4 +171,35 @@ public class UITools : Panel
             ToolManager.Instance.MoveDown();
         });
     }
+
+    private void HandleFile()
+    {
+        btnSave.onClick.AddListener(() =>
+        {
+            int level = 0;
+            int.TryParse(inputId.text, out level);
+            ToolManager.Instance.SaveMapData(inputPath.text, level);
+        });
+
+        btnLoad.onClick.AddListener(() =>
+        {
+            int level = 0;
+            int.TryParse(inputId.text, out level);
+            ToolManager.Instance.LoadMapData(inputPath.text, level);
+        });
+
+
+        btnClear.onClick.AddListener(() =>
+        {
+            ToolManager.Instance.Clear();
+            SetLog("Clear");
+        });
+    }
+
+    public void SetLog(string v)
+    {
+        Debug.Log(v);
+        textLog.text = v;
+    }
+
 }

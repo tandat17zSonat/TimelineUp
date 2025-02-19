@@ -144,6 +144,11 @@ namespace TimelineUp.Obstacle
         {
             return _changeCameraPointZ;
         }
+
+        public void AddList(BaseObstacle obstacle)
+        {
+            listObstacles.Add(obstacle);
+        }
     }
 
     [System.Serializable]
