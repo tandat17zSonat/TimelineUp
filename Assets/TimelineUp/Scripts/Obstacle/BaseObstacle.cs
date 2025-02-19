@@ -17,7 +17,63 @@ namespace TimelineUp.Obstacle
         [SerializeField] LockEffect _lockEffect;
         [SerializeField] WayPointMover _wayPointMover;
 
+        [SerializeField] SpriteRenderer mask;
+
+        public int Id { get; set; }
+
+        public bool CheckLocked()
+        {
+            if (_lockEffect == null) return false;
+            else
+            {
+                return _lockEffect.Locked;
+            }
+        }
+        public bool CheckMove()
+        {
+            if (_wayPointMover == null) return false;
+            else
+            {
+                return _wayPointMover.IsMoving;
+            }
+        }
+
+        public void SetProperty(int numProperty)
+        {
+            if (Type == ObstacleType.GateProjectileRange)
+            {
+                GetComponent<GateProjectileRangeEffect>().SetAmount(numProperty);
+            }
+            else if (Type == ObstacleType.GateProjectileRate)
+            {
+                GetComponent<GateProjectileRateEffect>().SetAmount(numProperty);
+            }
+        }
+
+        public List<int> GetProperties()
+        {
+            var list = new List<int>();
+            if (Type == ObstacleType.GateProjectileRange)
+            {
+                var gateProjectileRangeEffect = GetComponent<GateProjectileRangeEffect>();
+                list.Add(gateProjectileRangeEffect.Amount);
+            }
+            else if (Type == ObstacleType.GateProjectileRate)
+            {
+                var gateProjectileRateEffect = GetComponent<GateProjectileRateEffect>();
+                list.Add(gateProjectileRateEffect.Amount);
+            }
+
+            if (CheckLocked())
+            {
+                list.Add(_lockEffect.Amount);
+            }
+            return list;
+        }
+
         public ObstacleType Type { get { return obstacleType; } }
+
+
 
         private void Awake()
         {
@@ -26,6 +82,7 @@ namespace TimelineUp.Obstacle
 
         public void Initialize()
         {
+            mask.enabled = false;
             foreach (var effect in _mainEffects)
             {
                 effect.Initialize();
@@ -85,15 +142,28 @@ namespace TimelineUp.Obstacle
         {
             if (_lockEffect)
             {
-                _lockEffect.Locked = true;
-                _lockEffect.Initialize();
-                _lockEffect.SetHp(num);
+                if (num <= 0)
+                {
+                    _lockEffect.Locked = false;
+                }
+                else
+                {
+                    _lockEffect.Locked = true;
+                    _lockEffect.Initialize();
+                    _lockEffect.SetAmount(num);
+                }
+
             }
         }
 
         public void SetRun()
         {
-            _wayPointMover.Initialize();
+            if (_wayPointMover) _wayPointMover.Initialize();
+        }
+
+        public void ResetRun()
+        {
+            if (_wayPointMover) _wayPointMover.Reset();
         }
 
         public virtual void SetProperties(List<int> properties)
@@ -112,10 +182,20 @@ namespace TimelineUp.Obstacle
         {
             if (_wayPointMover) _wayPointMover.Reset();
 
-            foreach(var effect in _mainEffects)
+            foreach (var effect in _mainEffects)
             {
                 effect.Reset();
             }
+        }
+
+        public void SetSelected(bool select)
+        {
+            mask.enabled = select;
+        }
+
+        public bool CheckSelected()
+        {
+            return mask.enabled;
         }
     }
 

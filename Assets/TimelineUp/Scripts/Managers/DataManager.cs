@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using TimelineUp.Data;
 using TimelineUp.Obstacle;
 using UnityEngine;
@@ -85,11 +87,52 @@ public static class DataManager
     //----------------------------------------
     public static MapData LoadMapData()
     {
-        int id = Random.Range(0, MAX_MAP_NUMBER);
+        int id = UnityEngine.Random.Range(0, MAX_MAP_NUMBER);
         //id = 6;
         Debug.LogWarning($"Load map {id}");
         TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Map/{id}");
         MapData = JsonUtility.FromJson<MapData>(jsonFile.text);
         return MapData;
+    }
+
+    public static MapData CreateMapData()
+    {
+        MapData = new MapData();
+        return MapData;
+    }
+
+    public static void SaveMapData(string path, int level)
+    {
+
+        if (Directory.Exists(path) == false)
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        MapData.Sort();
+        string json = JsonUtility.ToJson(MapData, true);
+        File.WriteAllText(path + $"/{level}.json", json);
+    }
+
+    public static void UpdateMapData(BaseObstacle obstacle)
+    {
+        foreach (var obs in MapData.ListMainObstacles)
+        {
+            if (obs.Id == obstacle.Id)
+            {
+                obs.x = (float)Math.Round(obstacle.transform.position.x, 1);
+                obs.z = (float)Math.Round(obstacle.transform.position.z, 1);
+                obs.Locked = obstacle.CheckLocked();
+                obs.Move = obstacle.CheckMove();
+                if (obs.Move) obs.x = 0;
+                // setProperty
+                obs.Properties = obstacle.GetProperties();
+            }
+        }
+    }
+
+    public static void DeleteMapData(BaseObstacle obstacle)
+    {
+        MapData.ListMainObstacles.RemoveAll(obs => { return obs.Id == obstacle.Id; });
     }
 }

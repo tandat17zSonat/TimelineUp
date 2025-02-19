@@ -7,18 +7,22 @@ public class WayPointMover : MonoBehaviour
     [SerializeField] float _length = 4f;
     [SerializeField] float _time = 4f;
 
+    private bool isMoving;
+    public bool IsMoving { get { return isMoving; } }
     private Sequence seq;
 
     Coroutine _coroutineRun;
 
     public void Initialize()
     {
+        isMoving = true;
         if (_coroutineRun != null) StopCoroutine(_coroutineRun);
         _coroutineRun = StartCoroutine(Run());
     }
 
     public void Reset()
     {
+        isMoving = false;
         //Debug.Log($"{name} reset");
         if (_coroutineRun != null) StopCoroutine(_coroutineRun);
         seq.Kill();

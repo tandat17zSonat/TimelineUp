@@ -12,6 +12,7 @@ namespace TimelineUp.Obstacle
 
         //[SerializeField] Material materialPositive;
         //[SerializeField] Material materialNegative;
+        public int Amount { get { return amount; } }
 
         public override void ApplyEffect(PopulatedEntity entity)
         {

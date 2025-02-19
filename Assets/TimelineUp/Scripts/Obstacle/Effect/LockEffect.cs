@@ -21,7 +21,8 @@ namespace TimelineUp.Obstacle
             }
         }
 
-        private int hp = 10;
+        private int amount = 10;
+        public int Amount { get { return amount; } }
 
         public override void ApplyEffect(PopulatedEntity entity)
         {
@@ -40,9 +41,9 @@ namespace TimelineUp.Obstacle
 
         public override void ApplyEffect(Projectile projectile)
         {
-            hp -= 1;
+            amount -= 1;
 
-            if (hp == 0)
+            if (amount == 0)
             {
                 Locked = false;
             }
@@ -50,18 +51,18 @@ namespace TimelineUp.Obstacle
 
         private void Update()
         {
-            textHp.text = (-hp).ToString();
+            textHp.text = (-amount).ToString();
         }
 
         public override void Reset()
         {
             _collisionCount = 0;
-            hp = 2;
+            amount = 2;
         }
 
-        public void SetHp(int num)
+        public void SetAmount(int num)
         {
-            hp = num;
+            amount = num;
         }
     }
 }
