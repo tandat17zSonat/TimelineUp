@@ -89,7 +89,7 @@ namespace TimelineUp.Obstacle
 
         public void Initialize()
         {
-            mask.enabled = false;
+            if (mask) mask.enabled = false;
             foreach (var effect in _mainEffects)
             {
                 effect.Initialize();

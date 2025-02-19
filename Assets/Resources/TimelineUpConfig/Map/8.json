@@ -1,0 +1,92 @@
+{
+    "ListMainObstacles": [
+        {
+            "Id": 0,
+            "Type": 0,
+            "x": 1.5,
+            "z": 10.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        },
+        {
+            "Id": 1,
+            "Type": 0,
+            "x": -1.5,
+            "z": 20.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        },
+        {
+            "Id": 2,
+            "Type": 4,
+            "x": 0.0,
+            "z": 35.0,
+            "Locked": false,
+            "Move": true,
+            "Properties": [
+                100
+            ]
+        },
+        {
+            "Id": 3,
+            "Type": 1,
+            "x": 0.0,
+            "z": 45.0,
+            "Locked": true,
+            "Move": false,
+            "Properties": [
+                10
+            ]
+        },
+        {
+            "Id": 4,
+            "Type": 2,
+            "x": 0.0,
+            "z": 55.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        },
+        {
+            "Id": 5,
+            "Type": 1,
+            "x": 0.0,
+            "z": 65.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        },
+        {
+            "Id": 6,
+            "Type": 0,
+            "x": 0.0,
+            "z": 80.0,
+            "Locked": false,
+            "Move": true,
+            "Properties": []
+        },
+        {
+            "Id": 7,
+            "Type": 2,
+            "x": 0.0,
+            "z": 90.0,
+            "Locked": false,
+            "Move": false,
+            "Properties": []
+        },
+        {
+            "Id": 8,
+            "Type": 3,
+            "x": 0.0,
+            "z": 105.0,
+            "Locked": true,
+            "Move": false,
+            "Properties": [
+                100,
+                10
+            ]
+        }
+    ]
+}

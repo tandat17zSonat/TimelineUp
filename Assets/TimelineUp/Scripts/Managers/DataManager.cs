@@ -14,7 +14,7 @@ public static class DataManager
     public static GameplayConfig GameplayConfig;
     public static TimelineEraSO TimelineEraSO;
 
-    public const int MAX_MAP_NUMBER = 7;
+    public const int MAX_MAP_NUMBER = 8;
     public static MapData MapData;
 
     // -----------------------------
@@ -88,7 +88,7 @@ public static class DataManager
     public static MapData LoadMapData()
     {
         int id = UnityEngine.Random.Range(0, MAX_MAP_NUMBER);
-        //id = 6;
+        id = 7;
         Debug.LogWarning($"Load map {id}");
         TextAsset jsonFile = Resources.Load<TextAsset>($"TimelineUpConfig/Map/{id}");
         MapData = JsonUtility.FromJson<MapData>(jsonFile.text);

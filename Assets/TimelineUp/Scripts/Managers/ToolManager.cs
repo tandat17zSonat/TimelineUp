@@ -141,7 +141,7 @@ public class ToolManager : Singleton<ToolManager>
     public void LoadMapData(string text, int level)
     {
         string path = Application.dataPath + $"/Level/{level}.json";
-        if (text != null && text != "") path = text + $"{level}.json";
+        if (text != null && text != "") path = text + $"/{level}.json";
 
         var uiTools = PanelManager.Instance.GetPanel<UITools>();
         uiTools.SetLog($"Load map: {path}");
